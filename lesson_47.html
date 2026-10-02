@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Math Tutoring by Deni - Pecahan SD Kelas 4</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#2563eb;--primary-dark:#1e40af;--secondary:#f59e0b;--success:#10b981;--danger:#ef4444;--bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+.tr{font-style:italic;font-size:.82em;color:var(--muted);display:block;margin-top:2px}
+header{background:var(--primary);color:#fff;padding:10px 20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.12);position:sticky;top:0;z-index:100;flex-wrap:wrap;gap:8px}
+header .brand{font-weight:700;font-size:1.05em}
+header .topic{font-size:.88em;text-align:center;flex:1}
+header .topic .tr{color:rgba(255,255,255,.85)}
+header button{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:8px 14px;border-radius:6px;cursor:pointer;font-size:.85em;white-space:nowrap}
+header button:hover{background:rgba(255,255,255,.25)}
+.main-container{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 52px)}
+.sidebar{background:var(--card);border-right:1px solid var(--border);padding:14px;overflow-y:auto;position:sticky;top:52px;height:calc(100vh - 52px)}
+.sidebar h3{font-size:.72em;color:var(--muted);text-transform:uppercase;margin-bottom:8px;letter-spacing:1px}
+.nav-link{display:block;padding:8px 10px;border-radius:6px;cursor:pointer;margin-bottom:3px;font-size:.84em;border:1px solid transparent;transition:all .15s}
+.nav-link:hover{background:#eff6ff}
+.nav-link.active{background:var(--primary);color:#fff;pointer-events:none;cursor:default}
+.nav-link .nl-title{display:block;font-weight:600}
+.nav-link .time{font-size:.76em;color:var(--muted);display:block;margin-top:2px}
+.nav-link.active .time,.nav-link.active .tr{color:rgba(255,255,255,.85)}
+.nav-link.disabled{opacity:.45;cursor:not-allowed;font-size:.8em;padding:6px 10px}
+.content-area{padding:22px 28px;overflow-y:auto;max-width:1100px;margin:0 auto;width:100%}
+.page-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:12px;border-bottom:2px solid var(--border);flex-wrap:wrap;gap:8px}
+.page-header h2{color:var(--primary-dark);font-size:1.1em}
+.page-header .badge{background:var(--secondary);color:#fff;padding:4px 10px;border-radius:20px;font-size:.76em;font-weight:600}
+.card{background:var(--card);border-radius:10px;padding:22px;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:16px;border:1px solid var(--border)}
+.card.explain{border-left:4px solid var(--primary)}
+.card.task{border-left:4px solid var(--secondary)}
+.card h3{color:var(--primary-dark);margin-bottom:12px;font-size:1.1em}
+.math-block{background:#f1f5f9;padding:12px 14px;border-radius:8px;margin:12px 0;overflow-x:auto}
+.example-box{background:#fef3c7;border-left:4px solid var(--secondary);padding:12px 16px;margin:12px 0;border-radius:6px}
+.example-box h4{color:#92400e;margin-bottom:6px;font-size:.95em}
+.tip-box{background:#dbeafe;border-left:4px solid var(--primary);padding:10px 14px;margin:10px 0;border-radius:6px}
+.tip-box h4{color:#1e40af;margin-bottom:4px;font-size:.9em}
+.illustration{text-align:center;margin:14px 0;padding:14px;background:#f1f5f9;border-radius:8px}
+.q-text{font-size:1em;margin-bottom:12px;line-height:1.7}
+.options{display:flex;flex-direction:column;gap:8px}
+.option{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:2px solid var(--border);border-radius:8px;cursor:pointer;background:#fff;transition:all .15s}
+.option:hover{border-color:var(--primary);background:#eff6ff}
+.option.selected{border-color:var(--primary);background:#dbeafe}
+.option.correct{border-color:var(--success);background:#d1fae5}
+.option.incorrect{border-color:var(--danger);background:#fee2e2}
+.option .marker{min-width:18px;width:18px;height:18px;border:2px solid var(--muted);border-radius:50%;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:.7em;color:#fff}
+.option.selected .marker{background:var(--primary);border-color:var(--primary)}
+.option.correct .marker{background:var(--success);border-color:var(--success)}
+.option.incorrect .marker{background:var(--danger);border-color:var(--danger)}
+.option.checkbox .marker{border-radius:3px}
+.option .opt-text{flex:1}
+.fill-input{padding:8px 12px;border:2px solid var(--border);border-radius:6px;font-size:1em;width:100%;margin:8px 0;font-family:inherit}
+.fill-input:focus{border-color:var(--primary);outline:none}
+.btn-submit{background:var(--primary);color:#fff;border:none;padding:9px 20px;border-radius:6px;cursor:pointer;font-size:.88em;font-weight:600;margin-top:12px}
+.btn-submit:hover{background:var(--primary-dark)}
+.feedback{margin-top:12px;padding:14px;border-radius:8px;display:none}
+.feedback.show{display:block}
+.feedback.correct{background:#d1fae5;border:1px solid var(--success)}
+.feedback.incorrect{background:#fee2e2;border:1px solid var(--danger)}
+.feedback h4{margin-bottom:6px}
+.feedback ol,.feedback ul{margin:6px 0;padding-left:22px}
+.feedback li{margin:4px 0}
+.card ol, .card ul { padding-left: 26px; margin: 10px 0; }
+.card li { margin: 5px 0; }
+.example-box ol, .example-box ul { padding-left: 22px; margin: 8px 0; }
+.tip-box ol, .tip-box ul { padding-left: 22px; margin: 8px 0; }
+.math-block ol, .math-block ul { padding-left: 22px; margin: 8px 0; }
+.pagination{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}
+.pagination button{background:var(--primary);color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:.84em}
+.pagination button:disabled{background:#cbd5e1;cursor:not-allowed}
+.pagination .indicator{font-size:.82em;color:var(--muted);text-align:center;flex:1;padding:0 10px}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center}
+.modal.active{display:flex}
+.modal-content{background:#fff;padding:22px;border-radius:12px;max-width:460px;width:90%}
+.modal-content h3{color:var(--primary-dark);margin-bottom:12px}
+.modal-content ul{list-style:none;padding-left:0}
+.modal-content li{padding:10px 0;border-bottom:1px solid var(--border)}
+.modal-content li:last-child{border-bottom:none}
+.modal-close{background:var(--primary);color:#fff;border:none;padding:8px 18px;border-radius:6px;cursor:pointer;margin-top:12px}
+.sort-list{display:flex;flex-direction:column;gap:6px}
+.sort-item{padding:10px 12px;border:2px solid var(--border);border-radius:8px;background:#fff;cursor:pointer;display:flex;align-items:center;gap:10px;transition:all .15s}
+.sort-item:hover{border-color:var(--primary)}
+.sort-item.selected{border-color:var(--primary);background:#dbeafe}
+.sort-item .pos{background:var(--primary);color:#fff;min-width:24px;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8em;flex-shrink:0}
+.sort-item .sort-text{flex:1}
+.pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pair-col h4{font-size:.85em;color:var(--muted);margin-bottom:6px;text-transform:uppercase}
+.pair-col{display:flex;flex-direction:column;gap:6px}
+.pair-item{padding:10px 12px;border:2px solid var(--border);border-radius:8px;background:#fff;cursor:pointer;text-align:center;font-size:.92em}
+.pair-item.selected{border-color:var(--primary);background:#dbeafe}
+.pair-item.paired{opacity:.5;cursor:default;border-color:var(--success);background:#d1fae5}
+.pairs-list{margin-top:10px}
+.pair-row{display:flex;justify-content:space-between;align-items:center;padding:6px 10px;background:#f1f5f9;border-radius:6px;margin-bottom:4px;font-size:.85em}
+.pair-row .remove{cursor:pointer;color:var(--danger);font-weight:700;margin-left:6px}
+.page-numbers {display:flex;gap:3px;flex-wrap:nowrap;justify-content:center;flex:1;overflow-x:auto;padding:0 3px;}
+.page-num {min-width:28px;height:26px;border:1px solid var(--border);background:#fff;border-radius:4px;cursor:pointer;font-size:.7em;display:flex;align-items:center;justify-content:center;padding:0 4px;white-space:nowrap;transition:all .15s;flex-shrink:0;}
+.page-num.page-num-e {background:#eff6ff;border-color:#93c5fd;color:#1e40af;}
+.page-num.page-num-t {background:#fffbeb;border-color:#fcd34d;color:#92400e;}
+.page-num.page-num-e:hover {background:#dbeafe;border-color:var(--primary);}
+.page-num.page-num-t:hover {background:#fef3c7;border-color:var(--secondary);}
+.page-num.page-num-e.active {background:var(--primary);color:#fff;border-color:var(--primary);font-weight:600;}
+.page-num.page-num-t.active {background:var(--secondary);color:#fff;border-color:var(--secondary);font-weight:600;}
+.page-num:disabled {opacity:1;cursor:default;}
+@media(max-width:1100px){.main-container{grid-template-columns:180px 1fr}.content-area{padding:18px 20px}}
+@media(max-width:760px){.main-container{grid-template-columns:1fr}.sidebar{display:none}.content-area{padding:16px}header{font-size:.9em}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">Math Tutoring by Deni</div>
+  <div class="topic">Topik: Pecahan: Pembilang 1 & Penyebut Sama <span class="tr">Topic: Fractions: Unit & Like Fractions</span></div>
+  <button id="classRulesBtn">Aturan Kelas <span class="tr">Class Rules</span></button>
+</header>
+<div class="main-container">
+  <nav class="sidebar" id="sidebar"></nav>
+  <main class="content-area">
+    <div id="pageContent"></div>
+    <div class="pagination">
+      <button id="prevBtn">← Sebelumnya <span class="tr">Previous</span></button>
+      <div class="page-numbers" id="pageNums"></div>
+      <button id="nextBtn">Berikutnya <span class="tr">Next</span> →</button>
+    </div>
+  </main>
+</div>
+<div id="classRulesModal" class="modal">
+  <div class="modal-content">
+    <h3>Aturan Kelas <span class="tr">Class Rules</span></h3>
+    <ul>
+      <li>Berbicara secara bergantian <span class="tr">Speak in turn</span></li>
+      <li>Meminta izin jika ingin meninggalkan kelas <span class="tr">Ask permission before leaving the class</span></li>
+      <li>Menyalakan microphone dan camera jika diperlukan <span class="tr">Turn on microphone and camera when needed</span></li>
+    </ul>
+    <button class="modal-close">Tutup <span class="tr">Close</span></button>
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  if(!window.renderMathInElement){setTimeout(arguments.callee,50);return;}
+  const sectionsData = {
+    a: {
+      title: 'Spiral Review Warm-up', titleEn: 'Spiral Review Warm-up', time: '00:00 - 00:10',
+      pages: [
+        { type:'explanation', pageTitle:'E1: Operasi Pembagian Dasar', pageTitleEn:'Basic Division Operation',
+          body:`<p>Pembagian adalah operasi membagi sesuatu menjadi bagian yang sama besar. <span class="tr">Division is the operation of splitting something into equal parts.</span></p>
+          <div class="math-block">$a \\div b = \\frac{a}{b}$ <span class="tr">$a$ divided by $b$</span></div>
+          <p>Dalam pembagian, kita mengenal <strong>dividen</strong> (bilangan yang dibagi), <strong>divisor</strong> (pembagi), dan <strong>hasil bagi</strong>. <span class="tr">In division, we have the dividend, divisor, and quotient.</span></p>
+          <div class="example-box"><h4>Contoh <span class="tr">Example</span></h4>Hitunglah $12 \\div 4$. <span class="tr">Calculate $12 \\div 4$.</span>
+          <ol><li>Kita membagi 12 kue menjadi 4 kelompok. <span class="tr">We divide 12 cookies into 4 groups.</span></li><li>Setiap kelompok akan berisi $12 \\div 4 = 3$ kue. <span class="tr">Each group will contain $3$ cookies.</span></li></ol></div>`
+        },
+        { type:'task', pageTitle:'T1: Hasil Pembagian', pageTitleEn:'Division Result', taskType:'fill',
+          question:'Hasil dari $16 \\div 4 = \\dots$', questionEn:'The result of $16 \\div 4 = \\dots$',
+          correctAnswer:'4', acceptableAnswers:['4'],
+          explanation:`<p>Karena $4 \\times 4 = 16$, maka $16 \\div 4 = 4$. <span class="tr">Since $4 \\times 4 = 16$, then $16 \\div 4 = 4$.</span></p>`
+        },
+        { type:'task', pageTitle:'T2: Identifikasi Pembagian', pageTitleEn:'Identify Division', taskType:'radio',
+          question:'Manakah dari berikut ini yang merupakan operasi pembagian?', questionEn:'Which of the following is a division operation?',
+          options:[{text:'$3 + 5 = 8$ <span class="tr">Three plus five</span>', correct:false},{text:'$12 \\div 3 = 4$ <span class="tr">Twelve divided by three</span>', correct:true},{text:'$4 \\times 2 = 8$ <span class="tr">Four times two</span>', correct:false},{text:'$10 - 2 = 8$ <span class="tr">Ten minus two</span>', correct:false}],
+          explanation:`<p>Tanda "$\\div$" atau bentuk pecahan mewakili pembagian. <span class="tr">The "$\\div$" symbol or fraction form represents division.</span></p>`
+        },
+        { type:'task', pageTitle:'T3: Pembagian Sebagai Pecahan', pageTitleEn:'Division as Fraction', taskType:'truefalse',
+          question:'Benar atau salah: $7 \\div 8$ dapat ditulis sebagai $\\frac{7}{8}$.', questionEn:'True or false: $7 \\div 8$ can be written as $\\frac{7}{8}$.',
+          correctAnswer:'true',
+          explanation:`<p>Secara matematis, $a \\div b$ sama dengan $\\frac{a}{b}$. Jadi, $7 \\div 8 = \\frac{7}{8}$. <span class="tr">Mathematically, $a \\div b$ is the same as $\\frac{a}{b}$.</span></p>`
+        },
+        { type:'explanation', pageTitle:'E2: Bagian dari Keseluruhan', pageTitleEn:'Parts of a Whole',
+          body:`<p>Saat kita membagi satu benda utuh menjadi beberapa bagian sama besar, setiap bagian disebut <strong>bagian dari keseluruhan</strong>. <span class="tr">When we divide a whole object into equal parts, each part is called a part of a whole.</span></p>
+          <div class="illustration"><svg width="200" height="100" viewBox="0 0 200 100"><rect x="10" y="10" width="180" height="80" fill="#dbeafe" stroke="#333" stroke-width="2"/><line x1="100" y1="10" x2="100" y2="90" stroke="#333" stroke-width="2"/></svg><div style="font-size:.82em;color:var(--muted);margin-top:6px">1 utuh dibagi 2 bagian sama besar <span class="tr">1 whole divided into 2 equal parts</span></div></div>
+          <p>Jika kotak di atas dibagi 2 sama besar, maka setiap potongan adalah $\\frac{1}{2}$ dari keseluruhan. <span class="tr">If the box is divided into 2 equal parts, each piece is $\\frac{1}{2}$ of the whole.</span></p>`
+        },
+        { type:'task', pageTitle:'T4: Bagian yang Hilang', pageTitleEn:'Missing Part', taskType:'fill',
+          question:'Jika 1 pizza dipotong menjadi 8 bagian sama besar, Andi makan 3 potong. Sisa potongan pizza adalah...', questionEn:'If 1 pizza is cut into 8 equal slices, Andi eats 3 slices. The remaining slices are...',
+          correctAnswer:'5', acceptableAnswers:['5'],
+          explanation:`<p>Total potongan $= 8$. Andi makan $= 3$. Sisa $= 8 - 3 = 5$ potong. <span class="tr">Total $= 8$. Eaten $= 3$. Remaining $= 8 - 3 = 5$ slices.</span></p>`
+        },
+        { type:'task', pageTitle:'T5: Urutkan Langkah Pembagian', pageTitleEn:'Order Division Steps', taskType:'sorting',
+          question:'Urutkan langkah berikut untuk membagi 10 permen ke 2 anak.', questionEn:'Order the steps to divide 10 candies to 2 children.',
+          items:['Siapkan 10 permen <span class="tr">Prepare 10 candies</span>','Bagi permen menjadi 2 kelompok <span class="tr">Divide candies into 2 groups</span>','Hitung permen di setiap kelompok <span class="tr">Count candies in each group</span>','Setiap anak mendapat 5 permen <span class="tr">Each child gets 5 candies</span>'], correctOrder:[0,1,2,3],
+          explanation:`<p>Proses pembagian dimulai dari menyiapkan total, membagi sama rata, lalu menghitung hasilnya. <span class="tr">The division process starts from preparing the total, dividing equally, then counting the result.</span></p>`
+        },
+        { type:'task', pageTitle:'T6: Pernyataan Benar tentang Bagian', pageTitleEn:'True Statements about Parts', taskType:'checkbox',
+          question:'Pilih semua pernyataan yang benar tentang membagi 1 kue menjadi 4 bagian sama besar.', questionEn:'Select all true statements about dividing 1 cake into 4 equal parts.',
+          options:[{text:'Setiap potongan adalah $\\frac{1}{4}$ bagian. <span class="tr">Each slice is $\\frac{1}{4}$ part.</span>', correct:true},{text:'Ada 4 potong kue. <span class="tr">There are 4 slices of cake.</span>', correct:true},{text:'Satu potong adalah setengah dari kue. <span class="tr">One slice is half of the cake.</span>', correct:false},{text:'Semua potongan ukurannya sama. <span class="tr">All slices are the same size.</span>', correct:true}],
+          explanation:`<p>Membagi menjadi 4 bagian sama berarti ada 4 potong, ukurannya sama, dan masing-masing mewakili $\\frac{1}{4}$. <span class="tr">Dividing into 4 equal parts means there are 4 slices, same size, each representing $\\frac{1}{4}$.</span></p>`
+        },
+        { type:'explanation', pageTitle:'E3: Membandingkan Bilangan', pageTitleEn:'Comparing Numbers',
+          body:`<p>Membilang bilangan asli: 1, 2, 3, dst. Bilangan di kanan lebih besar dari bilangan di kiri. <span class="tr">Counting natural numbers: right is greater than left.</span></p>
+          <div class="math-block">$1 < 2 < 3 < 4$ <span class="tr">One is less than two, and so on</span></div>
+          <div class="example-box"><h4>Contoh <span class="tr">Example</span></h4>Bandingkan 7 dan 10. <span class="tr">Compare 7 and 10.</span>
+          <p>Karena 10 ada di sebelah kanan 7 pada garis bilangan, maka $10 > 7$. <span class="tr">Since 10 is to the right of 7, $10 > 7$.</span></p></div>`
+        },
+        { type:'task', pageTitle:'T7: Bilangan Terbesar', pageTitleEn:'Largest Number', taskType:'fill',
+          question:'Antara 25 dan 52, bilangan yang lebih besar adalah...', questionEn:'Between 25 and 52, the larger number is...',
+          correctAnswer:'52', acceptableAnswers:['52'],
+          explanation:`<p>Mari bandingkan nilai tempat puluhan: 52 memiliki 5 puluhan, sedangkan 25 hanya 2 puluhan. Jadi $52 > 25$. <span class="tr">Comparing tens place: 52 has 5 tens, 25 has 2 tens. So $52 > 25$.</span></p>`
+        },
+        { type:'task', pageTitle:'T8: Pasangkan Simbol', pageTitleEn:'Match Symbols', taskType:'pairing',
+          question:'Pasangkan simbol dengan maknanya.', questionEn:'Match symbols with their meaning.',
+          pairs:[{left:'$>$', right:'Lebih dari <span class="tr">Greater than</span>'},{left:'$<$', right:'Kurang dari <span class="tr">Less than</span>'},{left:'$=$', right:'Sama dengan <span class="tr">Equals</span>'},{left:'$\\neq$', right:'Tidak sama dengan <span class="tr">Not equal to</span>'}],
+          explanation:`<p>$>$ artinya lebih dari, $<$ artinya kurang dari, $=$ artinya sama dengan. <span class="tr">$>$ means greater than, $<$ means less than, $=$ means equal to.</span></p>`
+        },
+        { type:'task', pageTitle:'T9: Pengecekan Pemahaman', pageTitleEn:'Understanding Check', taskType:'truefalse',
+          question:'Benar atau salah: $45 > 54$.', questionEn:'True or false: $45 > 54$.',
+          correctAnswer:'false',
+          explanation:`<p>54 lebih besar dari 45, jadi $45 < 54$. Pernyataan $45 > 54$ salah. <span class="tr">54 is larger than 45, so $45 < 54$.</span></p>`
+        },
+        { type:'task', pageTitle:'T10: Urutkan Bilangan', pageTitleEn:'Order Numbers', taskType:'sorting',
+          question:'Urutkan bilangan berikut dari terkecil ke terbesar.', questionEn:'Order numbers from smallest to largest.',
+          items:['$12$ <span class="tr">Twelve</span>','$8$ <span class="tr">Eight</span>','$21$ <span class="tr">Twenty-one</span>','$5$ <span class="tr">Five</span>'], correctOrder:[3,1,0,2],
+          explanation:`<p>Urutan: 5, 8, 12, 21. <span class="tr">Sequence: 5, 8, 12, 21.</span></p>`
+        }
+      ]
+    },
+    b: {
+      title: 'Introduction & Real-World Connection', titleEn: 'Introduction & Real-World Connection', time: '00:10 - 00:15',
+      pages: [
+        { type:'explanation', pageTitle:'E1: Membagi Makanan', pageTitleEn:'Sharing Food',
+          body:`<p>Pecahan sering kita gunakan saat berbagi makanan. Jika 1 pizza dijahit menjadi 4 bagian sama besar, 1 bagian ditulis sebagai $\\frac{1}{4}$. <span class="tr">Fractions are often used when sharing food. If 1 pizza is cut into 4 equal parts, 1 part is written as $\\frac{1}{4}$.</span></p>
+          <div class="illustration"><svg width="180" height="180" viewBox="0 0 180 180"><circle cx="90" cy="90" r="80" fill="#fef3c7" stroke="#333" stroke-width="2"/><path d="M 90 90 L 90 10 A 80 80 0 0 1 170 90 Z" fill="#f59e0b" stroke="#333" stroke-width="2"/><path d="M 90 90 L 170 90" stroke="#333" stroke-width="2"/><path d="M 90 90 L 90 10" stroke="#333" stroke-width="2"/></svg><div style="font-size:.82em;color:var(--muted);margin-top:6px">Pizza dipotong 4 bagian <span class="tr">Pizza cut into 4 parts</span></div></div>
+          <p>Kita ucapkan "satu perempat". Artinya, 1 bagian dari total 4 bagian. <span class="tr">We say "one over four" or "one quarter". It means 1 part out of 4 total parts.</span></p>`
+        },
+        { type:'task', pageTitle:'T1: Pecahan Pizza', pageTitleEn:'Pizza Fraction', taskType:'radio',
+          question:'1 potong dari 8 potongan pizza yang sama besar, ditulis sebagai?', questionEn:'1 slice out of 8 equal pizza slices is written as?',
+          options:[{text:'$\\frac{1}{8}$ <span class="tr">One-eighth</span>', correct:true},{text:'$\\frac{1}{4}$ <span class="tr">One-fourth</span>', correct:false},{text:'$\\frac{8}{1}$ <span class="tr">Eight over one</span>', correct:false},{text:'$\\frac{8}{8}$ <span class="tr">Eight-eighths</span>', correct:false}],
+          explanation:`<p>Total potongan $= 8$ (penyebut). Jumlah potongan yang diambil $= 1$ (pembilang). Jadi, $\\frac{1}{8}$. <span class="tr">Total parts $= 8$ (denominator). Parts taken $= 1$ (numerator). So, $\\frac{1}{8}$.</span></p>`
+        },
+        { type:'task', pageTitle:'T2: Jumlah Potong', pageTitleEn:'Number of Slices', taskType:'fill',
+          question:'Jika 1 buah melon dipotong menjadi 6 bagian sama besar, ada berapa potong melon?', questionEn:'If 1 melon is cut into 6 equal parts, how many melon slices are there?',
+          correctAnswer:'6', acceptableAnswers:['6'],
+          explanation:`<p>Melon dibagi menjadi 6 bagian, artinya jumlah total potongannya adalah 6. <span class="tr">Melon divided into 6 parts means total slices is 6.</span></p>`
+        },
+        { type:'task', pageTitle:'T3: Berbagi Adil', pageTitleEn:'Fair Sharing', taskType:'truefalse',
+          question:'Benar atau salah: Pecahan hanya bisa digunakan jika semua bagiannya sama besar.', questionEn:'True or false: Fractions can only be used if all parts are equal in size.',
+          correctAnswer:'true',
+          explanation:`<p>Agar bisa disebut pecahan, semua bagian harus sama besar (adil). Jika tidak sama, itu bukan pecahan matematika. <span class="tr">To be called a fraction, all parts must be equal. If not, it's not a mathematical fraction.</span></p>`
+        },
+        { type:'explanation', pageTitle:'E2: Pecahan di Sekitar Kita', pageTitleEn:'Fractions Around Us',
+          body:`<p>Pecahan bukan hanya untuk makanan, tapi juga untuk durasi, jarak, dan uang. <span class="tr">Fractions are not just for food, but also for time, distance, and money.</span></p>
+          <div class="math-block">Setengah jam $= \\frac{1}{2}$ jam $= 30$ menit. <span class="tr">Half an hour $= \\frac{1}{2}$ hour $= 30$ minutes.</span></div>
+          <div class="example-box"><h4>Contoh <span class="tr">Example</span></h4>Jika 1 liter air dibagi ke 4 gelas sama besar, tiap gelas berisi $\\frac{1}{4}$ liter air. <span class="tr">If 1 liter of water is divided into 4 equal glasses, each glass contains $\\frac{1}{4}$ liter.</span></div>`
+        },
+        { type:'task', pageTitle:'T4: Pasangan Waktu', pageTitleEn:'Time Pairing', taskType:'pairing',
+          question:'Pasangkan pecahan waktu dengan menit yang sesuai (1 jam = 60 menit).', questionEn:'Match time fractions with corresponding minutes.',
+          pairs:[{left:'$\\frac{1}{2}$ jam <span class="tr">hour</span>', right:'$30$ menit <span class="tr">minutes</span>'},{left:'$\\frac{1}{4}$ jam <span class="tr">hour</span>', right:'$15$ menit <span class="tr">minutes</span>'},{left:'$\\frac{1}{3}$ jam <span class="tr">hour</span>', right:'$20$ menit <span class="tr">minutes</span>'},{left:'$\\frac{1}{1}$ jam <span class="tr">hour</span>', right:'$60$ menit <span class="tr">minutes</span>'}],
+          explanation:`<p>Setengah dari 60 adalah 30. Seperempat dari 60 adalah 15. Sepertiga dari 60 adalah 20. <span class="tr">Half of 60 is 30. Quarter of 60 is 15. Third of 60 is 20.</span></p>`
+        },
+        { type:'task', pageTitle:'T5: Identifikasi Setengah', pageTitleEn:'Identify Half', taskType:'checkbox',
+          question:'Pilih semua gambar (dalam bentuk teks) yang menunjukkan $\\frac{1}{2}$ bagian.', questionEn:'Select all text representations that show $\\frac{1}{2}$ part.',
+          options:[{text:'1 buah apel dipotong 2 bagian sama besar, ambil 1. <span class="tr">1 apple cut into 2 equal parts, take 1.</span>', correct:true},{text:'1 kue dipotong 4 bagian, ambil 2. <span class="tr">1 cake cut into 4 parts, take 2.</span>', correct:true},{text:'1 kue dipotong 3 bagian, ambil 1. <span class="tr">1 cake cut into 3 parts, take 1.</span>', correct:false},{text:'1 jeruk dibagi 2 sama besar, ambil 1. <span class="tr">1 orange divided into 2 equal, take 1.</span>', correct:true}],
+          explanation:`<p>$\\frac{1}{2}$ sama dengan 2 per 4 ($\\frac{2}{4}$). Keduanya merepresentasikan setengah bagian. <span class="tr">$\\frac{1}{2}$ is equal to $\\frac{2}{4}$. Both represent half a part.</span></p>`
+        },
+        { type:'task', pageTitle:'T6: Langkah Berbagi Kue', pageTitleEn:'Cake Sharing Steps', taskType:'sorting',
+          question:'Urutkan cara membagi 1 kue kepada 4 teman sama rata.', questionEn:'Order how to divide 1 cake to 4 friends equally.',
+          items:['Kue dipotong menjadi 4 bagian sama besar. <span class="tr">Cake is cut into 4 equal parts.</span>','Tiap teman mengambil 1 potong. <span class="tr">Each friend takes 1 slice.</span>','Setiap teman mendapat $\\frac{1}{4}$ bagian. <span class="tr">Each friend gets $\\frac{1}{4}$ part.</span>','Total semua bagian jika digabung jadi 1 utuh. <span class="tr">Total all parts combined becomes 1 whole.</span>'], correctOrder:[0,1,2,3],
+          explanation:`<p>Pembagian dimulai dari memotong sama rata, membagi, lalu menyimpulkan pecahan yang didapat. <span class="tr">Division starts from cutting equally, distributing, then concluding the fraction received.</span></p>`
+        },
+        { type:'explanation', pageTitle:'E3: Notasi Pecahan', pageTitleEn:'Fraction Notation',
+          body:`<p>Pecahan ditulis dengan dua bilangan dan satu garis. <span class="tr">A fraction is written with two numbers and a line.</span></p>
+          <div class="math-block"><span style="display:inline-block;vertical-align:middle;text-align:center;">$\\text{Pembilang} \\rightarrow 1$<br>$\\text{Garis pecahan} \\rightarrow \\overline{\\phantom{---}}$<br>$\\text{Penyebut} \\rightarrow 4$</span></div>
+          <p><strong>Pembilang</strong> (atas) menunjukkan berapa bagian yang kita punya/ambil. <strong>Penyebut</strong> (bawah) menunjukkan total bagian keseluruhan. <span class="tr"><strong>Numerator</strong> (top) shows how many parts we have/take. <strong>Denominator</strong> (bottom) shows total parts of the whole.</span></p>`
+        },
+        { type:'task', pageTitle:'T7: Identifikasi Pembilang', pageTitleEn:'Identify Numerator', taskType:'fill',
+          question:'Pada pecahan $\\frac{3}{5}$, berapakah nilai pembilangnya?', questionEn:'In the fraction $\\frac{3}{5}$, what is the value of the numerator?',
+          correctAnswer:'3', acceptableAnswers:['3'],
+          explanation:`<p>Pembilang adalah angka di atas garis pecahan. Pada $\\frac{3}{5}$, angka di atas adalah 3. <span class="tr">Numerator is the top number. In $\\frac{3}{5}$, the top is 3.</span></p>`
+        },
+        { type:'task', pageTitle:'T8: Identifikasi Penyebut', pageTitleEn:'Identify Denominator', taskType:'radio',
+          question:'Pada pecahan $\\frac{2}{7}$, manakah yang merupakan penyebut?', questionEn:'In the fraction $\\frac{2}{7}$, which is the denominator?',
+          options:[{text:'$2$ <span class="tr">Two</span>', correct:false},{text:'$7$ <span class="tr">Seven</span>', correct:true},{text:'$\\frac{2}{7}$ <span class="tr">Two-sevenths</span>', correct:false},{text:'$9$ <span class="tr">Nine</span>', correct:false}],
+          explanation:`<p>Penyebut adalah angka di bawah garis pecahan. Pada $\\frac{2}{7}$, penyebutnya adalah 7. <span class="tr">Denominator is the bottom number. In $\\frac{2}{7}$, denominator is 7.</span></p>`
+        },
+        { type:'task', pageTitle:'T9: Arti Pecahan', pageTitleEn:'Meaning of Fraction', taskType:'truefalse',
+          question:'Benar atau salah: $\\frac{1}{5}$ berarti 1 utuh dibagi menjadi 5 bagian, dan kita mengambil 1 bagian.', questionEn:'True or false: $\\frac{1}{5}$ means 1 whole divided into 5 parts, and we take 1 part.',
+          correctAnswer:'true',
+          explanation:`<p>Tepat. Pembilang 1 berarti ambil 1 bagian, penyebut 5 berarti total ada 5 bagian. <span class="tr">Correct. Numerator 1 means take 1 part, denominator 5 means total 5 parts.</span></p>`
+        },
+        { type:'task', pageTitle:'T10: Pasangkan Istilah', pageTitleEn:'Match Terms', taskType:'pairing',
+          question:'Pasangkan posisi angka pada pecahan $\\frac{4}{9}$ dengan istilahnya.', questionEn:'Match positions in $\\frac{4}{9}$ with their terms.',
+          pairs:[{left:'Bilangan 4 <span class="tr">Number 4</span>', right:'Pembilang <span class="tr">Numerator</span>'},{left:'Bilangan 9 <span class="tr">Number 9</span>', right:'Penyebut <span class="tr">Denominator</span>'},{left:'Garis di antara 4 dan 9 <span class="tr">Line between 4 and 9</span>', right:'Garis pecahan <span class="tr">Fraction bar</span>'},{left:'Bilangan 9 <span class="tr">Number 9</span>', right:'Total bagian <span class="tr">Total parts</span>'}],
+          explanation:`<p>Aturan standar pecahan: atas = pembilang, bawah = penyebut. <span class="tr">Standard fraction rule: top = numerator, bottom = denominator.</span></p>`
+        }
+      ]
+    },
+    c: {
+      title: 'Review of Prior Knowledge', titleEn: 'Review of Prior Knowledge', time: '00:15 - 00:20',
+      pages: [
+        { type:'explanation', pageTitle:'E1: Pecahan Satuan', pageTitleEn:'Unit Fractions',
+          body:`<p><strong>Pecahan satuan</strong> adalah pecahan yang <strong>pembilangnya selalu 1</strong>. <span class="tr">A unit fraction is a fraction where the numerator is always 1.</span></p>
+          <div class="math-block">$\\frac{1}{2}, \\frac{1}{3}, \\frac{1}{4}, \\frac{1}{5}, \\dots$ <span class="tr">One-half, one-third, one-quarter, one-fifth, etc.</span></div>
+          <div class="example-box"><h4>Contoh <span class="tr">Example</span></h4>$\\frac{1}{6}$ adalah pecahan satuan. Artinya 1 bagian dari 6 bagian yang sama besar. <span class="tr">$\\frac{1}{6}$ is a unit fraction. It means 1 part out of 6 equal parts.</span></div>`
+        },
+        { type:'task', pageTitle:'T1: Identifikasi Pecahan Satuan', pageTitleEn:'Identify Unit Fraction', taskType:'radio',
+          question:'Manakah dari berikut ini yang merupakan pecahan satuan?', questionEn:'Which of the following is a unit fraction?',
+          options:[{text:'$\\frac{2}{3}$ <span class="tr">Two-thirds</span>', correct:false},{text:'$\\frac{1}{8}$ <span class="tr">One-eighth</span>', correct:true},{text:'$\\frac{3}{4}$ <span class="tr">Three-fourths</span>', correct:false},{text:'$\\frac{5}{5}$ <span class="tr">Five-fifths</span>', correct:false}],
+          explanation:`<p>Pecahan satuan harus memiliki pembilang 1. Hanya $\\frac{1}{8}$ yang pembilangnya 1. <span class="tr">Unit fractions must have a numerator of 1. Only $\\frac{1}{8}$ has numerator 1.</span></p>`
+        },
+        { type:'task', pageTitle:'T2: Bagian dari Utuh', pageTitleEn:'Part of Whole', taskType:'fill',
+          question:'Pecahan $\\frac{1}{10}$ menunjukkan 1 utuh dibagi menjadi ... bagian.', questionEn:'The fraction $\\frac{1}{10}$ shows 1 whole divided into ... parts.',
+          correctAnswer:'10', acceptableAnswers:['10'],
+          explanation:`<p>Penyebut (angka bawah) menunjukkan total pembagian. Pada $\\frac{1}{10}$, penyebutnya 10. <span class="tr">Denominator shows total divisions. In $\\frac{1}{10}$, denominator is 10.</span></p>`
+        },
+        { type:'task', pageTitle:'T3: Pengecekan Pecahan Satuan', pageTitleEn:'Unit Fraction Check', taskType:'truefalse',
+          question:'Benar atau salah: $\\frac{1}{4}$ lebih besar dari $\\frac{1}{2}$.', questionEn:'True or false: $\\frac{1}{4}$ is larger than $\\frac{1}{2}$.',
+          correctAnswer:'false',
+          explanation:`<p>Jika dibagi ke 1 pizza, memotong jadi 4 bagian membuat tiap potongan lebih kecil daripada dipotong jadi 2 bagian. Jadi $\\frac{1}{4} < \\frac{1}{2}$. <span class="tr">Cutting into 4 parts makes smaller slices than cutting into 2. So $\\frac{1}{4} < \\frac{1}{2}$.</span></p>`
+        },
+        { type:'explanation', pageTitle:'E2: Membaca Pecahan', pageTitleEn:'Reading Fractions',
+          body:`<p>Cara membaca pecahan: <span class="tr">How to read fractions:</span></p>
+          <ol><li>Pembilang dibaca sebagai bilangan asli (satu, dua, tiga). <span class="tr">Numerator is read as natural number.</span></li><li>Penyebut dibaca dengan akhiran "-per" (perempat, pertiga, perlima, per-enam). <span class="tr">Denominator is read with suffix "-th".</span></li></ol>
+          <div class="math-block">$\\frac{1}{2}$ = satu per dua (setengah) <span class="tr">one half</span><br>$\\frac{1}{3}$ = satu per tiga <span class="tr">one third</span><br>$\\frac{1}{4}$ = satu per empat (seperempat) <span class="tr">one quarter</span></div>
+          <div class="example-box"><h4>Contoh <span class="tr">Example</span></h4>Pecahan $\\frac{1}{8}$ dibaca "satu per delapan". <span class="tr">Fraction $\\frac{1}{8}$ is read "one-eighth".</span></div>`
+        },
+        { type:'task', pageTitle:'T4: Pasangan Bacaan', pageTitleEn:'Reading Pairs', taskType:'pairing',
+          question:'Pasangkan pecahan dengan cara baca yang benar.', questionEn:'Match fractions with their correct reading.',
+          pairs:[{left:'$\\frac{1}{5}$', right:'Satu per lima <span class="tr">One-fifth</span>'},{left:'$\\frac{1}{6}$', right:'Satu per enam <span class="tr">One-sixth</span>'},{left:'$\\frac{1}{2}$', right:'Setengah <span class="tr">One-half</span>'},{left:'$\\frac{1}{10}$', right:'Satu per sepuluh <span class="tr">One-tenth</span>'}],
+          explanation:`<p>Penyebut menentukan nama pecahan. 5 menjadi "per lima", 6 menjadi "per enam". <span class="tr">Denominator determines the fraction name.</span></p>`
+        },
+        { type:'task', pageTitle:'T5: Pernyataan Bacaan', pageTitleEn:'Reading Statements', taskType:'checkbox',
+          question:'Pilih semua pernyataan yang benar tentang membaca pecahan.', questionEn:'Select all true statements about reading fractions.',
+          options:[{text:'$\\frac{1}{3}$ dibaca "satu per tiga". <span class="tr">$\\frac{1}{3}$ is read "one third".</span>', correct:true},{text:'$\\frac{1}{4}$ dibaca "empat per satu". <span class="tr">$\\frac{1}{4}$ is read "four over one".</span>', correct:false},{text:'Penyebut dibaca dengan akhiran "-per". <span class="tr">Denominator is read with suffix "-th".</span>', correct:true},{text:'Pembilang dibaca pertama. <span class="tr">Numerator is read first.</span>', correct:true}],
+          explanation:`<p>Pembilang selalu dibaca pertama, lalu penyebut dengan akhiran "per" (atau "-th" dalam Inggris). <span class="tr">Numerator is read first, then denominator.</span></p>`
+        },
+        { type:'task', pageTitle:'T6: Urutkan Membaca Pecahan', pageTitleEn:'Order Reading Fraction', taskType:'sorting',
+          question:'Urutkan langkah membaca pecahan $\\frac{1}{9}$.', questionEn:'Order the steps to read $\\frac{1}{9}$.',
+          items:['Lihat angka di atas (pembilang) yaitu 1. <span class="tr">Look at top number (numerator), 1.</span>','Lihat angka di bawah (penyebut) yaitu 9. <span class="tr">Look at bottom number (denominator), 9.</span>','Baca pembilang: "satu". <span class="tr">Read numerator: "one".</span>','Baca penyebut: "per sembilan". <span class="tr">Read denominator: "ninth".</span>'], correctOrder:[0,1,2,3],
+          explanation:`<p>Urutan membaca pecahan dimulai dari mengenali komponen, lalu menyebut pembilang sebelum penyebut. <span class="tr">Order starts from recognizing components, then saying numerator before denominator.</span></p>`
+        },
+        { type:'explanation', pageTitle:'E3: Menggambar Pecahan', pageTitleEn:'Drawing Fractions',
+          body:`<p>Untuk menggambar pecahan $\\frac{1}{5}$, gambar sebuah bentuk utuh (seperti kotak), lalu bagikan menjadi 5 bagian sama besar. <span class="tr">To draw $\\frac{1}{5}$, draw a whole shape (like a box), then divide it into 5 equal parts.</span></p>
+          <div class="math-block">Lukiskan 5 kotak yang menyatu. Beri warna 1 kotak. <span class="tr">Draw 5 attached boxes. Color 1 box.</span></div>
+          <div class="illustration"><svg width="200" height="50" viewBox="0 0 200 50"><rect x="0" y="0" width="40" height="40" fill="#2563eb" stroke="#333" stroke-width="2"/><rect x="40" y="0" width="40" height="40" fill="#fff" stroke="#333" stroke-width="2"/><rect x="80" y="0" width="40" height="40" fill="#fff" stroke="#333" stroke-width="2"/><rect x="120" y="0" width="40" height="40" fill="#fff" stroke="#333" stroke-width="2"/><rect x="160" y="0" width="40" height="40" fill="#fff" stroke="#333" stroke-width="2"/></svg><div style="font-size:.82em;color:var(--muted);margin-top:6px">Gambar $\\frac{1}{5}$ <span class="tr">Drawing of $\\frac{1}{5}$</span></div></div>`
+        },
+        { type:'task', pageTitle:'T7: Pilih Gambar yang Tepat', pageTitleEn:'Select Correct Drawing', taskType:'radio',
+          question:'Gambar manakah yang mewakili $\\frac{1}{3}$?', questionEn:'Which picture represents $\\frac{1}{3}$?',
+          options:[{text:'Kotak dibagi 2, 1 diarsir. <span class="tr">Box divided in 2, 1 shaded.</span>', correct:false},{text:'Kotak dibagi 3, 1 diarsir. <span class="tr">Box divided in 3, 1 shaded.</span>', correct:true},{text:'Kotak dibagi 4, 3 diarsir. <span class="tr">Box divided in 4, 3 shaded.</span>', correct:false},{text:'Kotak dibagi 3, 2 diarsir. <span class="tr">Box divided in 3, 2 shaded.</span>', correct:false}],
+          explanation:`<p>$\\frac{1}{3}$ berarti total 3 bagian (penyebut) dan 1 diarsir (pembilang). <span class="tr">$\\frac{1}{3}$ means total 3 parts (denominator) and 1 shaded (numerator).</span></p>`
+        },
+        { type:'task', pageTitle:'T8: Hitung Bagian Diarsir', pageTitleEn:'Count Shaded Parts', taskType:'fill',
+          question:'Sebuah lingkaran dibagi menjadi 6 bagian sama besar. Jika 1 bagian diarsir, pecahannya adalah $\\frac{\\dots}{6}$.', questionEn:'A circle is divided into 6 equal parts. If 1 part is shaded, the fraction is $\\frac{\\dots}{6}$.',
+          correctAnswer:'1', acceptableAnswers:['1'],
+          explanation:`<p>Karena hanya 1 bagian yang diarsir dari 6 total bagian, maka pembilangnya adalah 1. Pecahannya $\\frac{1}{6}$. <span class="tr">Since only 1 part is shaded out of 6, the numerator is 1. Fraction is $\\frac{1}{6}$.</span></p>`
+        },
+        { type:'task', pageTitle:'T9: Validasi Pecahan', pageTitleEn:'Validate Fraction', taskType:'truefalse',
+          question:'Benar atau salah: Jika kotak dibagi 5 bagian sama besar, 1 bagian mewakili $\\frac{1}{5}$ dari utuh.', questionEn:'True or false: If a box is divided into 5 equal parts, 1 part represents $\\frac{1}{5}$ of the whole.',
+          correctAnswer:'true',
+          explanation:`<p>1 bagian dari total 5 bagian sama besarnya adalah $\\frac{1}{5}$. <span class="tr">1 part out of 5 total equal parts is $\\frac{1}{5}$.</span></p>`
+        },
+        { type:'task', pageTitle:'T10: Pasangan Gambar', pageTitleEn:'Picture Pairs', taskType:'pairing',
+          question:'Pasangkan deskripsi gambar dengan pecahannya.', questionEn:'Match picture descriptions with their fractions.',
+          pairs:[{left:'Dibagi 7, 1 diarsir <span class="tr">Divided 7, 1 shaded</span>', right:'$\\frac{1}{7}$'},{left:'Dibagi 2, 1 diarsir <span class="tr">Divided 2, 1 shaded</span>', right:'$\\frac{1}{2}$'},{left:'Dibagi 9, 1 diarsir <span class="tr">Divided 9, 1 shaded</span>', right:'$\\frac{1}{9}$'},{left:'Dibagi 4, 1 diarsir <span class="tr">Divided 4, 1 shaded</span>', right:'$\\frac{1}{4}$'}],
+          explanation:`<p>Pembilang = bagian diarsir, Penyebut = total pembagian. <span class="tr">Numerator = shaded, Denominator = total divisions.</span></p>`
+        }
+      ]
+    },
+    d: {
+      title: 'Problem Introduction', titleEn: 'Problem Introduction', time: '00:20 - 00:30',
+      pages: [
+        { type:'explanation', pageTitle:'E1: Pecahan dengan Penyebut Sama', pageTitleEn:'Like Fractions',
+          body:`<p>Pecahan yang memiliki <strong>angka bawah (penyebut) sama</strong> disebut pecahan dengan penyebut sama (like fractions). <span class="tr">Fractions that have the same bottom number (denominator) are called like fractions.</span></p>
+          <div class="math-block">$\\frac{1}{5}$ dan $\\frac{3}{5}$ <span class="tr">One-fifth and three-fifths</span></div>
+          <div class="illustration"><svg width="200" height="80" viewBox="0 0 200 80"><rect x="10" y="10" width="180" height="60" fill="#fff" stroke="#333" stroke-width="2"/><line x1="46" y1="10" x2="46" y2="70" stroke="#333" stroke-width="2"/><line x1="82" y1="10" x2="82" y2="70" stroke="#333" stroke-width="2"/><line x1="118" y1="10" x2="118" y2="70" stroke="#333" stroke-width="2"/><line x1="154" y1="10" x2="154" y2="70" stroke="#333" stroke-width="2"/><rect x="10" y="10" width="36" height="60" fill="#f59e0b" stroke="#333" stroke-width="2"/><rect x="82" y="10" width="36" height="60" fill="#f59e0b" stroke="#333" stroke-width="2"/><rect x="118" y="10" width="36" height="60" fill="#f59e0b" stroke="#333" stroke-width="2"/></svg><div style="font-size:.82em;color:var(--muted);margin-top:6px">$\\frac{1}{5}$ dan $\\frac{3}{5}$ memiliki penyebut sama <span class="tr">Have the same denominator</span></div></div>`
+        },
+        { type:'task', pageTitle:'T1: Identifikasi Pecahan', pageTitleEn:'Identify Fractions', taskType:'radio',
+          question:'Manakah pasangan pecahan yang memiliki penyebut sama?', questionEn:'Which pair of fractions has the same denominator?',
+          options:[{text:'$\\frac{1}{3}$ dan $\\frac{1}{4}$ <span class="tr">One-third and one-fourth</span>', correct:false},{text:'$\\frac{2}{5}$ dan $\\frac{3}{5}$ <span class="tr">Two-fifths and three-fifths</span>', correct:true},{text:'$\\frac{1}{6}$ dan $\\frac{2}{7}$ <span class="tr">One-sixth and two-sevenths</span>', correct:false},{text:'$\\frac{1}{2}$ dan $\\frac{1}{8}$ <span class="tr">One-half and one-eighth</span>', correct:false}],
+          explanation:`<p>Pecahan penyebut sama adalah pecahan yang angka bawahnya identik. $\\frac{2}{5}$ dan $\\frac{3}{5}$ sama-sama memiliki penyebut 5. <span class="tr">Like fractions have identical bottom numbers. $\\frac{2}{5}$ and $\\frac{3}{5}$ both have denominator 5.</span></p>`
+        },
+        { type:'task', pageTitle:'T2: Melengkapi Penyebut', pageTitleEn:'Complete Denominator', taskType:'fill',
+          question:'Agar $\\frac{2}{9}$ dan $\\frac{4}{\\dots}$ memiliki penyebut sama, angka yang hilang adalah...', questionEn:'To make $\\frac{2}{9}$ and $\\frac{4}{\\dots}$ have the same denominator, the missing number is...',
+          correctAnswer:'9', acceptableAnswers:['9'],
+          explanation:`<p>Untuk memiliki penyebut sama, angka di bawah garis pecahan harus sama. Jadi, penyebutnya harus 9. <span class="tr">To have the same denominator, the bottom number must be the same. So, it must be 9.</span></p>`
+        },
+        { type:'task', pageTitle:'T3: Pengecekan Pecahan', pageTitleEn:'Fraction Check', taskType:'truefalse',
+          question:'Benar atau salah: $\\frac{1}{4}$ dan $\\frac{3}{4}$ adalah pecahan dengan penyebut sama.', questionEn:'True or false: $\\frac{1}{4}$ and $\\frac{3}{4}$ are fractions with the same denominator.',
+          correctAnswer:'true',
+          explanation:`<p>Kedua pecahan memiliki angka bawah 4, sehingga mereka adalah pecahan penyebut sama. <span class="tr">Both fractions have the bottom number 4, so they are like fractions.</span></p>`
+        },
+        { type:'explanation', pageTitle:'E2: Penjumlahan Pecahan Penyebut Sama', pageTitleEn:'Addition of Like Fractions',
+          body:`<p>Untuk menjumlahkan pecahan dengan penyebut sama, kita hanya menjumlahkan <strong>pembilangnya saja</strong>, sedangkan <strong>penyebutnya tetap</strong>. <span class="tr">To add like fractions, we only add the numerators, while the denominator remains the same.</span></p>
+          <div class="math-block">Rumus: $\\frac{a}{c} + \\frac{b}{c} = \\frac{a + b}{c}$ <span class="tr">Formula</span></div>
+          <div class="example-box"><h4>Contoh <span class="tr">Example</span></h4>Hitunglah $\\frac{1}{5} + \\frac{2}{5}$. <span class="tr">Calculate $\\frac{1}{5} + \\frac{2}{5}$.</span>
+          <ol><li>Penyebut sama (5), jadi penyebut hasil tetap 5. <span class="tr">Denominator is same (5), so result denominator is 5.</span></li><li>Jumlahkan pembilang: $1 + 2 = 3$. <span class="tr">Add numerators: $1 + 2 = 3$.</span></li><li>Hasilnya adalah $\\frac{3}{5}$. <span class="tr">The result is $\\frac{3}{5}$.</span></li></ol></div>`
+        },
+        { type:'task', pageTitle:'T4: Hitung Penjumlahan', pageTitleEn:'Calculate Addition', taskType:'fill',
+          question:'Hasil dari $\\frac{2}{7} + \\frac{3}{7} = \\frac{\\dots}{7}$', questionEn:'The result of $\\frac{2}{7} + \\frac{3}{7} = \\frac{\\dots}{7}$',
+          correctAnswer:'5', acceptableAnswers:['5'],
+          explanation:`<p>Penyebut tetap 7. Jumlahkan pembilang: $2 + 3 = 5$. Jadi hasilnya $\\frac{5}{7}$. <span class="tr">Denominator remains 7. Add numerators: $2 + 3 = 5$. So the result is $\\frac{5}{7}$.</span></p>`
+        },
+        { type:'task', pageTitle:'T5: Hasil Penjumlahan', pageTitleEn:'Addition Result', taskType:'radio',
+          question:'Berapakah hasil dari $\\frac{1}{8} + \\frac{4}{8}$?', questionEn:'What is the result of $\\frac{1}{8} + \\frac{4}{8}$?',
+          options:[{text:'$\\frac{5}{16}$ <span class="tr">Five-sixteenths</span>', correct:false},{text:'$\\frac{2}{8}$ <span class="tr">Two-eighths</span>', correct:false},{text:'$\\frac{5}{8}$ <span class="tr">Five-eighths</span>', correct:true},{text:'$\\frac{4}{8}$ <span class="tr">Four-eighths</span>', correct:false}],
+          explanation:`<p>Jumlahkan pembilang $1 + 4 = 5$. Penyebut tetap 8. Hasilnya $\\frac{5}{8}$, bukan $\\frac{5}{16}$ (penyebut tidak dijumlah). <span class="tr">Add numerators $1 + 4 = 5$. Denominator stays 8. Result is $\\frac{5}{8}$.</span></p>`
+        },
+        { type:'task', pageTitle:'T6: Syarat Penjumlahan', pageTitleEn:'Addition Requirements', taskType:'checkbox',
+          question:'Pilih semua pernyataan yang benar saat menjumlahkan pecahan.', questionEn:'Select all true statements when adding fractions.',
+          options:[{text:'Penyebut harus sama. <span class="tr">Denominators must be the same.</span>', correct:true},{text:'Pembilang dijumlahkan. <span class="tr">Numerators are added.</span>', correct:true},{text:'Penyebut dijumlahkan. <span class="tr">Denominators are added.</span>', correct:false},{text:'Penyebut tetap. <span class="tr">Denominator remains the same.</span>', correct:true}],
+          explanation:`<p>Syarat utama: penyebut sama. Aturan: pembilang dijumlah, penyebut tetap. <span class="tr">Main requirement: same denominator. Rule: numerators added, denominator stays.</span></p>`
+        },
+        { type:'explanation', pageTitle:'E3: Pengurangan Pecahan Penyebut Sama', pageTitleEn:'Subtraction of Like Fractions',
+          body:`<p>Sama seperti penjumlahan, untuk mengurangkan pecahan dengan penyebut sama, kita hanya mengurangkan <strong>pembilangnya saja</strong>, dan <strong>penyebutnya tetap</strong>. <span class="tr">Like addition, to subtract like fractions, we only subtract the numerators, and the denominator remains the same.</span></p>
+          <div class="math-block">Rumus: $\\frac{a}{c} - \\frac{b}{c} = \\frac{a - b}{c}$ <span class="tr">Formula</span></div>
+          <div class="example-box"><h4>Contoh <span class="tr">Example</span></h4>Hitunglah $\\frac{4}{9} - \\frac{1}{9}$. <span class="tr">Calculate $\\frac{4}{9} - \\frac{1}{9}$.</span>
+          <ol><li>Penyebut tetap 9. <span class="tr">Denominator remains 9.</span></li><li>Kurangi pembilang: $4 - 1 = 3$. <span class="tr">Subtract numerators: $4 - 1 = 3$.</span></li><li>Hasilnya adalah $\\frac{3}{9}$. <span class="tr">The result is $\\frac{3}{9}$.</span></li></ol></div>`
+        },
+        { type:'task', pageTitle:'T7: Hitung Pengurangan', pageTitleEn:'Calculate Subtraction', taskType:'fill',
+          question:'Hasil dari $\\frac{7}{10} - \\frac{3}{10} = \\frac{\\dots}{10}$', questionEn:'The result of $\\frac{7}{10} - \\frac{3}{10} = \\frac{\\dots}{10}$',
+          correctAnswer:'4', acceptableAnswers:['4'],
+          explanation:`<p>Penyebut tetap 10. Kurangi pembilang: $7 - 3 = 4$. Jadi hasilnya $\\frac{4}{10}$. <span class="tr">Denominator stays 10. Subtract numerators: $7 - 3 = 4$. So the result is $\\frac{4}{10}$.</span></p>`
+        },
+        { type:'task', pageTitle:'T8: Hasil Pengurangan', pageTitleEn:'Subtraction Result', taskType:'radio',
+          question:'Berapakah hasil dari $\\frac{5}{6} - \\frac{2}{6}$?', questionEn:'What is the result of $\\frac{5}{6} - \\frac{2}{6}$?',
+          options:[{text:'$\\frac{3}{12}$ <span class="tr">Three-twelfths</span>', correct:false},{text:'$\\frac{3}{6}$ <span class="tr">Three-sixths</span>', correct:true},{text:'$\\frac{7}{6}$ <span class="tr">Seven-sixths</span>', correct:false},{text:'$\\frac{10}{6}$ <span class="tr">Ten-sixths</span>', correct:false}],
+          explanation:`<p>Kurangi pembilang $5 - 2 = 3$. Penyebut tetap 6. Hasilnya $\\frac{3}{6}$. <span class="tr">Subtract numerators $5 - 2 = 3$. Denominator stays 6. Result is $\\frac{3}{6}$.</span></p>`
+        },
+        { type:'task', pageTitle:'T9: Kesalahan Umum', pageTitleEn:'Common Mistake', taskType:'truefalse',
+          question:'Benar atau salah: $\\frac{5}{8} - \\frac{2}{8} = \\frac{3}{16}$.', questionEn:'True or false: $\\frac{5}{8} - \\frac{2}{8} = \\frac{3}{16}$.',
+          correctAnswer:'false',
+          explanation:`<p>Penyebut tidak boleh dikurangkan. Hasil yang benar adalah $\\frac{3}{8}$. <span class="tr">Denominators cannot be subtracted. The correct result is $\\frac{3}{8}$.</span></p>`
+        },
+        { type:'task', pageTitle:'T10: Pasangan Operasi', pageTitleEn:'Match Operations', taskType:'pairing',
+          question:'Pasangkan operasi dengan hasilnya.', questionEn:'Match operations with their results.',
+          pairs:[{left:'$\\frac{2}{5} + \\frac{1}{5}$ <span class="tr">plus</span>', right:'$\\frac{3}{5}$'},{left:'$\\frac{4}{7} - \\frac{1}{7}$ <span class="tr">minus</span>', right:'$\\frac{3}{7}$'},{left:'$\\frac{1}{4} + \\frac{2}{4}$ <span class="tr">plus</span>', right:'$\\frac{3}{4}$'},{left:'$\\frac{5}{9} - \\frac{2}{9}$ <span class="tr">minus</span>', right:'$\\frac{3}{9}$'}],
+          explanation:`<p>Untuk penjumlahan dan pengurangan penyebut sama: pembilang dihitung, penyebut tetap. <span class="tr">For like fractions addition and subtraction: numerators are calculated, denominator stays.</span></p>`
+        }
+      ]
+    },
+    e: {
+      title: 'Guided Practice', titleEn: 'Guided Practice', time: '00:30 - 00:45',
+      pages: [
+        { type:'explanation', pageTitle:'E1: Membandingkan Pecahan Penyebut Sama', pageTitleEn:'Comparing Like Fractions',
+          body:`<p>Untuk membandingkan pecahan dengan penyebut sama, kita hanya melihat <strong>besarnya pembilang</strong>. Semakin besar pembilang, semakin besar nilai pecahannya. <span class="tr">To compare like fractions, we only look at the numerator size. The larger the numerator, the larger the fraction value.</span></p>
+          <div class="math-block">Jika $a > b$, maka $\\frac{a}{c} > \\frac{b}{c}$ <span class="tr">If $a > b$, then $\\frac{a}{c} > \\frac{b}{c}$</span></div>
+          <div class="example-box"><h4>Contoh <span class="tr">Example</span></h4>Bandingkan $\\frac{3}{5}$ dan $\\frac{1}{5}$. <span class="tr">Compare $\\frac{3}{5}$ and $\\frac{1}{5}$.</span>
+          <p>Karena $3 > 1$, maka $\\frac{3}{5} > \\frac{1}{5}$. <span class="tr">Since $3 > 1$, then $\\frac{3}{5} > \\frac{1}{5}$.</span></p></div>`
+        },
+        { type:'task', pageTitle:'T1: Pecahan Terbesar', pageTitleEn:'Largest Fraction', taskType:'radio',
+          question:'Manakah pecahan yang paling besar nilainya?', questionEn:'Which fraction has the largest value?',
+          options:[{text:'$\\frac{2}{9}$ <span class="tr">Two-ninths</span>', correct:false},{text:'$\\frac{7}{9}$ <span class="tr">Seven-ninths</span>', correct:true},{text:'$\\frac{5}{9}$ <span class="tr">Five-ninths</span>', correct:false},{text:'$\\frac{1}{9}$ <span class="tr">One-ninth</span>', correct:false}],
+          explanation:`<p>Karena semua penyebutnya 9, kita bandingkan pembilatnya. 7 adalah pembilang terbesar, jadi $\\frac{7}{9}$ paling besar. <span class="tr">Since all denominators are 9, we compare numerators. 7 is largest, so $\\frac{7}{9}$ is largest.</span></p>`
+        },
+        { type:'task', pageTitle:'T2: Isi Tanda', pageTitleEn:'Fill Symbol', taskType:'fill',
+          question:'Isi tanda yang tepat: $\\frac{4}{11} \\dots \\frac{8}{11}$ (gunakan <, >, atau =)', questionEn:'Fill the correct symbol: $\\frac{4}{11} \\dots \\frac{8}{11}$ (use <, >, or =)',
+          correctAnswer:'<', acceptableAnswers:['<'],
+          explanation:`<p>Penyebut sama (11). Bandingkan pembilang: 4 dan 8. Karena 4 lebih kecil dari 8, tanda yang tepat adalah < ($\\frac{4}{11} < \\frac{8}{11}$). <span class="tr">Denominators are same. Compare numerators: 4 and 8. Since 4 is smaller than 8, the correct symbol is <.</span></p>`
+        },
+        { type:'task', pageTitle:'T3: Logika Pembanding', pageTitleEn:'Comparison Logic', taskType:'truefalse',
+          question:'Benar atau salah: Jika penyebut sama, pecahan dengan pembilang lebih kecil memiliki nilai lebih besar.', questionEn:'True or false: If denominators are the same, the fraction with the smaller numerator has a larger value.',
+          correctAnswer:'false',
+          explanation:`<p>Salah. Pecahan dengan pembilang lebih kecil nilainya lebih kecil, karena menunjukkan bagian yang lebih sedikit. <span class="tr">False. Fraction with smaller numerator has smaller value, because it represents fewer parts.</span></p>`
+        },
+        { type:'explanation', pageTitle:'E2: Masalah Cerita Penjumlahan', pageTitleEn:'Addition Word Problem',
+          body:`<p>Masalah cerita pecahan biasanya menceritakan bagian yang digunakan dan bagian yang tersisa. <span class="tr">Fraction word problems usually tell about parts used and parts remaining.</span></p>
+          <div class="example-box"><h4>Contoh <span class="tr">Example</span></h4>Andi makan $\\frac{2}{8}$ pizza, Budi makan $\\frac{3}{8}$ pizza. Berapa bagian pizza yang dimakan bersama? <span class="tr">Andi ate $\\frac{2}{8}$, Budi ate $\\frac{3}{8}$. What fraction was eaten together?</span>
+          <ol><li>Tulis operasi: $\\frac{2}{8} + \\frac{3}{8}$ <span class="tr">Write operation</span></li><li>Jumlahkan pembilang: $2 + 3 = 5$ <span class="tr">Add numerators</span></li><li>Penyebut tetap: $\\frac{5}{8}$ <span class="tr">Denominator stays</span></li></ol></div>`
+        },
+        { type:'task', pageTitle:'T4: Soal Cerita 1', pageTitleEn:'Word Problem 1', taskType:'fill',
+          question:'Ibu membeli kue, dibagi 10 potong. Ayah makan $\\frac{2}{10}$, Ibu makan $\\frac{3}{10}$. Total bagian yang dimakan adalah $\\frac{\\dots}{10}$.', questionEn:'Mom bought a cake, divided into 10 slices. Dad ate $\\frac{2}{10}$, Mom ate $\\frac{3}{10}$. Total eaten is $\\frac{\\dots}{10}$.',
+          correctAnswer:'5', acceptableAnswers:['5'],
+          explanation:`<p>Penyebut sama, jumlahkan pembilang: $2 + 3 = 5$. Jadi, total dimakan $\\frac{5}{10}$. <span class="tr">Same denominator, add numerators: $2 + 3 = 5$. So, total eaten is $\\frac{5}{10}$.</span></p>`
+        },
+        { type:'task', pageTitle:'T5: Soal Cerita 2', pageTitleEn:'Word Problem 2', taskType:'radio',
+          question:'Sebuah pita sepanjang $\\frac{9}{10}$ meter dipotong $\\frac{4}{10}$ meter. Berapa sisa pitanya?', questionEn:'A ribbon $\\frac{9}{10}$ meters long is cut by $\\frac{4}{10}$ meters. What is the remaining ribbon?',
+          options:[{text:'$\\frac{5}{10}$ meter <span class="tr">meter</span>', correct:true},{text:'$\\frac{13}{10}$ meter <span class="tr">meter</span>', correct:false},{text:'$\\frac{5}{20}$ meter <span class="tr">meter</span>', correct:false},{text:'$\\frac{4}{10}$ meter <span class="tr">meter</span>', correct:false}],
+          explanation:`<p>Operasi pengurangan: $\\frac{9}{10} - \\frac{4}{10} = \\frac{9 - 4}{10} = \\frac{5}{10}$ meter. <span class="tr">Subtraction operation: $\\frac{9}{10} - \\frac{4}{10} = \\frac{5}{10}$ meters.</span></p>`
+        },
+        { type:'task', pageTitle:'T6: Urutan Soal Cerita', pageTitleEn:'Word Problem Order', taskType:'sorting',
+          question:'Urutkan langkah penyelesaian: Dari $\\frac{7}{8}$ liter air, digunakan $\\frac{3}{8}$ liter. Berapa sisa?', questionEn:'Order the steps: From $\\frac{7}{8}$ liters of water, $\\frac{3}{8}$ liters were used. What is the remainder?',
+          items:['Tentukan operasi: $\\frac{7}{8} - \\frac{3}{8}$ <span class="tr">Determine operation</span>','Kurangi pembilang: $7 - 3 = 4$ <span class="tr">Subtract numerators</span>','Tulis penyebut yang sama: 8 <span class="tr">Write same denominator</span>','Simpulkan sisa: $\\frac{4}{8}$ liter <span class="tr">Conclude remainder</span>'], correctOrder:[0,1,2,3],
+          explanation:`<p>Langkah penyelesaian pengurangan: tentukan operasi, hitung pembilang, tulis penyebut, simpulkan. <span class="tr">Subtraction steps: determine operation, calculate numerator, write denominator, conclude.</span></p>`
+        },
+        { type:'explanation', pageTitle:'E3: Pecahan Senilai', pageTitleEn:'Equivalent Fractions',
+          body:`<p>Pecahan senilai adalah pecahan yang menunjukkan nilai yang sama, walaupun angkanya berbeda. <span class="tr">Equivalent fractions are fractions that show the same value, even though the numbers are different.</span></p>
+          <div class="math-block">$\\frac{1}{2} = \\frac{2}{4} = \\frac{4}{8}$ <span class="tr">All equal one half</span></div>
+          <div class="illustration"><svg width="240" height="60" viewBox="0 0 240 60"><rect x="5" y="10" width="70" height="40" fill="#f59e0b" stroke="#333"/><rect x="85" y="10" width="70" height="40" fill="#fff" stroke="#333"/><line x1="120" y1="10" x2="120" y2="50" stroke="#333" stroke-width="2"/><rect x="85" y="10" width="35" height="40" fill="#f59e0b" stroke="#333"/><rect x="165" y="10" width="70" height="40" fill="#fff" stroke="#333"/><line x1="182" y1="10" x2="182" y2="50" stroke="#333" stroke-width="2"/><line x1="200" y1="10" x2="200" y2="50" stroke="#333" stroke-width="2"/><line x1="218" y1="10" x2="218" y2="50" stroke="#333" stroke-width="2"/><rect x="165" y="10" width="17.5" height="40" fill="#f59e0b" stroke="#333"/></svg><div style="font-size:.82em;color:var(--muted);margin-top:6px">$\\frac{1}{2}$ sama dengan $\\frac{2}{4}$ <span class="tr">Half is equal to two-quarters</span></div></div>
+          <div class="example-box"><h4>Contoh <span class="tr">Example</span></h4>Cara mencari pecahan senilai: kalikan pembilang dan penyebut dengan bilangan yang sama. $\\frac{1}{3} = \\frac{1 \\times 2}{3 \\times 2} = \\frac{2}{6}$. <span class="tr">Multiply numerator and denominator by the same number.</span></div>`
+        },
+        { type:'task', pageTitle:'T7: Mencari Pecahan Senilai', pageTitleEn:'Finding Equivalent', taskType:'fill',
+          question:'Pecahan senilai untuk $\\frac{1}{4}$ adalah $\\frac{\\dots}{8}$. (Isi pembilangnya)', questionEn:'The equivalent fraction for $\\frac{1}{4}$ is $\\frac{\\dots}{8}$. (Fill the numerator)',
+          correctAnswer:'2', acceptableAnswers:['2'],
+          explanation:`<p>Untuk menyebut penyebut dari 4 menjadi 8, kita kalikan 2. Jadi pembilang 1 juga dikali 2. $1 \\times 2 = 2$. Hasilnya $\\frac{2}{8}$. <span class="tr">To change denominator from 4 to 8, multiply by 2. So numerator 1 is also multiplied by 2. Result is $\\frac{2}{8}$.</span></p>`
+        },
+        { type:'task', pageTitle:'T8: Pecahan Senilai Lain', pageTitleEn:'Another Equivalent', taskType:'radio',
+          question:'Manakah pecahan yang senilai dengan $\\frac{1}{3}$?', questionEn:'Which fraction is equivalent to $\\frac{1}{3}$?',
+          options:[{text:'$\\frac{2}{6}$ <span class="tr">Two-sixths</span>', correct:true},{text:'$\\frac{2}{3}$ <span class="tr">Two-thirds</span>', correct:false},{text:'$\\frac{1}{4}$ <span class="tr">One-fourth</span>', correct:false},{text:'$\\frac{3}{4}$ <span class="tr">Three-fourths</span>', correct:false}],
+          explanation:`<p>$\\frac{1}{3}$ dikali 2/2 menjadi $\\frac{2}{6}$. $\\frac{2}{6}$ memiliki nilai yang sama dengan $\\frac{1}{3}$. <span class="tr">$\\frac{1}{3}$ multiplied by 2/2 becomes $\\frac{2}{6}$. $\\frac{2}{6}$ has the same value as $\\frac{1}{3}$.</span></p>`
+        },
+        { type:'task', pageTitle:'T9: Pengecekan Senilai', pageTitleEn:'Equivalent Check', taskType:'truefalse',
+          question:'Benar atau salah: $\\frac{2}{5}$ senilai dengan $\\frac{4}{10}$.', questionEn:'True or false: $\\frac{2}{5}$ is equivalent to $\\frac{4}{10}$.',
+          correctAnswer:'true',
+          explanation:`<p>$\\frac{2}{5}$ jika pembilang dan penyebut dikali 2, hasilnya $\\frac{2 \\times 2}{5 \\times 2} = \\frac{4}{10}$. Jadi nilainya sama. <span class="tr">$\\frac{2}{5}$ if numerator and denominator are multiplied by 2, the result is $\\frac{4}{10}$. So the value is the same.</span></p>`
+        },
+        { type:'task', pageTitle:'T10: Pasangan Senilai', pageTitleEn:'Equivalent Pairs', taskType:'pairing',
+          question:'Pasangkan pecahan yang senilai.', questionEn:'Match equivalent fractions.',
+          pairs:[{left:'$\\frac{1}{2}$', right:'$\\frac{4}{8}$'},{left:'$\\frac{1}{3}$', right:'$\\frac{3}{9}$'},{left:'$\\frac{1}{4}$', right:'$\\frac{2}{8}$'},{left:'$\\frac{1}{5}$', right:'$\\frac{2}{10}$'}],
+          explanation:`<p>Kalikan pembilang dan penyebut dengan bilangan yang sama untuk mendapatkan pecahan senilai. <span class="tr">Multiply numerator and denominator by the same number to get equivalent fraction.</span></p>`
+        }
+      ]
+    },
+    f: {
+      title: 'Independent Practice', titleEn: 'Independent Practice', time: '00:45 - 00:55',
+      pages: [
+        { type:'explanation', pageTitle:'E1: Menghitung Bagian Sisa', pageTitleEn:'Calculating Remaining Part',
+          body:`<p>Jika kita mengetahui berapa bagian yang digunakan, kita bisa mencari bagian yang tersisa menggunakan pengurangan. <span class="tr">If we know how many parts were used, we can find the remaining part using subtraction.</span></p>
+          <div class="math-block">Rumus Sisa: $1 - \\frac{a}{c} = \\frac{c}{c} - \\frac{a}{c} = \\frac{c - a}{c}$ <span class="tr">Remaining formula</span></div>
+          <div class="example-box"><h4>Contoh <span class="tr">Example</span></h4>Sebuah roti dibagi 6 bagian. Andi makan $\\frac{1}{6}$. Berapa sisanya? <span class="tr">A bread is divided into 6 parts. Andi ate $\\frac{1}{6}$. What is the remainder?</span>
+          <ol><li>Ubah 1 utuh menjadi pecahan: $1 = \\frac{6}{6}$ <span class="tr">Convert 1 whole to fraction</span></li><li>Kurangi: $\\frac{6}{6} - \\frac{1}{6} = \\frac{5}{6}$ <span class="tr">Subtract</span></li></ol></div>`
+        },
+        { type:'task', pageTitle:'T1: Hitung Sisa', pageTitleEn:'Calculate Remainder', taskType:'fill',
+          question:'1 kue dibagi 8 bagian. Dimakan $\\frac{1}{8}$. Sisa kue adalah $\\frac{\\dots}{8}$.', questionEn:'1 cake divided into 8 parts. Eaten $\\frac{1}{8}$. Remaining cake is $\\frac{\\dots}{8}$.',
+          correctAnswer:'7', acceptableAnswers:['7'],
+          explanation:`<p>1 utuh = $\\frac{8}{8}$. $\\frac{8}{8} - \\frac{1}{8} = \\frac{8 - 1}{8} = \\frac{7}{8}$. <span class="tr">1 whole = $\\frac{8}{8}$. $\\frac{8}{8} - \\frac{1}{8} = \\frac{7}{8}$.</span></p>`
+        },
+        { type:'task', pageTitle:'T2: Soal Cerita Sisa', pageTitleEn:'Remainder Word Problem', taskType:'radio',
+          question:'Air sebotol diminum $\\frac{2}{5}$. Berapa bagian air yang tersisa?', questionEn:'A bottle of water is drunk $\\frac{2}{5}$. What fraction of water is left?',
+          options:[{text:'$\\frac{3}{5}$ <span class="tr">Three-fifths</span>', correct:true},{text:'$\\frac{2}{5}$ <span class="tr">Two-fifths</span>', correct:false},{text:'$\\frac{1}{5}$ <span class="tr">One-fifth</span>', correct:false},{text:'$\\frac{5}{5}$ <span class="tr">Five-fifths</span>', correct:false}],
+          explanation:`<p>1 botol = $\\frac{5}{5}$. Sisa = $\\frac{5}{5} - \\frac{2}{5} = \\frac{3}{5}$. <span class="tr">1 bottle = $\\frac{5}{5}$. Remainder = $\\frac{5}{5} - \\frac{2}{5} = \\frac{3}{5}$.</span></p>`
+        },
+        { type:'task', pageTitle:'T3: Logika Sisa', pageTitleEn:'Remainder Logic', taskType:'truefalse',
+          question:'Benar atau salah: Jika suatu benda dibagi 4 bagian dan diambil 1 bagian, sisanya adalah $\\frac{1}{4}$.', questionEn:'True or false: If an object is divided into 4 parts and 1 part is taken, the remainder is $\\frac{1}{4}$.',
+          correctAnswer:'false',
+          explanation:`<p>Sisanya adalah $\\frac{3}{4}$, karena $1 - \\frac{1}{4} = \\frac{4}{4} - \\frac{1}{4} = \\frac{3}{4}$. <span class="tr">The remainder is $\\frac{3}{4}$, because $1 - \\frac{1}{4} = \\frac{4}{4} - \\frac{1}{4} = \\frac{3}{4}$.</span></p>`
+        },
+        { type:'explanation', pageTitle:'E2: Operasi Campuran', pageTitleEn:'Mixed Operations',
+          body:`<p>Kita bisa menggabungkan penjumlahan dan pengurangan pecahan penyebut sama dalam satu soal. <span class="tr">We can combine addition and subtraction of like fractions in one problem.</span></p>
+          <div class="math-block">Urutan: Hitung dari kiri ke kanan. $\\frac{a}{c} + \\frac{b}{c} - \\frac{d}{c} = \\frac{a + b - d}{c}$ <span class="tr">Order: Calculate from left to right.</span></div>
+          <div class="example-box"><h4>Contoh <span class="tr">Example</span></h4>Hitung $\\frac{1}{8} + \\frac{4}{8} - \\frac{2}{8}$. <span class="tr">Calculate $\\frac{1}{8} + \\frac{4}{8} - \\frac{2}{8}$.</span>
+          <ol><li>Hitung $\\frac{1}{8} + \\frac{4}{8} = \\frac{5}{8}$ <span class="tr">Add first</span></li><li>Kurangi $\\frac{5}{8} - \\frac{2}{8} = \\frac{3}{8}$ <span class="tr">Subtract next</span></li></ol></div>`
+        },
+        { type:'task', pageTitle:'T4: Hitung Campuran 1', pageTitleEn:'Mixed Calculation 1', taskType:'fill',
+          question:'Hasil dari $\\frac{3}{10} + \\frac{5}{10} - \\frac{2}{10} = \\frac{\\dots}{10}$.', questionEn:'The result of $\\frac{3}{10} + \\frac{5}{10} - \\frac{2}{10} = \\frac{\\dots}{10}$.',
+          correctAnswer:'6', acceptableAnswers:['6'],
+          explanation:`<p>Penyebut tetap 10. Hitung pembilang: $3 + 5 - 2 = 8 - 2 = 6$. Hasilnya $\\frac{6}{10}$. <span class="tr">Denominator stays 10. Calculate numerator: $3 + 5 - 2 = 6$. Result is $\\frac{6}{10}$.</span></p>`
+        },
+        { type:'task', pageTitle:'T5: Hasil Campuran', pageTitleEn:'Mixed Result', taskType:'radio',
+          question:'Berapakah hasil dari $\\frac{7}{9} - \\frac{2}{9} + \\frac{1}{9}$?', questionEn:'What is the result of $\\frac{7}{9} - \\frac{2}{9} + \\frac{1}{9}$?',
+          options:[{text:'$\\frac{6}{9}$ <span class="tr">Six-ninths</span>', correct:true},{text:'$\\frac{8}{9}$ <span class="tr">Eight-ninths</span>', correct:false},{text:'$\\frac{4}{9}$ <span class="tr">Four-ninths</span>', correct:false},{text:'$\\frac{10}{9}$ <span class="tr">Ten-ninths</span>', correct:false}],
+          explanation:`<p>Penyebut tetap 9. Hitung pembilang dari kiri: $7 - 2 + 1 = 5 + 1 = 6$. Hasilnya $\\frac{6}{9}$. <span class="tr">Denominator stays 9. Calculate numerator from left: $7 - 2 + 1 = 6$. Result is $\\frac{6}{9}$.</span></p>`
+        },
+        { type:'task', pageTitle:'T6: Urutan Hitung Campuran', pageTitleEn:'Mixed Calculation Order', taskType:'sorting',
+          question:'Urutkan langkah menyelesaikan $\\frac{2}{7} + \\frac{4}{7} - \\frac{1}{7}$.', questionEn:'Order the steps to solve $\\frac{2}{7} + \\frac{4}{7} - \\frac{1}{7}$.',
+          items:['Kerjakan penjumlahan terlebih dahulu: $\\frac{2}{7} + \\frac{4}{7} = \\frac{6}{7}$ <span class="tr">Do addition first</span>','Kerjakan pengurangan: $\\frac{6}{7} - \\frac{1}{7} = \\frac{5}{7}$ <span class="tr">Do subtraction</span>','Ingat penyebut tetap: 7 <span class="tr">Remember denominator stays 7</span>','Tulis hasil akhir: $\\frac{5}{7}$ <span class="tr">Write final result</span>'], correctOrder:[0,1,2,3],
+          explanation:`<p>Operasi campuran pecahan penyebut sama diselesaikan dari kiri ke kanan dengan tetap mempertahankan penyebut. <span class="tr">Mixed operations of like fractions are solved from left to right while keeping the denominator.</span></p>`
+        },
+        { type:'explanation', pageTitle:'E3: Menyatakan Utuh sebagai Pecahan', pageTitleEn:'Whole as Fraction',
+          body:`<p>Satu benda utuh jika diubah ke pecahan, pembilang dan penyebutnya selalu sama, nilainya sama dengan 1. <span class="tr">One whole object when converted to a fraction, the numerator and denominator are always the same, its value equals 1.</span></p>
+          <div class="math-block">$1 = \\frac{2}{2} = \\frac{5}{5} = \\frac{10}{10} = \\frac{100}{100}$ <span class="tr">One whole equals any fraction with same numerator and denominator</span></div>
+          <div class="example-box"><h4>Contoh <span class="tr">Example</span></h4>1 pizza dipotong 5 bagian. 1 pizza utuh = $\\frac{5}{5}$ pizza. <span class="tr">1 pizza cut into 5 slices. 1 whole pizza = $\\frac{5}{5}$ pizza.</span></div>`
+        },
+        { type:'task', pageTitle:'T7: Ubah Utuh ke Pecahan', pageTitleEn:'Convert Whole to Fraction', taskType:'fill',
+          question:'1 buah apel dipotong 8 bagian. 1 utuh apel dapat ditulis sebagai $\\frac{\\dots}{8}$.', questionEn:'1 apple is cut into 8 parts. 1 whole apple can be written as $\\frac{\\dots}{8}$.',
+          correctAnswer:'8', acceptableAnswers:['8'],
+          explanation:`<p>1 utuh jika dibagi 8 bagian, maka utuh tersebut mewakili seluruh 8 bagian tersebut. Jadi $1 = \\frac{8}{8}$. <span class="tr">1 whole when divided into 8 parts, the whole represents all 8 parts. So $1 = \\frac{8}{8}$.</span></p>`
+        },
+        { type:'task', pageTitle:'T8: Pasangan Utuh', pageTitleEn:'Whole Pairs', taskType:'pairing',
+          question:'Pasangkan bilangan utuh dengan bentuk pecahannya.', questionEn:'Match whole numbers with their fraction forms.',
+          pairs:[{left:'1 (potong 4 bagian) <span class="tr">cut into 4 parts</span>', right:'$\\frac{4}{4}$'},{left:'1 (potong 3 bagian) <span class="tr">cut into 3 parts</span>', right:'$\\frac{3}{3}$'},{left:'1 (potong 6 bagian) <span class="tr">cut into 6 parts</span>', right:'$\\frac{6}{6}$'},{left:'1 (potong 2 bagian) <span class="tr">cut into 2 parts</span>', right:'$\\frac{2}{2}$'}],
+          explanation:`<p>1 utuh dapat ditulis sebagai $\\frac{c}{c}$ di mana $c$ adalah jumlah pembagian. <span class="tr">1 whole can be written as $\\frac{c}{c}$ where $c$ is the number of divisions.</span></p>`
+        },
+        { type:'task', pageTitle:'T9: Validasi Utuh', pageTitleEn:'Validate Whole', taskType:'truefalse',
+          question:'Benar atau salah: $\\frac{4}{4}$ sama dengan 1 utuh.', questionEn:'True or false: $\\frac{4}{4}$ equals 1 whole.',
+          correctAnswer:'true',
+          explanation:`<p>Pembilang dan penyebut sama, maka nilainya sama dengan 1 utuh. $\\frac{4}{4} = 1$. <span class="tr">Numerator and denominator are the same, so the value equals 1 whole.</span></p>`
+        },
+        { type:'task', pageTitle:'T10: Pecahan Bernilai 1', pageTitleEn:'Fractions Equal to 1', taskType:'checkbox',
+          question:'Pilih semua pecahan yang nilainya sama dengan 1.', questionEn:'Select all fractions that are equal to 1.',
+          options:[{text:'$\\frac{5}{5}$ <span class="tr">Five-fifths</span>', correct:true},{text:'$\\frac{3}{3}$ <span class="tr">Three-thirds</span>', correct:true},{text:'$\\frac{2}{4}$ <span class="tr">Two-fourths</span>', correct:false},{text:'$\\frac{1}{2}$ <span class="tr">One-half</span>', correct:false}],
+          explanation:`<p>Pecahan bernilai 1 jika pembilang dan penyebutnya sama. $\\frac{5}{5}$ dan $\\frac{3}{3}$ bernilai 1. <span class="tr">A fraction equals 1 if the numerator and denominator are the same.</span></p>`
+        }
+      ]
+    },
+    g: {
+      title: 'Consolidation & Reflection', titleEn: 'Consolidation & Reflection', time: '00:55 - 01:00',
+      pages: [
+        { type:'explanation', pageTitle:'E1: Poin Penting', pageTitleEn:'Key Takeaways',
+          body:`<div class="illustration"><svg width="240" height="80" viewBox="0 0 240 80"><circle cx="40" cy="40" r="28" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/><text x="40" y="48" text-anchor="middle" font-size="20" fill="#2563eb">½</text><text x="85" y="35" font-size="13" fill="#1e40af" font-weight="bold">Pecahan Penyebut Sama</text><text x="85" y="52" font-size="10" fill="#64748b">Like Fractions</text></svg><div style="font-size:.82em;color:var(--muted);margin-top:4px">Rumus & Aturan <span class="tr">Formulas & Rules</span></div></div>
+          <p>Hari ini kita belajar tentang pecahan, khususnya pecahan satuan dan pecahan dengan penyebut sama. <span class="tr">Today we learned about fractions, specifically unit fractions and like fractions.</span></p>
+          <div class="math-block"><ol><li><strong>Pecahan Satuan:</strong> Pembilang selalu 1. Contoh: $\\frac{1}{5}$. <span class="tr">Unit Fraction: Numerator is always 1.</span></li><li><strong>Penjumlahan:</strong> $\\frac{a}{c} + \\frac{b}{c} = \\frac{a + b}{c}$. Penyebut tetap, pembilang dijumlah. <span class="tr">Addition: Denominator stays, numerators added.</span></li><li><strong>Pengurangan:</strong> $\\frac{a}{c} - \\frac{b}{c} = \\frac{a - b}{c}$. Penyebut tetap, pembilang dikurang. <span class="tr">Subtraction: Denominator stays, numerators subtracted.</span></li><li><strong>Membandingkan:</strong> Jika penyebut sama, makin besar pembilang makin besar nilainya. <span class="tr">Comparing: If denominators are same, larger numerator means larger value.</span></li></ol></div>`
+        },
+        { type:'task', pageTitle:'T1: Pertanyaan Refleksi', pageTitleEn:'Reflection Question', taskType:'truefalse',
+          question:'Benar atau salah: Saya mengerti bahwa untuk menjumlahkan pecahan dengan penyebut sama, penyebutnya tidak ikut dijumlahkan melainkan tetap. <span class="tr">True or false: I understand that to add like fractions, the denominator is not added but remains the same.</span>', 
+          correctAnswer:'true',
+          explanation:`<p>Benar. Penyebut tetap karena menunjukkan total pembagian, yang dijumlahkan hanya bagian yang diambil (pembilang). <span class="tr">True. Denominator stays because it shows total divisions, only parts taken (numerator) are added.</span></p>`
+        },
+        { type:'task', pageTitle:'T2: Exit Ticket', pageTitleEn:'Exit Ticket', taskType:'fill',
+          question:'Hitunglah $\\frac{4}{9} + \\frac{3}{9} = \\frac{\\dots}{9}$. <span class="tr">Calculate $\\frac{4}{9} + \\frac{3}{9} = \\frac{\\dots}{9}$.</span>', 
+          correctAnswer:'7', acceptableAnswers:['7'],
+          explanation:`<p>Penyebut tetap 9. Jumlahkan pembilang: $4 + 3 = 7$. Hasil akhirnya adalah $\\frac{7}{9}$. <span class="tr">Denominator stays 9. Add numerators: $4 + 3 = 7$. The final result is $\\frac{7}{9}$.</span></p>`
+        },
+        { type:'explanation', pageTitle:'E2: Follow-up Practice', pageTitleEn:'Follow-up Practice',
+          body:`<p>Latihan tambahan tersedia di Bagian H-L. <span class="tr">Additional practice is available in Sections H-L.</span></p>
+          <div class="math-block"><ul><li><strong>Task 1 (H):</strong> Dasar Pecahan Satuan <span class="tr">Basic Unit Fractions</span></li><li><strong>Task 2 (I):</strong> Operasi Penjumlahan & Pengurangan <span class="tr">Addition & Subtraction Operations</span></li><li><strong>Task 3 (J):</strong> Pecahan Senilai & Membandingkan <span class="tr">Equivalent & Comparing</span></li><li><strong>Task 4 (K):</strong> Soal Cerita Pecahan <span class="tr">Fraction Word Problems</span></li><li><strong>Task 5 (L):</strong> Soal Campuran Komprehensif <span class="tr">Comprehensive Mixed Questions</span></li></ul></div>`
+        }
+      ]
+    },
+    h: {
+      title: 'Task 1', titleEn: 'Task 1', time: 'Printable',
+      pages: [
+        { type:'task', pageTitle:'T1: Identifikasi Pecahan Satuan', pageTitleEn:'Identify Unit Fraction', taskType:'radio',
+          question:'Manakah yang merupakan pecahan satuan? <span class="tr">Which is a unit fraction?</span>',
+          options:[{text:'$\\frac{1}{12}$ <span class="tr">One-twelfth</span>', correct:true},{text:'$\\frac{2}{12}$ <span class="tr">Two-twelfths</span>', correct:false},{text:'$\\frac{5}{12}$ <span class="tr">Five-twelfths</span>', correct:false},{text:'$\\frac{12}{12}$ <span class="tr">Twelve-twelfths</span>', correct:false}],
+          explanation:`<p>Pecahan satuan memiliki pembilang 1. Hanya $\\frac{1}{12}$ yang pembilangnya 1. <span class="tr">Unit fraction has numerator 1. Only $\\frac{1}{12}$ has numerator 1.</span></p>`},
+        { type:'task', pageTitle:'T2: Pembilang Pecahan', pageTitleEn:'Fraction Numerator', taskType:'fill',
+          question:'Pada pecahan $\\frac{1}{15}$, nilai pembilangnya adalah ... <span class="tr">In fraction $\\frac{1}{15}$, the numerator value is ...</span>',
+          correctAnswer:'1', acceptableAnswers:['1'],
+          explanation:`<p>Pembilang adalah angka di atas garis pecahan. Pada $\\frac{1}{15}$, pembilangnya adalah 1. <span class="tr">Numerator is the top number. In $\\frac{1}{15}$, numerator is 1.</span></p>`},
+        { type:'task', pageTitle:'T3: Membandingkan Pecahan Satuan', pageTitleEn:'Compare Unit Fractions', taskType:'truefalse',
+          question:'Benar atau salah: $\\frac{1}{6}$ lebih besar dari $\\frac{1}{2}$. <span class="tr">True or false: $\\frac{1}{6}$ is larger than $\\frac{1}{2}$.</span>',
+          correctAnswer:'false',
+          explanation:`<p>Makin besar penyebut, makin kecil bagian pecahannya. Karena 6 > 2, maka $\\frac{1}{6} < \\frac{1}{2}$. <span class="tr">Larger denominator means smaller fraction part. Since 6 > 2, $\\frac{1}{6} < \\frac{1}{2}$.</span></p>`},
+        { type:'task', pageTitle:'T4: Urutkan Membaca Pecahan', pageTitleEn:'Order Reading Fraction', taskType:'sorting',
+          question:'Urutkan langkah membaca $\\frac{1}{8}$. <span class="tr">Order reading $\\frac{1}{8}$.</span>',
+          items:['Lihat angka atas (1) <span class="tr">Top number (1)</span>','Lihat angka bawah (8) <span class="tr">Bottom number (8)</span>','Ucapkan "satu" <span class="tr">Say "one"</span>','Ucapkan "per delapan" <span class="tr">Say "eighth"</span>'], correctOrder:[0,1,2,3],
+          explanation:`<p>Pembilang dibaca pertama, penyebut dibaca terakhir dengan akhiran "per". <span class="tr">Numerator read first, denominator read last with suffix "th".</span></p>`},
+        { type:'task', pageTitle:'T5: Syarat Penyebut Sama', pageTitleEn:'Like Denominator Terms', taskType:'checkbox',
+          question:'Pilih pasangan pecahan yang memiliki penyebut sama. <span class="tr">Select fractions with the same denominator.</span>',
+          options:[{text:'$\\frac{1}{4}$ dan $\\frac{3}{4}$ <span class="tr">and</span>', correct:true},{text:'$\\frac{2}{5}$ dan $\\frac{2}{7}$ <span class="tr">and</span>', correct:false},{text:'$\\frac{4}{9}$ dan $\\frac{1}{9}$ <span class="tr">and</span>', correct:true},{text:'$\\frac{1}{2}$ dan $\\frac{1}{8}$ <span class="tr">and</span>', correct:false}],
+          explanation:`<p>Penyebut sama memiliki angka bawah yang identik. 4 dan 4 sama, 9 dan 9 sama. <span class="tr">Like denominators have identical bottom numbers.</span></p>`},
+        { type:'task', pageTitle:'T6: Pasangan Istilah', pageTitleEn:'Match Terms', taskType:'pairing',
+          question:'Pasangkan posisi dengan istilah pecahan $\\frac{1}{3}$. <span class="tr">Match positions with $\\frac{1}{3}$ terms.</span>',
+          pairs:[{left:'Angka 1 <span class="tr">Number 1</span>', right:'Pembilang <span class="tr">Numerator</span>'},{left:'Angka 3 <span class="tr">Number 3</span>', right:'Penyebut <span class="tr">Denominator</span>'},{left:'Angka 3 <span class="tr">Number 3</span>', right:'Total bagian <span class="tr">Total parts</span>'},{left:'Angka 1 <span class="tr">Number 1</span>', right:'Bagian diambil <span class="tr">Parts taken</span>'}],
+          explanation:`<p>Aturan pecahan: Atas = Pembilang (diambil), Bawah = Penyebut (total). <span class="tr">Fraction rules: Top = Numerator, Bottom = Denominator.</span></p>`},
+        { type:'task', pageTitle:'T7: Menggambar Pecahan', pageTitleEn:'Drawing Fraction', taskType:'fill',
+          question:'Kotak dibagi 5 bagian sama besar, 1 diarsir. Pecahannya adalah $\\frac{\\dots}{5}$. <span class="tr">Box divided into 5 equal parts, 1 shaded. Fraction is $\\frac{\\dots}{5}$.</span>',
+          correctAnswer:'1', acceptableAnswers:['1'],
+          explanation:`<p>Bagian yang diarsir menjadi pembilang. Karena hanya 1 yang diarsir, pembilangnya 1. Hasil $\\frac{1}{5}$. <span class="tr">Shaded part becomes numerator. Since 1 is shaded, numerator is 1. Result $\\frac{1}{5}$.</span></p>`},
+        { type:'task', pageTitle:'T8: Membandingkan Pecahan', pageTitleEn:'Compare Fractions', taskType:'radio',
+          question:'Pecahan mana yang lebih besar? $\\frac{2}{5}$ atau $\\frac{4}{5}$? <span class="tr">Which fraction is larger?</span>',
+          options:[{text:'$\\frac{2}{5}$ <span class="tr">Two-fifths</span>', correct:false},{text:'$\\frac{4}{5}$ <span class="tr">Four-fifths</span>', correct:true},{text:'Sama besar <span class="tr">Equal</span>', correct:false},{text:'Tidak bisa dibandingkan <span class="tr">Cannot compare</span>', correct:false}],
+          explanation:`<p>Penyebut sama (5). Bandingkan pembilang: 4 > 2. Jadi $\\frac{4}{5} > \\frac{2}{5}$. <span class="tr">Same denominator. Compare numerators: 4 > 2. So $\\frac{4}{5}$ is larger.</span></p>`},
+        { type:'task', pageTitle:'T9: Pecahan Utuh', pageTitleEn:'Whole Fraction', taskType:'truefalse',
+          question:'Benar atau salah: 1 utuh yang dibagi 7 bagian sama besar dapat ditulis sebagai $\\frac{7}{7}$. <span class="tr">True or false: 1 whole divided into 7 equal parts can be written as $\\frac{7}{7}$.</span>',
+          correctAnswer:'true',
+          explanation:`<p>1 utuh = $\\frac{c}{c}$. Jika dibagi 7 bagian, maka 1 utuh = $\\frac{7}{7}$. <span class="tr">1 whole = $\\frac{c}{c}$. If divided into 7 parts, 1 whole = $\\frac{7}{7}$.</span></p>`},
+        { type:'task', pageTitle:'T10: Langkah Penjumlahan', pageTitleEn:'Addition Steps', taskType:'sorting',
+          question:'Urutkan langkah menjumlahkan $\\frac{2}{8} + \\frac{3}{8}$. <span class="tr">Order steps to add.</span>',
+          items:['Pastikan penyebut sama (8). <span class="tr">Ensure same denominator.</span>','Jumlahkan pembilang: $2 + 3 = 5$. <span class="tr">Add numerators.</span>','Tulis penyebut tetap: 8. <span class="tr">Write same denominator.</span>','Hasil akhir: $\\frac{5}{8}$. <span class="tr">Final result.</span>'], correctOrder:[0,1,2,3],
+          explanation:`<p>Langkah penjumlahan pecahan penyebut sama: cek penyebut, jumlahkan pembilang, tulis penyebut, simpulkan. <span class="tr">Addition steps: check denom, add numerators, write denom, conclude.</span></p>`}
+      ]
+    },
+    i: {
+      title: 'Task 2', titleEn: 'Task 2', time: 'Printable',
+      pages: [
+        { type:'task', pageTitle:'T1: Hitung Penjumlahan', pageTitleEn:'Calculate Addition', taskType:'fill',
+          question:'Hasil dari $\\frac{3}{10} + \\frac{4}{10} = \\frac{\\dots}{10}$. <span class="tr">Result of $\\frac{3}{10} + \\frac{4}{10} = \\frac{\\dots}{10}$.</span>',
+          correctAnswer:'7', acceptableAnswers:['7'],
+          explanation:`<p>Penyebut tetap 10. Jumlahkan pembilang: $3 + 4 = 7$. Hasilnya $\\frac{7}{10}$. <span class="tr">Denominator stays 10. Add numerators: $3 + 4 = 7$. Result is $\\frac{7}{10}$.</span></p>`},
+        { type:'task', pageTitle:'T2: Hasil Pengurangan', pageTitleEn:'Subtraction Result', taskType:'radio',
+          question:'Berapakah hasil dari $\\frac{8}{12} - \\frac{5}{12}$? <span class="tr">What is the result of $\\frac{8}{12} - \\frac{5}{12}$?</span>',
+          options:[{text:'$\\frac{3}{12}$ <span class="tr">Three-twelfths</span>', correct:true},{text:'$\\frac{13}{12}$ <span class="tr">Thirteen-twelfths</span>', correct:false},{text:'$\\frac{3}{24}$ <span class="tr">Three-twentyfourths</span>', correct:false},{text:'$\\frac{5}{12}$ <span class="tr">Five-twelfths</span>', correct:false}],
+          explanation:`<p>Kurangi pembilang: $8 - 5 = 3$. Penyebut tetap 12. Hasilnya $\\frac{3}{12}$. <span class="tr">Subtract numerators: $8 - 5 = 3$. Denominator stays 12. Result is $\\frac{3}{12}$.</span></p>`},
+        { type:'task', pageTitle:'T3: Aturan Penyebut', pageTitleEn:'Denominator Rule', taskType:'truefalse',
+          question:'Benar atau salah: Saat menjumlahkan pecahan, penyebutnya juga dijumlahkan. <span class="tr">True or false: When adding fractions, denominators are also added.</span>',
+          correctAnswer:'false',
+          explanation:`<p>Penyebut TIDAK dijumlahkan. Penyebut tetap, hanya pembilang yang dijumlah. <span class="tr">Denominators are NOT added. Denominator stays, only numerators are added.</span></p>`},
+        { type:'task', pageTitle:'T4: Pasangan Operasi', pageTitleEn:'Match Operations', taskType:'pairing',
+          question:'Pasangkan operasi dengan hasilnya. <span class="tr">Match operations with results.</span>',
+          pairs:[{left:'$\\frac{1}{6} + \\frac{2}{6}$ <span class="tr">plus</span>', right:'$\\frac{3}{6}$'},{left:'$\\frac{5}{8} - \\frac{2}{8}$ <span class="tr">minus</span>', right:'$\\frac{3}{8}$'},{left:'$\\frac{4}{9} + \\frac{1}{9}$ <span class="tr">plus</span>', right:'$\\frac{5}{9}$'},{left:'$\\frac{6}{7} - \\frac{4}{7}$ <span class="tr">minus</span>', right:'$\\frac{2}{7}$'}],
+          explanation:`<p>Penjumlahan dan pengurangan pecahan penyebut sama hanya menghitung pembilang. <span class="tr">Only numerators are calculated.</span></p>`},
+        { type:'task', pageTitle:'T5: Pernyataan Penjumlahan', pageTitleEn:'Addition Statements', taskType:'checkbox',
+          question:'Pilih semua pernyataan yang benar tentang $\\frac{2}{7} + \\frac{4}{7}$. <span class="tr">Select all true statements.</span>',
+          options:[{text:'Hasilnya adalah $\\frac{6}{7}$. <span class="tr">Result is $\\frac{6}{7}$.</span>', correct:true},{text:'Penyebutnya tetap 7. <span class="tr">Denominator stays 7.</span>', correct:true},{text:'Penyebutnya menjadi 14. <span class="tr">Denominator becomes 14.</span>', correct:false},{text:'Pembilang dijumlah: $2 + 4$. <span class="tr">Numerators added: $2 + 4$.</span>', correct:true}],
+          explanation:`<p>Penyebut tetap 7, pembilang dijumlah $2 + 4 = 6$, hasilnya $\\frac{6}{7}$. <span class="tr">Denominator stays 7, numerators added, result is $\\frac{6}{7}$.</span></p>`},
+        { type:'task', pageTitle:'T6: Hitung Pengurangan', pageTitleEn:'Calculate Subtraction', taskType:'fill',
+          question:'Hasil dari $\\frac{9}{11} - \\frac{4}{11} = \\frac{\\dots}{11}$. <span class="tr">Result of $\\frac{9}{11} - \\frac{4}{11} = \\frac{\\dots}{11}$.</span>',
+          correctAnswer:'5', acceptableAnswers:['5'],
+          explanation:`<p>Penyebut tetap 11. Kurangi pembilang: $9 - 4 = 5$. Hasilnya $\\frac{5}{11}$. <span class="tr">Denominator stays 11. Subtract numerators: $9 - 4 = 5$. Result is $\\frac{5}{11}$.</span></p>`},
+        { type:'task', pageTitle:'T7: Langkah Pengurangan', pageTitleEn:'Subtraction Steps', taskType:'sorting',
+          question:'Urutkan langkah mengurangkan $\\frac{7}{10} - \\frac{3}{10}$. <span class="tr">Order subtraction steps.</span>',
+          items:['Pastikan penyebut sama (10). <span class="tr">Ensure same denominator.</span>','Kurangi pembilang: $7 - 3 = 4$. <span class="tr">Subtract numerators.</span>','Tulis penyebut tetap: 10. <span class="tr">Write same denominator.</span>','Hasil akhir: $\\frac{4}{10}$. <span class="tr">Final result.</span>'], correctOrder:[0,1,2,3],
+          explanation:`<p>Urutan pengurangan pecahan penyebut sama. <span class="tr">Order of like fractions subtraction.</span></p>`},
+        { type:'task', pageTitle:'T8: Soal Cerita Penjumlahan', pageTitleEn:'Addition Word Problem', taskType:'radio',
+          question:'Ayah memberi $\\frac{2}{8}$ bagian kue, Ibu memberi $\\frac{3}{8}$ bagian. Total kue yang dimiliki adalah... <span class="tr">Dad gave $\\frac{2}{8}$, Mom gave $\\frac{3}{8}$. Total is...</span>',
+          options:[{text:'$\\frac{5}{8}$ <span class="tr">Five-eighths</span>', correct:true},{text:'$\\frac{1}{8}$ <span class="tr">One-eighth</span>', correct:false},{text:'$\\frac{5}{16}$ <span class="tr">Five-sixteenths</span>', correct:false},{text:'$\\frac{6}{8}$ <span class="tr">Six-eighths</span>', correct:false}],
+          explanation:`<p>Operasi: $\\frac{2}{8} + \\frac{3}{8} = \\frac{2 + 3}{8} = \\frac{5}{8}$. <span class="tr">Operation: $\\frac{2}{8} + \\frac{3}{8} = \\frac{5}{8}$.</span></p>`},
+        { type:'task', pageTitle:'T9: Pengecekan Sisa', pageTitleEn:'Remainder Check', taskType:'truefalse',
+          question:'Benar atau salah: $\\frac{5}{5} - \\frac{2}{5} = \\frac{3}{5}$. <span class="tr">True or false: $\\frac{5}{5} - \\frac{2}{5} = \\frac{3}{5}$.</span>',
+          correctAnswer:'true',
+          explanation:`<p>$1$ utuh = $\\frac{5}{5}$. $\\frac{5}{5} - \\frac{2}{5} = \\frac{5 - 2}{5} = \\frac{3}{5}$. <span class="tr">$1$ whole = $\\frac{5}{5}$. $\\frac{5}{5} - \\frac{2}{5} = \\frac{3}{5}$.</span></p>`},
+        { type:'task', pageTitle:'T10: Soal Cerita Pengurangan', pageTitleEn:'Subtraction Word Problem', taskType:'fill',
+          question:'Pita sepanjang $\\frac{9}{10}$ meter dipotong $\\frac{4}{10}$ meter. Sisa pitanya adalah $\\frac{\\dots}{10}$ meter. <span class="tr">Ribbon $\\frac{9}{10}$ m cut by $\\frac{4}{10}$ m. Remainder is $\\frac{\\dots}{10}$ m.</span>',
+          correctAnswer:'5', acceptableAnswers:['5'],
+          explanation:`<p>Operasi: $\\frac{9}{10} - \\frac{4}{10} = \\frac{9 - 4}{10} = \\frac{5}{10}$. <span class="tr">Operation: $\\frac{9}{10} - \\frac{4}{10} = \\frac{5}{10}$.</span></p>`}
+      ]
+    },
+    j: {
+      title: 'Task 3', titleEn: 'Task 3', time: 'Printable',
+      pages: [
+        { type:'task', pageTitle:'T1: Mencari Pecahan Senilai', pageTitleEn:'Finding Equivalent', taskType:'fill',
+          question:'Pecahan senilai untuk $\\frac{1}{3}$ dengan penyebut 9 adalah $\\frac{\\dots}{9}$. <span class="tr">Equivalent of $\\frac{1}{3}$ with denom 9 is $\\frac{\\dots}{9}$.</span>',
+          correctAnswer:'3', acceptableAnswers:['3'],
+          explanation:`<p>Penyebut 3 dikali 3 menjadi 9. Pembilang 1 juga dikali 3. $1 \\times 3 = 3$. Hasilnya $\\frac{3}{9}$. <span class="tr">Denom 3 times 3 becomes 9. Numerator 1 also times 3. Result $\\frac{3}{9}$.</span></p>`},
+        { type:'task', pageTitle:'T2: Pecahan Terbesar', pageTitleEn:'Largest Fraction', taskType:'radio',
+          question:'Manakah pecahan yang paling besar? <span class="tr">Which fraction is largest?</span>',
+          options:[{text:'$\\frac{2}{8}$ <span class="tr">Two-eighths</span>', correct:false},{text:'$\\frac{6}{8}$ <span class="tr">Six-eighths</span>', correct:true},{text:'$\\frac{5}{8}$ <span class="tr">Five-eighths</span>', correct:false},{text:'$\\frac{1}{8}$ <span class="tr">One-eighth</span>', correct:false}],
+          explanation:`<p>Penyebut sama (8). Bandingkan pembilang. 6 adalah pembilang terbesar, jadi $\\frac{6}{8}$ paling besar. <span class="tr">Same denom. Compare num. 6 is largest, so $\\frac{6}{8}$ is largest.</span></p>`},
+        { type:'task', pageTitle:'T3: Cek Pecahan Senilai', pageTitleEn:'Check Equivalent', taskType:'truefalse',
+          question:'Benar atau salah: $\\frac{2}{4}$ senilai dengan $\\frac{1}{2}$. <span class="tr">True or false: $\\frac{2}{4}$ is equivalent to $\\frac{1}{2}$.</span>',
+          correctAnswer:'true',
+          explanation:`<p>$\\frac{2}{4}$ jika dibagi 2 menjadi $\\frac{2 \\div 2}{4 \\div 2} = \\frac{1}{2}$. Jadi senilai. <span class="tr">$\\frac{2}{4}$ divided by 2 becomes $\\frac{1}{2}$. So equivalent.</span></p>`},
+        { type:'task', pageTitle:'T4: Pasangan Senilai', pageTitleEn:'Equivalent Pairs', taskType:'pairing',
+          question:'Pasangkan pecahan yang senilai. <span class="tr">Match equivalent fractions.</span>',
+          pairs:[{left:'$\\frac{1}{4}$', right:'$\\frac{2}{8}$'},{left:'$\\frac{1}{3}$', right:'$\\frac{2}{6}$'},{left:'$\\frac{1}{5}$', right:'$\\frac{2}{10}$'},{left:'$\\frac{1}{2}$', right:'$\\frac{4}{8}$'}],
+          explanation:`<p>Pecahan senilai didapat dengan mengalikan/membagi pembilang dan penyebut dengan bilangan sama. <span class="tr">Equivalent obtained by multiplying/dividing by same number.</span></p>`},
+        { type:'task', pageTitle:'T5: Identifikasi Senilai', pageTitleEn:'Identify Equivalent', taskType:'checkbox',
+          question:'Pilih semua pecahan yang senilai dengan $\\frac{1}{4}$. <span class="tr">Select all equivalent to $\\frac{1}{4}$.</span>',
+          options:[{text:'$\\frac{2}{8}$ <span class="tr">Two-eighths</span>', correct:true},{text:'$\\frac{3}{12}$ <span class="tr">Three-twelfths</span>', correct:true},{text:'$\\frac{2}{4}$ <span class="tr">Two-fourths</span>', correct:false},{text:'$\\frac{4}{4}$ <span class="tr">Four-fourths</span>', correct:false}],
+          explanation:`<p>$\\frac{1}{4} = \\frac{1 \\times 2}{4 \\times 2} = \\frac{2}{8}$. $\\frac{1}{4} = \\frac{1 \\times 3}{4 \\times 3} = \\frac{3}{12}$. <span class="tr">Multiplied by 2 and 3.</span></p>`},
+        { type:'task', pageTitle:'T6: Isi Tanda Perbandingan', pageTitleEn:'Fill Comparison Symbol', taskType:'fill',
+          question:'Isi tanda yang tepat: $\\frac{7}{10} \\dots \\frac{3}{10}$ (gunakan <, >, atau =). <span class="tr">Fill symbol: $\\frac{7}{10} \\dots \\frac{3}{10}$.</span>',
+          correctAnswer:'>', acceptableAnswers:['>'],
+          explanation:`<p>Penyebut sama. Pembilang 7 > 3. Jadi $\\frac{7}{10} > \\frac{3}{10}$. <span class="tr">Same denom. Num 7 > 3. So $\\frac{7}{10} > \\frac{3}{10}$.</span></p>`},
+        { type:'task', pageTitle:'T7: Langkah Cari Senilai', pageTitleEn:'Equivalent Steps', taskType:'sorting',
+          question:'Urutkan langkah mencari pecahan senilai $\\frac{1}{5}$ ke penyebut 15. <span class="tr">Order steps to find equivalent.</span>',
+          items:['Identifikasi penyebut awal (5) dan akhir (15). <span class="tr">Identify initial and final denom.</span>','Cari pengali: $15 \\div 5 = 3$. <span class="tr">Find multiplier: $15 \\div 5 = 3$.</span>','Kalikan pembilang dengan pengali: $1 \\times 3 = 3$. <span class="tr">Multiply numerator.</span>','Tulis pecahan baru: $\\frac{3}{15}$. <span class="tr">Write new fraction.</span>'], correctOrder:[0,1,2,3],
+          explanation:`<p>Langkah mencari pecahan senilai: cari pengali penyebut, kalikan pembilang dengan pengali yang sama. <span class="tr">Find denom multiplier, multiply numerator by same.</span></p>`},
+        { type:'task', pageTitle:'T8: Pecahan Terkecil', pageTitleEn:'Smallest Fraction', taskType:'radio',
+          question:'Manakah pecahan yang paling kecil? <span class="tr">Which fraction is smallest?</span>',
+          options:[{text:'$\\frac{1}{4}$ <span class="tr">One-fourth</span>', correct:false},{text:'$\\frac{1}{8}$ <span class="tr">One-eighth</span>', correct:true},{text:'$\\frac{1}{2}$ <span class="tr">One-half</span>', correct:false},{text:'$\\frac{1}{3}$ <span class="tr">One-third</span>', correct:false}],
+          explanation:`<p>Untuk pecahan satuan, makin besar penyebut makin kecil nilainya. 8 adalah penyebut terbesar, jadi $\\frac{1}{8}$ paling kecil. <span class="tr">For unit fractions, larger denom means smaller value. 8 is largest, so $\\frac{1}{8}$ is smallest.</span></p>`},
+        { type:'task', pageTitle:'T9: Validasi Pembanding', pageTitleEn:'Validate Comparison', taskType:'truefalse',
+          question:'Benar atau salah: $\\frac{1}{10} > \\frac{1}{2}$. <span class="tr">True or false: $\\frac{1}{10} > \\frac{1}{2}$.</span>',
+          correctAnswer:'false',
+          explanation:`<p>10 lebih besar dari 2, sehingga $\\frac{1}{10}$ lebih kecil dari $\\frac{1}{2}$. Pernyataan salah. <span class="tr">10 is larger than 2, so $\\frac{1}{10}$ is smaller than $\\frac{1}{2}$.</span></p>`},
+        { type:'task', pageTitle:'T10: Pecahan Senilai Lanjut', pageTitleEn:'Advanced Equivalent', taskType:'fill',
+          question:'Pecahan senilai untuk $\\frac{1}{5}$ dengan penyebut 20 adalah $\\frac{\\dots}{20}$. <span class="tr">Equivalent of $\\frac{1}{5}$ with denom 20 is $\\frac{\\dots}{20}$.</span>',
+          correctAnswer:'4', acceptableAnswers:['4'],
+          explanation:`<p>$20 \\div 5 = 4$. Jadi pengalinya 4. Pembilang: $1 \\times 4 = 4$. Hasil $\\frac{4}{20}$. <span class="tr">$20 \\div 5 = 4$. Multiplier is 4. Numerator: $1 \\times 4 = 4$. Result $\\frac{4}{20}$.</span></p>`}
+      ]
+    },
+    k: {
+      title: 'Task 4', titleEn: 'Task 4', time: 'Printable',
+      pages: [
+        { type:'task', pageTitle:'T1: Operasi Campuran 1', pageTitleEn:'Mixed Operation 1', taskType:'fill',
+          question:'Hasil dari $\\frac{2}{9} + \\frac{5}{9} - \\frac{1}{9} = \\frac{\\dots}{9}$. <span class="tr">Result of $\\frac{2}{9} + \\frac{5}{9} - \\frac{1}{9} = \\frac{\\dots}{9}$.</span>',
+          correctAnswer:'6', acceptableAnswers:['6'],
+          explanation:`<p>Penyebut tetap 9. Hitung dari kiri: $2 + 5 = 7$. Lalu $7 - 1 = 6$. Hasilnya $\\frac{6}{9}$. <span class="tr">Denom stays 9. Left to right: $2+5=7$. Then $7-1=6$. Result $\\frac{6}{9}$.</span></p>`},
+        { type:'task', pageTitle:'T2: Hasil Operasi Campuran', pageTitleEn:'Mixed Operation Result', taskType:'radio',
+          question:'Berapakah hasil dari $\\frac{7}{10} - \\frac{4}{10} + \\frac{1}{10}$? <span class="tr">Result of $\\frac{7}{10} - \\frac{4}{10} + \\frac{1}{10}$?</span>',
+          options:[{text:'$\\frac{4}{10}$ <span class="tr">Four-tenths</span>', correct:true},{text:'$\\frac{2}{10}$ <span class="tr">Two-tenths</span>', correct:false},{text:'$\\frac{8}{10}$ <span class="tr">Eight-tenths</span>', correct:false},{text:'$\\frac{12}{10}$ <span class="tr">Twelve-tenths</span>', correct:false}],
+          explanation:`<p>Penyebut 10. Kiri ke kanan: $7 - 4 = 3$. Lalu $3 + 1 = 4$. Hasil $\\frac{4}{10}$. <span class="tr">Denom 10. Left to right: $7-4=3$. Then $3+1=4$. Result $\\frac{4}{10}$.</span></p>`},
+        { type:'task', pageTitle:'T3: Aturan Operasi Campuran', pageTitleEn:'Mixed Operation Rule', taskType:'truefalse',
+          question:'Benar atau salah: Dalam operasi campuran pecahan penyebut sama, penyebut tetap dan perhitungan dilakukan dari kanan ke kiri. <span class="tr">True or false: Denom stays and calculation is done right to left.</span>',
+          correctAnswer:'false',
+          explanation:`<p>Penyebut tetap, tapi perhitungan dilakukan dari KIRI ke KANAN. <span class="tr">Denom stays, but calculation is done LEFT to RIGHT.</span></p>`},
+        { type:'task', pageTitle:'T4: Pasangan Soal Cerita', pageTitleEn:'Word Problem Pairs', taskType:'pairing',
+          question:'Pasangkan soal cerita dengan operasi matematikanya. <span class="tr">Match word problems with math operations.</span>',
+          pairs:[{left:'$\\frac{2}{7}$ dipakai, $\\frac{3}{7}$ diberikan <span class="tr">used, given</span>', right:'$\\frac{2}{7} + \\frac{3}{7}$'},{left:'$\\frac{5}{8}$ punya, $\\frac{2}{8}$ dimakan <span class="tr">have, eaten</span>', right:'$\\frac{5}{8} - \\frac{2}{8}$'},{left:'$\\frac{1}{6}$ siram, $\\frac{2}{6}$ pupuk <span class="tr">water, fertilizer</span>', right:'$\\frac{1}{6} + \\frac{2}{6}$'},{left:'$\\frac{9}{10}$ utuh, $\\frac{4}{10}$ dipotong <span class="tr">whole, cut</span>', right:'$\\frac{9}{10} - \\frac{4}{10}$'}],
+          explanation:`<p>"Dipakai, diberikan, siram, pupuk" biasanya penjumlahan (menambah). "Dimakan, dipotong, hilang" biasanya pengurangan (mengurangi). <span class="tr">"Used, given" usually addition. "Eaten, cut" usually subtraction.</span></p>`},
+        { type:'task', pageTitle:'T5: Pernyataan Campuran', pageTitleEn:'Mixed Statements', taskType:'checkbox',
+          question:'Pilih semua pernyataan yang benar tentang $\\frac{4}{10} + \\frac{3}{10} - \\frac{1}{10}$. <span class="tr">Select all true statements.</span>',
+          options:[{text:'Hasilnya adalah $\\frac{6}{10}$. <span class="tr">Result is $\\frac{6}{10}$.</span>', correct:true},{text:'Penyebut tetap 10. <span class="tr">Denominator stays 10.</span>', correct:true},{text:'Penyebut dijumlahkan lalu dikurangi. <span class="tr">Denom added then subtracted.</span>', correct:false},{text:'Dikerjakan dari kiri ke kanan. <span class="tr">Done left to right.</span>', correct:true}],
+          explanation:`<p>Hitung: $4 + 3 = 7$, lalu $7 - 1 = 6$. Penyebut tetap 10. Hasil $\\frac{6}{10}$. <span class="tr">Calculate: $4+3=7$, then $7-1=6$. Denom stays 10. Result $\\frac{6}{10}$.</span></p>`},
+        { type:'task', pageTitle:'T6: Menghitung Utuh Sisa', pageTitleEn:'Calculate Whole Remainder', taskType:'fill',
+          question:'1 utuh = $\\frac{8}{8}$. Jika $\\frac{3}{8}$ digunakan, sisa $\\frac{\\dots}{8}$. <span class="tr">1 whole = $\\frac{8}{8}$. If $\\frac{3}{8}$ used, remainder $\\frac{\\dots}{8}$.</span>',
+          correctAnswer:'5', acceptableAnswers:['5'],
+          explanation:`<p>$\\frac{8}{8} - \\frac{3}{8} = \\frac{8 - 3}{8} = \\frac{5}{8}$. <span class="tr">$\\frac{8}{8} - \\frac{3}{8} = \\frac{5}{8}$.</span></p>`},
+        { type:'task', pageTitle:'T7: Urutan Operasi Campuran', pageTitleEn:'Mixed Operation Order', taskType:'sorting',
+          question:'Urutkan langkah menyelesaikan $\\frac{5}{8} - \\frac{1}{8} + \\frac{2}{8}$. <span class="tr">Order steps.</span>',
+          items:['Dikerjakan dari kiri: $\\frac{5}{8} - \\frac{1}{8} = \\frac{4}{8}$. <span class="tr">Left first.</span>','Lanjut hitung: $\\frac{4}{8} + \\frac{2}{8}$. <span class="tr">Next calculation.</span>','Jumlahkan pembilang: $4 + 2 = 6$. <span class="tr">Add numerators.</span>','Hasil akhir: $\\frac{6}{8}$. <span class="tr">Final result.</span>'], correctOrder:[0,1,2,3],
+          explanation:`<p>Operasi campuran diselesaikan berurutan dari kiri. <span class="tr">Mixed operations solved sequentially from left.</span></p>`},
+        { type:'task', pageTitle:'T8: Soal Cerita Sisa Utuh', pageTitleEn:'Whole Remainder Word Problem', taskType:'radio',
+          question:'Sebuah batang coklat dibagi 6 bagian. Ayah makan $\\frac{1}{6}$, Ibu makan $\\frac{2}{6}$. Berapa sisa coklat? <span class="tr">A chocolate bar divided into 6. Dad ate $\\frac{1}{6}$, Mom ate $\\frac{2}{6}$. Remainder?</span>',
+          options:[{text:'$\\frac{3}{6}$ <span class="tr">Three-sixths</span>', correct:true},{text:'$\\frac{2}{6}$ <span class="tr">Two-sixths</span>', correct:false},{text:'$\\frac{1}{6}$ <span class="tr">One-sixth</span>', correct:false},{text:'$\\frac{6}{6}$ <span class="tr">Six-sixths</span>', correct:false}],
+          explanation:`<p>Total dimakan: $\\frac{1}{6} + \\frac{2}{6} = \\frac{3}{6}$. Sisa: $1 - \\frac{3}{6} = \\frac{6}{6} - \\frac{3}{6} = \\frac{3}{6}$. <span class="tr">Total eaten: $\\frac{3}{6}$. Remainder: $\\frac{6}{6} - \\frac{3}{6} = \\frac{3}{6}$.</span></p>`},
+        { type:'task', pageTitle:'T9: Cek Utuh Pecahan', pageTitleEn:'Check Whole Fraction', taskType:'truefalse',
+          question:'Benar atau salah: $\\frac{5}{5} + \\frac{2}{5} = \\frac{7}{5}$. <span class="tr">True or false: $\\frac{5}{5} + \\frac{2}{5} = \\frac{7}{5}$.</span>',
+          correctAnswer:'true',
+          explanation:`<p>Penyebut tetap 5. Pembilang: $5 + 2 = 7$. Hasil $\\frac{7}{5}$. (Ini bisa terjadi jika total lebih dari 1 utuh). <span class="tr">Denom stays 5. Num: $5+2=7$. Result $\\frac{7}{5}$.</span></p>`},
+        { type:'task', pageTitle:'T10: Hitung Operasi Campuran', pageTitleEn:'Calculate Mixed Operation', taskType:'fill',
+          question:'Hasil dari $\\frac{1}{4} + \\frac{2}{4} - \\frac{1}{4} = \\frac{\\dots}{4}$. <span class="tr">Result of $\\frac{1}{4} + \\frac{2}{4} - \\frac{1}{4} = \\frac{\\dots}{4}$.</span>',
+          correctAnswer:'2', acceptableAnswers:['2'],
+          explanation:`<p>Kiri ke kanan: $1 + 2 = 3$. Lalu $3 - 1 = 2$. Hasil $\\frac{2}{4}$. <span class="tr">Left to right: $1+2=3$. Then $3-1=2$. Result $\\frac{2}{4}$.</span></p>`}
+      ]
+    },
+    l: {
+      title: 'Task 5', titleEn: 'Task 5', time: 'Printable',
+      pages: [
+        { type:'task', pageTitle:'T1: Hitung Pembilang', pageTitleEn:'Calculate Numerator', taskType:'fill',
+          question:'Pada $\\frac{1}{11}$, nilai pembilangnya adalah... <span class="tr">In $\\frac{1}{11}$, numerator value is...</span>',
+          correctAnswer:'1', acceptableAnswers:['1'],
+          explanation:`<p>Angka di atas garis pecahan adalah pembilang. Pada $\\frac{1}{11}$, pembilangnya 1. <span class="tr">Top number is numerator. In $\\frac{1}{11}$, it's 1.</span></p>`},
+        { type:'task', pageTitle:'T2: Identifikasi Penyebut Sama', pageTitleEn:'Identify Like Fractions', taskType:'radio',
+          question:'Manakah yang memiliki penyebut sama? <span class="tr">Which has same denominators?</span>',
+          options:[{text:'$\\frac{1}{3}$ dan $\\frac{1}{4}$ <span class="tr">and</span>', correct:false},{text:'$\\frac{3}{6}$ dan $\\frac{1}{6}$ <span class="tr">and</span>', correct:true},{text:'$\\frac{2}{5}$ dan $\\frac{2}{7}$ <span class="tr">and</span>', correct:false},{text:'$\\frac{1}{8}$ dan $\\frac{3}{9}$ <span class="tr">and</span>', correct:false}],
+          explanation:`<p>$\\frac{3}{6}$ dan $\\frac{1}{6}$ memiliki angka bawah yang sama, yaitu 6. <span class="tr">Have same bottom number, 6.</span></p>`},
+        { type:'task', pageTitle:'T3: Definisi Pembilang', pageTitleEn:'Numerator Definition', taskType:'truefalse',
+          question:'Benar atau salah: Pembilang adalah angka di bawah pada pecahan. <span class="tr">True or false: Numerator is the bottom number.</span>',
+          correctAnswer:'false',
+          explanation:`<p>Salah. Pembilang adalah angka di ATAS. Angka di bawah adalah penyebut. <span class="tr">False. Numerator is TOP number. Bottom is denominator.</span></p>`},
+        { type:'task', pageTitle:'T4: Pasangan Bacaan Pecahan', pageTitleEn:'Match Fraction Readings', taskType:'pairing',
+          question:'Pasangkan pecahan dengan cara baca yang tepat. <span class="tr">Match with correct reading.</span>',
+          pairs:[{left:'$\\frac{1}{2}$', right:'Setengah <span class="tr">One-half</span>'},{left:'$\\frac{1}{4}$', right:'Seperempat <span class="tr">One-quarter</span>'},{left:'$\\frac{1}{3}$', right:'Satu per tiga <span class="tr">One-third</span>'},{left:'$\\frac{1}{5}$', right:'Satu per lima <span class="tr">One-fifth</span>'}],
+          explanation:`<p>Penyebut menentukan nama pecahan (perdua, perempat, pertiga, perlima). <span class="tr">Denominator determines name.</span></p>`},
+        { type:'task', pageTitle:'T5: Pecahan Bernilai Utuh', pageTitleEn:'Whole Value Fractions', taskType:'checkbox',
+          question:'Pilih semua pecahan yang nilainya sama dengan 1 utuh. <span class="tr">Select all equal to 1 whole.</span>',
+          options:[{text:'$\\frac{8}{8}$ <span class="tr">Eight-eighths</span>', correct:true},{text:'$\\frac{4}{4}$ <span class="tr">Four-fourths</span>', correct:true},{text:'$\\frac{2}{4}$ <span class="tr">Two-fourths</span>', correct:false},{text:'$\\frac{1}{2}$ <span class="tr">One-half</span>', correct:false}],
+          explanation:`<p>Pecahan bernilai 1 jika pembilang dan penyebutnya sama. $\\frac{8}{8}=1$ dan $\\frac{4}{4}=1$. <span class="tr">Equals 1 if numerator and denominator are same.</span></p>`},
+        { type:'task', pageTitle:'T6: Penjumlahan Pecahan', pageTitleEn:'Fraction Addition', taskType:'fill',
+          question:'Hasil dari $\\frac{5}{12} + \\frac{4}{12} = \\frac{\\dots}{12}$. <span class="tr">Result of $\\frac{5}{12} + \\frac{4}{12} = \\frac{\\dots}{12}$.</span>',
+          correctAnswer:'9', acceptableAnswers:['9'],
+          explanation:`<p>Penyebut tetap 12. Jumlahkan pembilang: $5 + 4 = 9$. Hasilnya $\\frac{9}{12}$. <span class="tr">Denom stays 12. Add num: $5+4=9$. Result $\\frac{9}{12}$.</span></p>`},
+        { type:'task', pageTitle:'T7: Langkah Soal Cerita Pengurangan', pageTitleEn:'Subtraction Word Problem Steps', taskType:'sorting',
+          question:'Urutkan langkah mengerjakan: Dari $\\frac{8}{10}$ liter air, tumpah $\\frac{3}{10}$ liter. Sisa? <span class="tr">Order steps: From $\\frac{8}{10}$ L, spilled $\\frac{3}{10}$ L. Remainder?</span>',
+          items:['Tentukan operasi: $\\frac{8}{10} - \\frac{3}{10}$. <span class="tr">Determine operation.</span>','Kurangi pembilang: $8 - 3 = 5$. <span class="tr">Subtract num.</span>','Tulis penyebut tetap: 10. <span class="tr">Write same denom.</span>','Kesimpulan: Sisa $\\frac{5}{10}$ liter. <span class="tr">Conclude: $\\frac{5}{10}$ L.</span>'], correctOrder:[0,1,2,3],
+          explanation:`<p>Penyelesaian soal cerita pengurangan: operasi, hitung pembilang, tulis penyebut, simpulkan. <span class="tr">Subtraction word problem steps.</span></p>`},
+        { type:'task', pageTitle:'T8: Pecahan Senilai 1/2', pageTitleEn:'Equivalent to 1/2', taskType:'radio',
+          question:'Manakah pecahan yang senilai dengan $\\frac{1}{2}$? <span class="tr">Which is equivalent to $\\frac{1}{2}$?</span>',
+          options:[{text:'$\\frac{4}{8}$ <span class="tr">Four-eighths</span>', correct:true},{text:'$\\frac{2}{3}$ <span class="tr">Two-thirds</span>', correct:false},{text:'$\\frac{1}{4}$ <span class="tr">One-fourth</span>', correct:false},{text:'$\\frac{3}{5}$ <span class="tr">Three-fifths</span>', correct:false}],
+          explanation:`<p>$\\frac{4}{8}$ jika dibagi 2/2 menjadi $\\frac{2}{4}$, lalu dibagi 2/2 lagi menjadi $\\frac{1}{2}$. <span class="tr">$\\frac{4}{8}$ divided by 2/2 becomes $\\frac{2}{4}$, then $\\frac{1}{2}$.</span></p>`},
+        { type:'task', pageTitle:'T9: Perbandingan Pecahan Satuan', pageTitleEn:'Compare Unit Fractions', taskType:'truefalse',
+          question:'Benar atau salah: $\\frac{1}{9} > \\frac{1}{4}$. <span class="tr">True or false: $\\frac{1}{9} > \\frac{1}{4}$.</span>',
+          correctAnswer:'false',
+          explanation:`<p>9 lebih besar dari 4, sehingga $\\frac{1}{9}$ lebih KECIL dari $\\frac{1}{4}$. Pernyataan salah. <span class="tr">9 is larger than 4, so $\\frac{1}{9}$ is SMALLER than $\\frac{1}{4}$.</span></p>`},
+        { type:'task', pageTitle:'T10: Soal Cerita Komprehensif', pageTitleEn:'Comprehensive Word Problem', taskType:'fill',
+          question:'Tutupi jalan sepanjang 1 km. Sudah dikerjakan $\\frac{2}{7}$ km, sisanya $\\frac{\\dots}{7}$ km. <span class="tr">Road repair 1 km. Done $\\frac{2}{7}$ km, remainder $\\frac{\\dots}{7}$ km.</span>',
+          correctAnswer:'5', acceptableAnswers:['5'],
+          explanation:`<p>1 km = $\\frac{7}{7}$ km. Sisa = $\\frac{7}{7} - \\frac{2}{7} = \\frac{7 - 2}{7} = \\frac{5}{7}$ km. <span class="tr">1 km = $\\frac{7}{7}$ km. Remainder = $\\frac{7}{7} - \\frac{2}{7} = \\frac{5}{7}$ km.</span></p>`}
+      ]
+    }
+  };
+
+  // ================= STATE =================
+  let currentSection = 'a';
+  let currentPage = 0;
+  let userAnswers = {};
+
+  // ================= UTILITIES =================
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i = a.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+  function renderMath(el){
+    if(window.renderMathInElement){
+      renderMathInElement(el, {
+        delimiters: [
+          {left:'$$', right:'$$', display:true},
+          {left:'$', right:'$', display:false}
+        ],
+        throwOnError: false
+      });
+    }
+  }
+
+  // ================= SIDEBAR =================
+  function renderSidebar(){
+    const sidebar = document.getElementById('sidebar');
+    const sectionKeys = ['a','b','c','d','e','f','g','h','i','j','k','l'];
+    const meta = {
+      a:{t:'Spiral Review', e:'Spiral Review', time:'00:00-00:10'},
+      b:{t:'Intro & Real-World', e:'Intro & Real-World', time:'00:10-00:15'},
+      c:{t:'Prior Knowledge', e:'Prior Knowledge', time:'00:15-00:20'},
+      d:{t:'Problem Intro', e:'Problem Intro', time:'00:20-00:30'},
+      e:{t:'Guided Practice', e:'Guided Practice', time:'00:30-00:45'},
+      f:{t:'Independent Prac', e:'Independent Prac', time:'00:45-00:55'},
+      g:{t:'Consolidation', e:'Consolidation', time:'00:55-01:00'},
+      h:{t:'Task 1', e:'Tugas 1', time:'Printable'},
+      i:{t:'Task 2', e:'Tugas 2', time:'Printable'},
+      j:{t:'Task 3', e:'Tugas 3', time:'Printable'},
+      k:{t:'Task 4', e:'Tugas 4', time:'Printable'},
+      l:{t:'Task 5', e:'Tugas 5', time:'Printable'}
+    };
+    let html = '<h3>Bagian <span class="tr">Sections</span></h3>';
+    sectionKeys.forEach(key => {
+      const section = sectionsData[key];
+      const isActive = currentSection === key;
+      if(section){
+        html += `<div class="nav-link ${isActive?'active':''}" data-section="${key}">
+          <span class="nl-title">${key.toUpperCase()}. ${meta[key].t}</span>
+          <span class="tr">${meta[key].e}</span>
+          <span class="time">${meta[key].time}</span>
+        </div>`;
+      } else {
+        html += `<div class="nav-link disabled">${key.toUpperCase()}. ${meta[key].t}<br><span class="tr">${meta[key].e}</span><br><span class="time">${meta[key].time} (segera)</span></div>`;
+      }
+    });
+    sidebar.innerHTML = html;
+    sidebar.querySelectorAll('.nav-link[data-section]').forEach(el => {
+      el.addEventListener('click', () => {
+        currentSection = el.dataset.section;
+        currentPage = 0;
+        renderSidebar();
+        renderPage();
+      });
+    });
+  }
+
+  // ================= PAGE RENDER =================
+  function renderPage(){
+    const section = sectionsData[currentSection];
+    if(!section) return;
+    const page = section.pages[currentPage];
+    const contentEl = document.getElementById('pageContent');
+
+    let printBtnHtml = '';
+    if(['h','i','j','k','l'].includes(currentSection)){
+      printBtnHtml = '<button id="printBtnTop" style="background:var(--success);color:#fff;border:none;padding:7px 14px;border-radius:6px;cursor:pointer;font-size:.8em;font-weight:600;white-space:nowrap">🖨 Cetak PDF <span class="tr">Print to PDF</span></button>';
+    }
+
+    let html = '<div class="page-header"><h2>' + section.title + ' <span class="tr">' + section.titleEn + '</span></h2><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">' + printBtnHtml + '<span class="badge">' + page.pageTitle.split(':')[0] + '</span></div></div>';
+
+    if(page.type === 'explanation'){
+      html += '<div class="card explain"><h3>' + page.pageTitle + ' <span class="tr">' + page.pageTitleEn + '</span></h3>' + page.body + '</div>';
+    } else if(page.type === 'task'){
+      html += renderTask(page);
+    }
+    contentEl.innerHTML = html;
+    renderMath(contentEl);
+
+    const total = section.pages.length;
+    const pageNumsEl = document.getElementById('pageNums');
+    let pageNumHtml = '';
+    section.pages.forEach(function(p, i){
+      var raw = p.pageTitle.split(':')[0].trim();
+      var type = raw.charAt(0);
+      var num = parseInt(raw.substring(1));
+      var label = type + '-' + String(num).padStart(2, '0');
+      var typeClass = (type === 'E') ? 'page-num-e' : 'page-num-t';
+      var isActive = (i === currentPage);
+      pageNumHtml += '<button class="page-num ' + typeClass + ' ' + (isActive ? 'active' : '') + '" data-page="' + i + '"' + (isActive ? ' disabled' : '') + '>' + label + '</button>';
+    });
+    pageNumsEl.innerHTML = pageNumHtml;
+
+    pageNumsEl.querySelectorAll('.page-num').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        currentPage = parseInt(btn.dataset.page);
+        renderPage();
+      });
+    });
+
+    document.getElementById('prevBtn').disabled = (currentPage === 0);
+    document.getElementById('nextBtn').disabled = (currentPage === total - 1);
+
+    var printBtnTop = document.getElementById('printBtnTop');
+    if(printBtnTop){
+      printBtnTop.addEventListener('click', function(){ printTask(currentSection); });
+    }
+
+    if(page.type === 'task'){
+      attachTaskHandlers(page);
+    }
+  }
+
+  function renderTask(page){
+    let html = `<div class="card task"><h3>${page.pageTitle} <span class="tr">${page.pageTitleEn}</span></h3>`;
+    let questionHtml = page.question;
+    if(page.questionEn) {
+      questionHtml += ` <span class="tr">${page.questionEn}</span>`;
+    }
+    html += `<div class="q-text">${questionHtml}</div>`;
+
+    if(page.taskType === 'radio' || page.taskType === 'checkbox'){
+      const options = shuffle(page.options);
+      page._shuffledOptions = options;
+      html += '<div class="options">';
+      options.forEach((opt, i) => {
+        const cls = page.taskType === 'checkbox' ? 'option checkbox' : 'option radio';
+        html += `<div class="${cls}" data-idx="${i}">
+          <div class="marker"></div>
+          <div class="opt-text">${opt.text}</div>
+        </div>`;
+      });
+      html += '</div>';
+    } else if(page.taskType === 'fill'){
+      html += `<input type="text" class="fill-input" id="fillInput" placeholder="...">`;
+    } else if(page.taskType === 'truefalse'){
+      const opts = shuffle([
+        {text:'Benar <span class="tr">True</span>', val:'true'},
+        {text:'Salah <span class="tr">False</span>', val:'false'}
+      ]);
+      page._shuffledTF = opts;
+      html += '<div class="options">';
+      opts.forEach((o, i) => {
+        html += `<div class="option radio" data-val="${o.val}" data-idx="${i}"><div class="marker"></div><div class="opt-text">${o.text}</div></div>`;
+      });
+      html += '</div>';
+    } else if(page.taskType === 'sorting'){
+      const shuffled = shuffle(page.items.map((item, idx) => ({text:item, originalIdx:idx})));
+      page._shuffledItems = shuffled;
+      html += '<div class="sort-list">';
+      shuffled.forEach((it, i) => {
+        html += `<div class="sort-item" data-pos="${i}" data-orig="${it.originalIdx}">
+          <span class="pos">${i+1}</span>
+          <span class="sort-text">${it.text}</span>
+        </div>`;
+      });
+      html += '</div>';
+      html += '<p style="font-size:.82em;color:var(--muted);margin-top:6px">Klik dua item untuk menukar posisi. <span class="tr">Click two items to swap.</span></p>';
+    } else if(page.taskType === 'pairing'){
+      const lefts = shuffle(page.pairs.map((p, idx) => ({text:p.left, originalIdx:idx})));
+      const rights = shuffle(page.pairs.map((p, idx) => ({text:p.right, originalIdx:idx})));
+      page._shuffledPairs = {lefts, rights};
+      html += '<div class="pair-grid">';
+      html += '<div class="pair-col"><h4>Kiri <span class="tr">Left</span></h4>';
+      lefts.forEach((l, i) => {
+        html += `<div class="pair-item" data-side="left" data-idx="${i}">${l.text}</div>`;
+      });
+      html += '</div>';
+      html += '<div class="pair-col"><h4>Kanan <span class="tr">Right</span></h4>';
+      rights.forEach((r, i) => {
+        html += `<div class="pair-item" data-side="right" data-idx="${i}">${r.text}</div>`;
+      });
+      html += '</div></div>';
+      html += '<div class="pairs-list" id="pairsList"></div>';
+      html += '<p style="font-size:.82em;color:var(--muted);margin-top:6px">Klik kiri lalu kanan untuk memasangkan. <span class="tr">Click left then right to pair.</span></p>';
+    }
+    html += `<button class="btn-submit" id="submitBtn">Periksa Jawaban <span class="tr">Check Answer</span></button>`;
+    html += `<div class="feedback" id="feedback"></div></div>`;
+    return html;
+  }
+
+  function attachTaskHandlers(page){
+    const taskType = page.taskType;
+
+    if(taskType === 'radio' || taskType === 'truefalse'){
+      document.querySelectorAll('.option').forEach(opt => {
+        opt.addEventListener('click', () => {
+          document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+          opt.classList.add('selected');
+        });
+      });
+    } else if(taskType === 'checkbox'){
+      document.querySelectorAll('.option').forEach(opt => {
+        opt.addEventListener('click', () => opt.classList.toggle('selected'));
+      });
+    } else if(taskType === 'sorting'){
+      let firstClick = null;
+      document.querySelectorAll('.sort-item').forEach(item => {
+        item.addEventListener('click', () => {
+          if(firstClick === null){
+            firstClick = item;
+            item.classList.add('selected');
+          } else if(firstClick === item){
+            item.classList.remove('selected');
+            firstClick = null;
+          } else {
+            const fText = firstClick.querySelector('.sort-text').innerHTML;
+            const sText = item.querySelector('.sort-text').innerHTML;
+            firstClick.querySelector('.sort-text').innerHTML = sText;
+            item.querySelector('.sort-text').innerHTML = fText;
+            const fOrig = firstClick.dataset.orig;
+            firstClick.dataset.orig = item.dataset.orig;
+            item.dataset.orig = fOrig;
+            firstClick.classList.remove('selected');
+            firstClick = null;
+          }
+        });
+      });
+    } else if(taskType === 'pairing'){
+      let selectedLeft = null;
+      document.querySelectorAll('.pair-item[data-side="left"]').forEach(item => {
+        item.addEventListener('click', () => {
+          if(item.classList.contains('paired')) return;
+          document.querySelectorAll('.pair-item[data-side="left"]').forEach(i => i.classList.remove('selected'));
+          item.classList.add('selected');
+          selectedLeft = item;
+        });
+      });
+      document.querySelectorAll('.pair-item[data-side="right"]').forEach(item => {
+        item.addEventListener('click', () => {
+          if(item.classList.contains('paired') || !selectedLeft) return;
+          const leftIdx = selectedLeft.dataset.idx;
+          const rightIdx = item.dataset.idx;
+          const pairList = document.getElementById('pairsList');
+          const pairRow = document.createElement('div');
+          pairRow.className = 'pair-row';
+          pairRow.dataset.leftIdx = leftIdx;
+          pairRow.dataset.rightIdx = rightIdx;
+          pairRow.innerHTML = `<span>${selectedLeft.innerHTML}</span> <span>↔</span> <span>${item.innerHTML}</span> <span class="remove" title="Remove">×</span>`;
+          pairRow.querySelector('.remove').addEventListener('click', function() {
+            const lIdx = pairRow.dataset.leftIdx;
+            const rIdx = pairRow.dataset.rightIdx;
+            const lItem = document.querySelector(`.pair-item[data-side="left"][data-idx="${lIdx}"]`);
+            const rItem = document.querySelector(`.pair-item[data-side="right"][data-idx="${rIdx}"]`);
+            if(lItem) lItem.classList.remove('paired');
+            if(rItem) rItem.classList.remove('paired');
+            pairRow.remove();
+          });
+          pairList.appendChild(pairRow);
+          selectedLeft.classList.remove('selected');
+          selectedLeft.classList.add('paired');
+          item.classList.add('paired');
+          selectedLeft = null;
+        });
+      });
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', () => checkAnswer(page));
+  }
+
+  function checkAnswer(page){
+    const taskType = page.taskType;
+    let isCorrect = false;
+    let userAnswerStr = '';
+
+    if(taskType === 'radio'){
+      let selected = null, selectedIdx = -1;
+      document.querySelectorAll('.option').forEach((opt, i) => {
+        if(opt.classList.contains('selected')){
+          selected = page._shuffledOptions[i];
+          selectedIdx = i;
+        }
+      });
+      if(!selected){
+        showFeedback(false, 'Silakan pilih jawaban. <span class="tr">Please select an answer.</span>', false);
+        return;
+      }
+      isCorrect = selected.correct;
+      userAnswerStr = selected.text;
+      document.querySelectorAll('.option').forEach((opt, i) => {
+        opt.classList.remove('selected');
+        if(page._shuffledOptions[i].correct) opt.classList.add('correct');
+        else if(i === selectedIdx && !selected.correct) opt.classList.add('incorrect');
+      });
+    } else if(taskType === 'checkbox'){
+      const selectedIdxs = [];
+      document.querySelectorAll('.option').forEach((opt, i) => {
+        if(opt.classList.contains('selected')) selectedIdxs.push(i);
+      });
+      if(selectedIdxs.length === 0){
+        showFeedback(false, 'Silakan pilih jawaban. <span class="tr">Please select an answer.</span>', false);
+        return;
+      }
+      const correctSet = new Set();
+      page._shuffledOptions.forEach((opt, i) => { if(opt.correct) correctSet.add(i); });
+      const selectedSet = new Set(selectedIdxs);
+      isCorrect = correctSet.size === selectedSet.size && [...correctSet].every(i => selectedSet.has(i));
+      userAnswerStr = selectedIdxs.map(i => page._shuffledOptions[i].text).join(', ');
+      document.querySelectorAll('.option').forEach((opt, i) => {
+        opt.classList.remove('selected');
+        if(page._shuffledOptions[i].correct) opt.classList.add('correct');
+        else if(selectedSet.has(i)) opt.classList.add('incorrect');
+      });
+    } else if(taskType === 'fill'){
+      const val = document.getElementById('fillInput').value.trim();
+      const acceptable = page.acceptableAnswers || [page.correctAnswer];
+      const norm = s => s.toLowerCase().replace(/\s+/g, '').trim();
+      isCorrect = acceptable.some(a => norm(a) === norm(val));
+      userAnswerStr = val;
+    } else if(taskType === 'truefalse'){
+      let selectedVal = null, selectedIdx = -1;
+      document.querySelectorAll('.option').forEach((opt, i) => {
+        if(opt.classList.contains('selected')){
+          selectedVal = opt.dataset.val;
+          selectedIdx = i;
+        }
+      });
+      if(!selectedVal){
+        showFeedback(false, 'Silakan pilih jawaban. <span class="tr">Please select an answer.</span>', false);
+        return;
+      }
+      isCorrect = selectedVal === page.correctAnswer;
+      userAnswerStr = selectedVal === 'true' ? 'Benar' : 'Salah';
+      document.querySelectorAll('.option').forEach((opt, i) => {
+        opt.classList.remove('selected');
+        if(opt.dataset.val === page.correctAnswer) opt.classList.add('correct');
+        else if(i === selectedIdx) opt.classList.add('incorrect');
+      });
+    } else if(taskType === 'sorting'){
+      const currentOrder = [];
+      document.querySelectorAll('.sort-item').forEach(item => {
+        currentOrder.push(parseInt(item.dataset.orig));
+      });
+      isCorrect = currentOrder.every((idx, i) => idx === page.correctOrder[i]);
+      userAnswerStr = currentOrder.map((idx, i) => `${i+1}. ${page.items[idx] || '?'}`).join('  |  ');
+      document.querySelectorAll('.sort-item').forEach((item, i) => {
+        if(currentOrder[i] === page.correctOrder[i]) item.style.borderColor = 'var(--success)';
+        else item.style.borderColor = 'var(--danger)';
+      });
+    } else if(taskType === 'pairing'){
+      const pairRows = document.querySelectorAll('.pair-row');
+      if(pairRows.length === 0){
+        showFeedback(false, 'Silakan buat pasangan. <span class="tr">Please make pairs.</span>', false);
+        return;
+      }
+      const userPairs = [];
+      pairRows.forEach(row => {
+        const lIdx = parseInt(row.dataset.leftIdx);
+        const rIdx = parseInt(row.dataset.rightIdx);
+        userPairs.push({
+          leftText: page._shuffledPairs.lefts[lIdx].text,
+          rightText: page._shuffledPairs.rights[rIdx].text
+        });
+      });
+      const correctPairs = page.pairs.map(p => ({left:p.left, right:p.right}));
+      const correctCount = userPairs.filter(up =>
+        correctPairs.some(cp => cp.left === up.leftText && cp.right === up.rightText)
+      ).length;
+      isCorrect = correctCount === correctPairs.length && userPairs.length === correctPairs.length;
+      userAnswerStr = userPairs.map(p => `${p.leftText}↔${p.rightText}`).join('  |  ');
+      pairRows.forEach(row => {
+        const lIdx = parseInt(row.dataset.leftIdx);
+        const rIdx = parseInt(row.dataset.rightIdx);
+        const lText = page._shuffledPairs.lefts[lIdx].text;
+        const rText = page._shuffledPairs.rights[rIdx].text;
+        const ok = correctPairs.some(cp => cp.left === lText && cp.right === rText);
+        row.style.background = ok ? '#d1fae5' : '#fee2e2';
+      });
+    }
+
+    const pageKey = `${currentSection}-${currentPage}`;
+    userAnswers[pageKey] = {userAnswer:userAnswerStr, correct:isCorrect, pageTitle:page.pageTitle};
+    showFeedback(isCorrect, page.explanation, true);
+  }
+
+  function showFeedback(isCorrect, explanation, showAnswer){
+    const feedback = document.getElementById('feedback');
+    feedback.className = `feedback show ${isCorrect?'correct':'incorrect'}`;
+    if(showAnswer){
+      feedback.innerHTML = `<h4>${isCorrect?'✓ Benar!':'✗ Salah'} <span class="tr">${isCorrect?'Correct!':'Incorrect'}</span></h4>${explanation}`;
+    } else {
+      feedback.innerHTML = `<h4>${isCorrect?'✓ Benar!':'✗ Salah'} <span class="tr">${isCorrect?'Correct!':'Incorrect'}</span></h4>`;
+    }
+    renderMath(feedback);
+  }
+
+  // ================= EVENT LISTENERS =================
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    if(currentPage > 0){ currentPage--; renderPage(); }
+  });
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    const total = sectionsData[currentSection].pages.length;
+    if(currentPage < total - 1){ currentPage++; renderPage(); }
+  });
+
+  const modal = document.getElementById('classRulesModal');
+  document.getElementById('classRulesBtn').addEventListener('click', () => modal.classList.add('active'));
+  document.querySelector('.modal-close').addEventListener('click', () => modal.classList.remove('active'));
+  modal.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('active'); });
+
+  // ================= PRINT TO PDF =================
+  function getCorrectAnswer(task){
+    if(task.taskType === 'radio'){
+      const c = task.options.find(o => o.correct);
+      return c ? c.text : '';
+    }
+    if(task.taskType === 'checkbox'){
+      return task.options.filter(o => o.correct).map(o => o.text).join(', ');
+    }
+    if(task.taskType === 'fill'){
+      return task.correctAnswer || '';
+    }
+    if(task.taskType === 'truefalse'){
+      return task.correctAnswer === 'true' ? 'Benar' : 'Salah';
+    }
+    if(task.taskType === 'sorting'){
+      return task.correctOrder.map(i => task.items[i]).join(' → ');
+    }
+    if(task.taskType === 'pairing'){
+      return task.pairs.map(p => p.left + ' ↔ ' + p.right).join('; ');
+    }
+    return '';
+  }
+
+  function printTask(sectionKey){
+    const section = sectionsData[sectionKey];
+    if(!section) return;
+    const tasks = section.pages;
+    let correctCount = 0;
+
+    const rows = tasks.map((task, idx) => {
+      const pageKey = sectionKey + '-' + idx;
+      const ua = userAnswers[pageKey];
+      const isCorrect = ua ? ua.correct : false;
+      const userAns = ua ? ua.userAnswer : '(tidak dijawab)';
+      const correctAns = getCorrectAnswer(task);
+      if(ua && ua.correct) correctCount++;
+      let questionPrint = task.question;
+      if(task.questionEn) {
+        questionPrint += '<br><span class="tr">' + task.questionEn + '</span>';
+      }
+      return '<tr><td>' + (idx+1) + '</td><td>' + questionPrint + '</td><td>' + userAns + '</td><td>' + correctAns + '</td><td style="text-align:center;font-size:1.1em">' + (isCorrect ? '✓' : '✗') + '</td></tr>';
+    }).join('');
+
+    const score = correctCount + ' / ' + tasks.length;
+    const today = new Date().toLocaleDateString('id-ID', {day:'numeric',month:'long',year:'numeric'});
+
+    const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Cetak - ' + section.title + '</title>' +
+      '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">' +
+      '<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"><\/script>' +
+      '<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"><\/script>' +
+      '<style>' +
+      'body{font-family:Segoe UI,sans-serif;padding:30px;color:#1e293b;line-height:1.5}' +
+      'h1{font-size:1.2em;margin-bottom:5px}' +
+      '.info{margin-bottom:15px;font-size:.88em}' +
+      '.info div{margin:3px 0}' +
+      'table{width:100%;border-collapse:collapse;margin:15px 0;font-size:.82em}' +
+      'th,td{border:1px solid #cbd5e1;padding:6px 8px;text-align:left;vertical-align:top}' +
+      'th{background:#f1f5f9;font-weight:600}' +
+      '.checked-by{margin-top:30px;text-align:right;font-style:italic}' +
+      '.tr{font-style:italic;font-size:.85em;color:#64748b}' +
+      '@media print{body{padding:15px}}' +
+      '</style></head><body>' +
+      '<h1>Math Tutoring by Deni</h1>' +
+      '<div class="info">' +
+      '<div>Nama: ____________________________ <span class="tr">Name</span></div>' +
+      '<div>Tanggal: ' + today + ' <span class="tr">Date</span></div>' +
+      '<div>Topik: Pecahan <span class="tr">Topic: Fractions</span></div>' +
+      '<div>Grup Task: ' + section.title + ' <span class="tr">Task Group</span></div>' +
+      '<div>Skor: <strong>' + score + '</strong> <span class="tr">Score</span></div>' +
+      '</div>' +
+      '<table><thead><tr>' +
+      '<th style="width:30px">No.</th>' +
+      '<th>Pertanyaan <span class="tr">Question</span></th>' +
+      '<th>Jawaban Siswa <span class="tr">Student Answer</span></th>' +
+      '<th>Jawaban Benar <span class="tr">Correct Answer</span></th>' +
+      '<th style="width:50px">Ket. <span class="tr">Note</span></th>' +
+      '</tr></thead><tbody>' + rows + '</tbody></table>' +
+      '<div class="checked-by">Diperiksa oleh, <span class="tr">Checked by,</span><br>Deni</div>' +
+      '<script>document.addEventListener("DOMContentLoaded",function(){' +
+      'if(window.renderMathInElement){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false});}' +
+      'setTimeout(function(){window.print();},500);});<\/script>' +
+      '</body></html>';
+
+    const w = window.open('', '_blank');
+    if(w){
+      w.document.write(html);
+      w.document.close();
+    } else {
+      alert('Mohon izinkan pop-up untuk mencetak. (Please allow pop-ups to print.)');
+    }
+  }
+
+  // ================= INIT =================
+  renderSidebar();
+  renderPage();
+});
+</script>
+</body>
+</html>
