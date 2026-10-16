@@ -1,0 +1,1301 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Pecahan, Desimal &amp; Persen</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Lexend:wght@300;400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: header band, then a 1:3 grid — sticky lesson timeline on the left, one lesson panel at a time on the right. Motif: the 10×10 hundred grid. */
+:root{
+  --paper:#f3f6f1; --card:#ffffff; --ink:#15302a; --muted:#56695f; --line:#d3ded7;
+  --grid:#1c7a57; --grid-ink:#ffffff; --grid-soft:#e1efe7; --cell-off:#e9efea;
+  --sun:#c98a0c; --sun-soft:#fcf1d6; --coral:#c24a30; --coral-soft:#fbe4dd;
+  --f-display:'Fredoka','Trebuchet MS',sans-serif;
+  --f-body:'Lexend','Segoe UI',system-ui,sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#0f1915; --card:#16231e; --ink:#e4eee8; --muted:#9fb5ab; --line:#2a3d35;
+  --grid:#45c08f; --grid-ink:#08231a; --grid-soft:#1a3329; --cell-off:#24352e;
+  --sun:#f0bd4c; --sun-soft:#33290f; --coral:#ef7c61; --coral-soft:#3a1f18; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --paper:#0f1915; --card:#16231e; --ink:#e4eee8; --muted:#9fb5ab; --line:#2a3d35;
+  --grid:#45c08f; --grid-ink:#08231a; --grid-soft:#1a3329; --cell-off:#24352e;
+  --sun:#f0bd4c; --sun-soft:#33290f; --coral:#ef7c61; --coral-soft:#3a1f18; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 40px}
+.shell{max-width:1280px;margin:0 auto}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;line-height:1.2;margin:0}
+p{margin:0}
+.en{display:block;font-size:.88em;color:var(--muted);font-style:italic;font-weight:300;margin-top:2px}
+.eni{color:var(--muted);font-weight:400;font-size:.9em}
+mjx-container{color:inherit}
+mjx-container[display="true"]{margin:.4em 0!important;overflow-x:auto;overflow-y:hidden;max-width:100%}
+
+/* header */
+.top{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;padding-block:22px 18px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.brand{display:flex;gap:14px;align-items:flex-start;min-width:0;flex:1 1 420px}
+.brand svg{flex:none;margin-top:4px}
+.brand-name{font-family:var(--f-display);font-weight:700;font-size:1.05rem;letter-spacing:.06em;text-transform:uppercase;color:var(--grid)}
+.brand h1{font-size:clamp(1.25rem,2.6vw,1.7rem);font-weight:600;margin-top:2px}
+.brand .sub{color:var(--muted);font-style:italic;font-size:.98rem;margin-top:2px}
+.btn{font:inherit;font-weight:500;font-size:.92rem;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 14px;cursor:pointer;line-height:1.3}
+.btn:hover{border-color:var(--grid)}
+.btn:focus-visible,.chip:focus-visible,.zone:focus-visible,.navbtn:focus-visible,summary:focus-visible,.opt input:focus-visible+.ob{outline:3px solid var(--sun);outline-offset:2px}
+.btn.primary{background:var(--grid);color:var(--grid-ink);border-color:var(--grid)}
+.btn.primary .eni{color:inherit;opacity:.8}
+.btn.rules{display:flex;gap:8px;align-items:center}
+
+/* grid */
+.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,3fr);gap:28px;align-items:start}
+.nav{position:sticky;top:16px;display:flex;flex-direction:column;gap:4px;max-height:calc(100vh - 32px);overflow:auto;padding-right:4px}
+.nav-k{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:10px 8px 4px}
+.navbtn{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;text-align:left;font:inherit;background:none;border:1px solid transparent;border-radius:10px;padding:8px 10px;cursor:pointer;color:var(--ink)}
+.navbtn:hover{background:var(--card);border-color:var(--line)}
+.navbtn[aria-current="true"]{background:var(--grid-soft);border-color:var(--grid)}
+.navbtn .tm{grid-row:span 2;font-family:var(--f-mono);font-size:.7rem;color:var(--grid);padding-top:3px;min-width:5.4em;font-variant-numeric:tabular-nums}
+.navbtn .nt{font-weight:500;font-size:.9rem;line-height:1.3}
+.navbtn .ne{font-size:.78rem;color:var(--muted);font-style:italic;line-height:1.3}
+.navbtn .done{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--grid);margin-left:6px;vertical-align:middle}
+main{min-width:0}
+
+/* panel */
+.panel{display:flex;flex-direction:column;gap:22px}
+.phead{display:flex;flex-direction:column;gap:6px}
+.eyebrow{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--grid)}
+.phead h2{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600}
+.phead .h2en{color:var(--muted);font-style:italic;font-family:var(--f-body);font-weight:300;font-size:1.05rem}
+.goal{background:var(--sun-soft);border-radius:12px;padding:12px 16px;font-size:.95rem}
+.goal b{font-family:var(--f-display);font-weight:600}
+.block{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;display:flex;flex-direction:column;gap:12px}
+.block h3{font-size:1.25rem;font-weight:600}
+.block h3 .en{font-family:var(--f-body);font-size:.85rem}
+.rule{background:var(--grid-soft);border-radius:12px;padding:12px 16px}
+.rule-k,.ex-k,.tip-k{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--grid);margin-bottom:4px}
+.ex{border:1px dashed var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.ex-k{color:var(--sun)}
+.tip{background:var(--sun-soft);border-radius:12px;padding:12px 16px}
+.tip-k{color:var(--sun)}
+.warn{background:var(--coral-soft);border-radius:12px;padding:12px 16px}
+.warn .tip-k{color:var(--coral)}
+ol.steps{margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:8px}
+ol.steps li::marker{font-family:var(--f-display);font-weight:600;color:var(--grid)}
+.figrow{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end}
+.fig{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;font-size:.88rem;max-width:220px}
+.hgrid rect{stroke:var(--card);stroke-width:1}
+.hgrid .on{fill:var(--grid)} .hgrid .off{fill:var(--cell-off)} .hgrid .fr{fill:none;stroke:var(--grid);stroke-width:1.2}
+.hgrid .on2{fill:var(--sun)}
+.ill .s{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.ill .f{fill:var(--grid)} .ill .f2{fill:var(--sun)} .ill .f0{fill:var(--cell-off)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;min-width:420px;width:100%;font-variant-numeric:tabular-nums}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:center}
+th{background:var(--grid-soft);font-weight:500;font-size:.9rem}
+th .en{font-size:.8rem}
+
+/* exercises */
+.sethead{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;justify-content:space-between;margin-top:6px}
+.sethead h3{font-size:1.35rem;font-weight:600}
+.score{font-family:var(--f-mono);font-size:.82rem;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-variant-numeric:tabular-nums}
+.qlist{display:flex;flex-direction:column;gap:16px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.q.is-ok{border-color:var(--grid)}
+.qh{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.qn{font-family:var(--f-display);font-weight:600;width:32px;height:32px;border-radius:9px;background:var(--ink);color:var(--card);display:grid;place-items:center;flex:none}
+.qt{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.qq{font-size:1.02rem}
+.qfig{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.hint{font-size:.82rem;color:var(--muted)}
+.hint .en{display:inline;margin-left:4px}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:8px}
+.opt{position:relative;display:flex}
+.opt input{position:absolute;opacity:0;width:1px;height:1px}
+.ob{flex:1;display:flex;flex-direction:column;justify-content:center;border:1.5px solid var(--line);border-radius:12px;padding:10px 14px 10px 42px;cursor:pointer;min-height:48px;position:relative;background:var(--card)}
+.ob::before{content:"";position:absolute;left:14px;top:50%;width:16px;height:16px;margin-top:-8px;border:2px solid var(--muted);border-radius:50%}
+.opt input[type=checkbox]+.ob::before{border-radius:4px}
+.opt input:checked+.ob{border-color:var(--grid);background:var(--grid-soft)}
+.opt input:checked+.ob::before{border-color:var(--grid);background:var(--grid);box-shadow:inset 0 0 0 3px var(--grid-soft)}
+.opt.right .ob{border-color:var(--grid);background:var(--grid-soft)}
+.opt.wrong .ob{border-color:var(--coral);background:var(--coral-soft)}
+.fillrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:1.1rem}
+.fillrow input{font:inherit;font-family:var(--f-mono);font-size:1rem;width:6.5em;padding:6px 10px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);text-align:center}
+.fillrow input:focus{outline:none;border-color:var(--grid)}
+.fillrow input.right{border-color:var(--grid);background:var(--grid-soft)}
+.fillrow input.wrong{border-color:var(--coral);background:var(--coral-soft)}
+.sortl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;counter-reset:s}
+.sortl li{counter-increment:s;display:flex;gap:10px;align-items:center;border:1.5px solid var(--line);border-radius:12px;padding:8px 10px;background:var(--card);cursor:grab}
+.sortl li::before{content:counter(s);font-family:var(--f-display);font-weight:600;color:var(--grid);width:1.4em;text-align:center}
+.sortl li .sx{flex:1;min-width:0}
+.sortl li .arw{display:flex;gap:4px}
+.sortl li .arw button{font:inherit;width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.sortl.right li{border-color:var(--grid)} .sortl.wrong li{border-color:var(--coral)}
+.sortl li.dragging{opacity:.5}
+.dirlab{font-family:var(--f-mono);font-size:.76rem;color:var(--muted);display:flex;justify-content:space-between}
+.bank{display:flex;flex-wrap:wrap;gap:8px;min-height:58px;padding:10px;border:1.5px dashed var(--line);border-radius:12px;background:var(--paper)}
+.bank-k{font-size:.8rem;color:var(--muted)}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--line);border-radius:10px;padding:6px 12px;background:var(--card);cursor:grab;user-select:none;font-size:.98rem;line-height:1.35;min-height:40px}
+.chip .tid,.chip .en{display:block}
+.chip .en{font-size:.8em}
+.chip.sel{border-color:var(--sun);box-shadow:0 0 0 3px var(--sun-soft)}
+.picking .zone{border-color:var(--sun)}
+.pairs{display:flex;flex-direction:column;gap:8px}
+.prow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:stretch}
+.pl{border:1.5px solid var(--line);border-radius:12px;padding:8px 12px;display:flex;align-items:center;gap:8px;background:var(--grid-soft)}
+.zone{border:1.5px dashed var(--line);border-radius:12px;padding:6px;min-height:52px;display:flex;flex-direction:column;gap:6px;cursor:pointer;background:var(--paper)}
+.zone.over{border-color:var(--grid);background:var(--grid-soft)}
+.zone .zb{display:flex;flex-wrap:wrap;gap:6px}
+.zone .ph{font-size:.78rem;color:var(--muted);align-self:center;margin:auto 0}
+.zone .zb:not(:empty)~.ph{display:none}
+.zone.right{border-style:solid;border-color:var(--grid)}
+.zone.wrong{border-style:solid;border-color:var(--coral)}
+.buckets{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px}
+.bucket .zone{min-height:110px}
+.bucket-t{font-family:var(--f-display);font-weight:600;font-size:.98rem;margin-bottom:6px}
+.chip.right{border-color:var(--grid);background:var(--grid-soft)}
+.chip.wrong{border-color:var(--coral);background:var(--coral-soft)}
+.qact{display:flex;gap:8px;flex-wrap:wrap}
+.fb{border-radius:12px;padding:10px 14px;font-size:.95rem}
+.fb.ok{background:var(--grid-soft)} .fb.no{background:var(--coral-soft)} .fb.info{background:var(--sun-soft)}
+details.sol{border-top:1px solid var(--line);padding-top:10px}
+details.sol summary,details.col summary{cursor:pointer;font-weight:500;color:var(--grid);list-style:none;display:flex;gap:8px;align-items:center}
+details summary::-webkit-details-marker{display:none}
+details.sol summary::before,details.col summary::before{content:"+";font-family:var(--f-mono);width:22px;height:22px;border-radius:6px;border:1.5px solid var(--grid);display:grid;place-items:center;font-size:.9rem;flex:none}
+details[open].sol summary::before,details[open].col summary::before{content:"−"}
+.solb{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+.mline{margin-top:4px}
+.ans{background:var(--grid-soft);border-radius:10px;padding:10px 14px;font-weight:500}
+details.col{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px}
+.navfoot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:8px}
+ul.clean{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:10px}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(10,20,16,.55);display:grid;place-items:center;padding:20px;z-index:50}
+.mbox{background:var(--card);color:var(--ink);border-radius:18px;max-width:520px;width:100%;padding:24px;display:flex;flex-direction:column;gap:16px;border:1px solid var(--line)}
+.mbox h2{font-size:1.4rem}
+.rules-l{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.rules-l li{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start}
+.rules-l svg{width:36px;height:36px}
+
+@media (max-width: 880px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .nav{position:static;flex-direction:row;overflow-x:auto;max-height:none;padding-bottom:6px}
+  .nav-k{display:none}
+  .navbtn{min-width:190px}
+}
+@media (max-width: 520px){
+  .prow{grid-template-columns:minmax(0,1fr)}
+  .block,.q{padding:16px}
+}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+
+<div class="shell">
+<header class="top">
+  <div class="brand">
+    <svg width="46" height="46" viewBox="0 0 102 102" class="hgrid" aria-hidden="true" id="logo"></svg>
+    <div>
+      <div class="brand-name">Math Tutoring by Deni</div>
+      <h1>Topik: Pecahan: Menghubungkan Pecahan Desimal Perseratusan dengan Konsep Persen</h1>
+      <p class="sub">Topic: Fractions: Connecting Hundredths Decimal Fractions with the Concept of Percent</p>
+    </div>
+  </div>
+  <button class="btn rules" id="openRules" type="button">
+    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" class="ill"><rect class="s" x="5" y="3" width="14" height="18" rx="2"/><path class="s" d="M9 8h6M9 12h6M9 16h4"/></svg>
+    <span>Class rules <span class="eni">/ Aturan Kelas</span></span>
+  </button>
+</header>
+
+<div class="layout">
+  <nav class="nav" id="nav" aria-label="Bagian pelajaran / Lesson sections"></nav>
+  <main id="main">
+
+<!-- ============ S1 ============ -->
+<section class="panel" id="p-s1" data-id="s1" hidden>
+  <div class="phead">
+    <span class="eyebrow">00:00 – 00:10 · Bagian 1 / Part 1</span>
+    <h2>Pemanasan: Ulasan Spiral</h2>
+    <span class="h2en">Spiral Review Warm-up</span>
+  </div>
+  <div class="goal"><b>Tujuan:</b> membaca pecahan dari gambar, membuat pecahan senilai, dan membandingkan pecahan berpenyebut sama.<span class="en">Goal: read a fraction from a picture, make equivalent fractions, and compare fractions with the same denominator.</span></div>
+
+  <div class="block">
+    <h3>A. Apa itu pecahan?<span class="en">A. What is a fraction?</span></h3>
+    <p>Pecahan menunjukkan <b>bagian dari keseluruhan</b> yang dibagi menjadi bagian-bagian <b>sama besar</b>.<span class="en">A fraction shows a part of a whole that has been split into equal parts.</span></p>
+    <div class="rule"><div class="rule-k">Rumus <span class="eni">/ Formula</span></div>
+      \[\frac{a}{b} = \frac{\text{pembilang (bagian yang diambil)}}{\text{penyebut (banyak bagian sama besar)}}\]
+      <p class="en" style="margin:0">numerator (parts taken) over denominator (number of equal parts)</p>
+    </div>
+    <div class="figrow">
+      <div class="fig"><span data-bar="3"></span><span>3 dari 10 bagian diwarnai → \(\frac{3}{10}\)<span class="en">3 of 10 parts shaded</span></span></div>
+      <div class="fig"><span data-bar="5"></span><span>5 dari 10 bagian → \(\frac{5}{10}\)<span class="en">5 of 10 parts</span></span></div>
+    </div>
+    <p>\(\frac{3}{10}\) dibaca "tiga per sepuluh". Bagian yang <b>tidak</b> diwarnai adalah \(\frac{10-3}{10} = \frac{7}{10}\).<span class="en">\(\frac{3}{10}\) is read "three tenths". The part that is not shaded is \(\frac{7}{10}\).</span></p>
+  </div>
+
+  <div class="block">
+    <h3>B. Pecahan senilai<span class="en">B. Equivalent fractions</span></h3>
+    <p>Pecahan senilai adalah pecahan yang nilainya sama walaupun angkanya berbeda. Caranya: kalikan pembilang dan penyebut dengan bilangan yang <b>sama</b>.<span class="en">Equivalent fractions have the same value even though the numbers differ. Multiply the numerator and the denominator by the same number.</span></p>
+    <div class="rule"><div class="rule-k">Rumus <span class="eni">/ Formula</span></div>
+      \[\frac{a}{b} = \frac{a \times n}{b \times n}, \quad n \neq 0\]
+    </div>
+    <div class="ex"><div class="ex-k">Contoh 1 <span class="eni">/ Example 1</span></div>
+      <p>Isilah: \(\frac{2}{5} = \frac{\square}{10}\)<span class="en">Fill in the box.</span></p>
+      <ol class="steps">
+        <li>Cari pengali penyebut: \(5 \times \square = 10\), jadi pengalinya \(10 \div 5 = 2\).<span class="en">Find what the denominator was multiplied by: \(10 \div 5 = 2\).</span></li>
+        <li>Kalikan pembilang dengan pengali yang sama: \(2 \times 2 = 4\).<span class="en">Multiply the numerator by the same number: \(2 \times 2 = 4\).</span></li>
+        <li>\(\frac{2}{5} = \frac{2 \times 2}{5 \times 2} = \frac{4}{10}\)</li>
+      </ol>
+    </div>
+    <div class="ex"><div class="ex-k">Contoh 2 <span class="eni">/ Example 2</span></div>
+      <p>Apakah \(\frac{1}{2} = \frac{50}{100}\)?<span class="en">Is \(\frac{1}{2}\) equal to \(\frac{50}{100}\)?</span></p>
+      <ol class="steps">
+        <li>Pengali penyebut: \(100 \div 2 = 50\).<span class="en">Denominator multiplier: \(100 \div 2 = 50\).</span></li>
+        <li>Pembilang: \(1 \times 50 = 50\). Hasilnya sama dengan 50.<span class="en">Numerator: \(1 \times 50 = 50\). It matches.</span></li>
+        <li>Jadi pernyataan itu <b>benar</b>: \(\frac{1}{2} = \frac{50}{100}\).<span class="en">So the statement is true.</span></li>
+      </ol>
+    </div>
+    <div class="tip"><div class="tip-k">Cara cepat <span class="eni">/ Shortcut</span></div>
+      <p>Pecahan senilai \(\frac{1}{2}\) selalu punya penyebut = \(2 \times\) pembilang. Contoh: \(\frac{3}{6}\) karena \(3 \times 2 = 6\) ✔. Tetapi \(\frac{3}{5}\) bukan, karena \(3 \times 2 = 6 \neq 5\).<span class="en">A fraction equal to one half always has denominator = 2 × numerator. \(\frac{3}{6}\) works; \(\frac{3}{5}\) does not.</span></p>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>C. Membandingkan pecahan berpenyebut sama<span class="en">C. Comparing fractions with the same denominator</span></h3>
+    <p>Jika penyebutnya sama, bandingkan <b>pembilangnya</b>. Pembilang lebih besar berarti pecahan lebih besar.<span class="en">If the denominators are the same, compare the numerators. The bigger numerator gives the bigger fraction.</span></p>
+    <div class="ex"><div class="ex-k">Contoh 3 <span class="eni">/ Example 3</span></div>
+      <p>Urutkan dari terkecil: \(\frac{8}{10}, \frac{2}{10}, \frac{5}{10}\)<span class="en">Order from smallest.</span></p>
+      <ol class="steps">
+        <li>Penyebut semua 10, jadi lihat pembilang: 8, 2, 5.<span class="en">All denominators are 10, so look at the numerators: 8, 2, 5.</span></li>
+        <li>Urutkan pembilang: \(2 \lt 5 \lt 8\).<span class="en">Order the numerators.</span></li>
+        <li>Hasil: \(\frac{2}{10} \lt \frac{5}{10} \lt \frac{8}{10}\)</li>
+      </ol>
+    </div>
+  </div>
+  <div class="qset" data-set="s1"></div>
+</section>
+
+<!-- ============ S2 ============ -->
+<section class="panel" id="p-s2" data-id="s2" hidden>
+  <div class="phead">
+    <span class="eyebrow">00:10 – 00:15 · Bagian 2 / Part 2</span>
+    <h2>Pendahuluan &amp; Koneksi Dunia Nyata</h2>
+    <span class="h2en">Introduction &amp; Real-World Connection</span>
+  </div>
+  <div class="goal"><b>Tujuan:</b> memahami arti persen dan menemukannya dalam kehidupan sehari-hari.<span class="en">Goal: understand what percent means and find it in everyday life.</span></div>
+
+  <div class="block">
+    <h3>Persen = "per seratus"<span class="en">Percent = "per hundred"</span></h3>
+    <p>Kata <b>persen</b> berasal dari bahasa Latin <i>per centum</i>, artinya "dari setiap seratus". Simbolnya \(\%\). Jadi persen selalu membandingkan bagian dengan keseluruhan yang dianggap <b>100</b>.<span class="en">The word percent comes from the Latin per centum, meaning "out of every hundred". Its symbol is %. A percent always compares a part with a whole counted as 100.</span></p>
+    <div class="rule"><div class="rule-k">Rumus <span class="eni">/ Formula</span></div>
+      \[a\% = \frac{a}{100}\]
+      <p>\(a\) bagian dari 100 bagian sama besar.<span class="en">a parts out of 100 equal parts.</span></p>
+    </div>
+    <div class="figrow">
+      <div class="fig"><span data-grid="1" data-size="110"></span><span>\(1\% = \frac{1}{100}\)<span class="en">1 square of 100</span></span></div>
+      <div class="fig"><span data-grid="25" data-size="110"></span><span>\(25\% = \frac{25}{100}\)<span class="en">one quarter</span></span></div>
+      <div class="fig"><span data-grid="50" data-size="110"></span><span>\(50\% = \frac{50}{100}\)<span class="en">one half</span></span></div>
+      <div class="fig"><span data-grid="100" data-size="110"></span><span>\(100\% = \frac{100}{100} = 1\)<span class="en">the whole</span></span></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>Persen di sekitar kita<span class="en">Percent around us</span></h3>
+    <div class="figrow">
+      <div class="fig"><span id="ill-bat"></span><span>Baterai HP \(75\%\): terisi 75 dari 100 bagian.<span class="en">Phone battery 75%: 75 of 100 parts charged.</span></span></div>
+      <div class="fig"><span id="ill-tag"></span><span>Diskon \(50\%\): harga dipotong setengahnya.<span class="en">50% off: the price is cut in half.</span></span></div>
+      <div class="fig"><span id="ill-rain"></span><span>Peluang hujan \(30\%\): 30 dari 100 kemungkinan.<span class="en">30% chance of rain: 30 out of 100.</span></span></div>
+      <div class="fig"><span id="ill-test"></span><span>Nilai 80 dari 100 soal = \(80\%\) benar.<span class="en">80 of 100 questions correct = 80%.</span></span></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>Cara menulis persen<span class="en">How to write a percent</span></h3>
+    <div class="ex"><div class="ex-k">Contoh 1 <span class="eni">/ Example 1</span></div>
+      <p>Di aula ada 100 kursi. 60 kursi terisi. Berapa persen kursi terisi? Berapa persen kosong?<span class="en">A hall has 100 chairs. 60 are taken. What percent are taken? What percent are empty?</span></p>
+      <div class="figrow"><div class="fig"><span data-grid="60" data-size="130"></span><span>hijau = terisi<span class="en">green = taken</span></span></div></div>
+      <ol class="steps">
+        <li>Pastikan keseluruhannya 100: ada 100 kursi ✔.<span class="en">Check that the whole is 100: there are 100 chairs.</span></li>
+        <li>Bagian yang terisi = 60, tulis \(\frac{60}{100}\).<span class="en">The taken part is 60, write \(\frac{60}{100}\).</span></li>
+        <li>Ubah ke persen: \(\frac{60}{100} = 60\%\).<span class="en">Change to percent.</span></li>
+        <li>Keseluruhan selalu \(100\%\), jadi kosong \(= 100\% - 60\% = 40\%\).<span class="en">The whole is always 100%, so empty = 100% − 60% = 40%.</span></li>
+      </ol>
+    </div>
+    <div class="rule"><div class="rule-k">Patokan penting <span class="eni">/ Key benchmarks</span></div>
+      <ul class="clean">
+        <li>\(100\%\) = seluruhnya <span class="eni">/ all of it</span> · \(50\%\) = setengah <span class="eni">/ half</span> · \(25\%\) = seperempat <span class="eni">/ a quarter</span> · \(10\%\) = 10 dari 100 <span class="eni">/ 10 out of 100</span> · \(0\%\) = tidak ada <span class="eni">/ none</span></li>
+        <li>Diskon \(100\%\) artinya seluruh harga dipotong, jadi barang <b>gratis</b>.<span class="en">100% off means the whole price is removed, so the item is free.</span></li>
+        <li>Kurang dari \(50\%\) = kurang dari setengah. Lebih dari \(50\%\) = lebih dari setengah.<span class="en">Less than 50% is less than half; more than 50% is more than half.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="qset" data-set="s2"></div>
+</section>
+
+<!-- ============ S3 ============ -->
+<section class="panel" id="p-s3" data-id="s3" hidden>
+  <div class="phead">
+    <span class="eyebrow">00:15 – 00:20 · Bagian 3 / Part 3</span>
+    <h2>Mengulas Pengetahuan Sebelumnya</h2>
+    <span class="h2en">Review of Prior Knowledge</span>
+  </div>
+  <div class="goal"><b>Tujuan:</b> mengingat nilai tempat desimal (persepuluhan &amp; perseratusan) dan mengubah pecahan perseratus ke desimal.<span class="en">Goal: recall decimal place value (tenths &amp; hundredths) and change hundredths fractions into decimals.</span></div>
+
+  <div class="block">
+    <h3>Nilai tempat desimal<span class="en">Decimal place value</span></h3>
+    <p>Di Indonesia, bilangan desimal ditulis dengan <b>koma</b>. Angka di kanan koma adalah bagian dari satu.<span class="en">In Indonesia decimals are written with a comma. The digits to the right of the comma are parts of one.</span></p>
+    <div class="tbl"><table>
+      <tr><th>Bilangan<span class="en">Number</span></th><th>Satuan<span class="en">Ones</span></th><th>,</th><th>Persepuluhan<span class="en">Tenths</span></th><th>Perseratusan<span class="en">Hundredths</span></th><th>Pecahan<span class="en">Fraction</span></th></tr>
+      <tr><td>\(0{,}1\)</td><td>0</td><td>,</td><td>1</td><td>–</td><td>\(\frac{1}{10}\)</td></tr>
+      <tr><td>\(0{,}01\)</td><td>0</td><td>,</td><td>0</td><td>1</td><td>\(\frac{1}{100}\)</td></tr>
+      <tr><td>\(0{,}68\)</td><td>0</td><td>,</td><td>6</td><td>8</td><td>\(\frac{68}{100}\)</td></tr>
+    </table></div>
+    <p>\(0{,}68 = 0{,}6 + 0{,}08\): angka 6 bernilai 6 persepuluhan, angka 8 bernilai 8 perseratusan.<span class="en">In 0,68 the digit 6 is worth 6 tenths and the digit 8 is worth 8 hundredths.</span></p>
+    <div class="figrow">
+      <div class="fig"><span data-grid="30" data-size="120"></span><span>\(0{,}3 = \frac{3}{10} = \frac{30}{100}\)<span class="en">3 whole rows</span></span></div>
+      <div class="fig"><span data-grid="3" data-size="120"></span><span>\(0{,}03 = \frac{3}{100}\)<span class="en">only 3 small squares</span></span></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>Pecahan perseratus ↔ desimal<span class="en">Hundredths fraction ↔ decimal</span></h3>
+    <div class="rule"><div class="rule-k">Aturan <span class="eni">/ Rule</span></div>
+      <p>Penyebut 10 → <b>1 angka</b> di belakang koma. Penyebut 100 → <b>2 angka</b> di belakang koma.<span class="en">Denominator 10 → 1 digit after the comma. Denominator 100 → 2 digits after the comma.</span></p>
+      \[\frac{45}{100} = 0{,}45 \qquad \frac{5}{100} = 0{,}05 \qquad \frac{3}{10} = 0{,}3\]
+    </div>
+    <div class="ex"><div class="ex-k">Contoh 1 <span class="eni">/ Example 1</span> · pecahan → desimal</div>
+      <p>Ubah \(\frac{5}{100}\) ke desimal.<span class="en">Change \(\frac{5}{100}\) to a decimal.</span></p>
+      <ol class="steps">
+        <li>Penyebutnya 100, jadi harus ada 2 angka di belakang koma.<span class="en">The denominator is 100, so we need 2 digits after the comma.</span></li>
+        <li>Pembilang 5 hanya 1 angka, maka tambahkan 0 di depannya sebagai penjaga tempat: 05.<span class="en">The numerator 5 has only 1 digit, so put a 0 in front as a placeholder: 05.</span></li>
+        <li>\(\frac{5}{100} = 0{,}05\) (bukan \(0{,}5\)!)<span class="en">not 0,5!</span></li>
+      </ol>
+    </div>
+    <div class="ex"><div class="ex-k">Contoh 2 <span class="eni">/ Example 2</span> · desimal → pecahan</div>
+      <p>Ubah \(0{,}45\) ke pecahan.<span class="en">Change 0,45 to a fraction.</span></p>
+      <ol class="steps">
+        <li>Ada 2 angka di belakang koma → penyebutnya 100.<span class="en">2 digits after the comma → denominator 100.</span></li>
+        <li>Angka di belakang koma (45) menjadi pembilang.<span class="en">The digits after the comma (45) become the numerator.</span></li>
+        <li>\(0{,}45 = \frac{45}{100}\)</li>
+      </ol>
+    </div>
+    <div class="ex"><div class="ex-k">Contoh 3 <span class="eni">/ Example 3</span> · menambah nol</div>
+      <p>Apakah \(0{,}5 = 0{,}50\)?<span class="en">Is 0,5 equal to 0,50?</span></p>
+      <ol class="steps">
+        <li>\(0{,}5 = \frac{5}{10}\). Kalikan pembilang dan penyebut dengan 10: \(\frac{5 \times 10}{10 \times 10} = \frac{50}{100}\).<span class="en">Multiply top and bottom by 10.</span></li>
+        <li>\(\frac{50}{100} = 0{,}50\). Jadi \(0{,}5 = 0{,}50\) <b>benar</b>. Menambah nol di ujung kanan desimal tidak mengubah nilai.<span class="en">So it is true. Adding a zero at the right end of a decimal does not change its value.</span></li>
+      </ol>
+    </div>
+  </div>
+  <div class="qset" data-set="s3"></div>
+</section>
+
+<!-- ============ S4 ============ -->
+<section class="panel" id="p-s4" data-id="s4" hidden>
+  <div class="phead">
+    <span class="eyebrow">00:20 – 00:25 · Bagian 4 / Part 4</span>
+    <h2>Pengenalan Masalah</h2>
+    <span class="h2en">Problem Introduction</span>
+  </div>
+  <div class="goal"><b>Tujuan:</b> melihat bahwa pecahan perseratus, desimal perseratusan, dan persen adalah tiga cara menulis nilai yang sama.<span class="en">Goal: see that a hundredths fraction, a hundredths decimal and a percent are three ways to write the same value.</span></div>
+
+  <div class="block">
+    <h3>Masalah: Kebun sekolah<span class="en">Problem: The school garden</span></h3>
+    <p>Kebun sekolah dibagi menjadi 100 petak sama besar. Sebanyak 35 petak ditanami bayam. Nyatakan bagian yang ditanami bayam dalam bentuk pecahan, desimal, dan persen.<span class="en">The school garden is split into 100 equal plots. 35 plots are planted with spinach. Write the spinach part as a fraction, a decimal and a percent.</span></p>
+    <div class="figrow"><div class="fig"><span data-grid="35" data-size="170"></span><span>35 petak hijau dari 100<span class="en">35 green plots out of 100</span></span></div></div>
+    <ol class="steps">
+      <li>Hitung bagian yang diwarnai: 35. Keseluruhan: 100.<span class="en">Count the shaded part: 35. The whole: 100.</span></li>
+      <li>Pecahan: \(\frac{35}{100}\)<span class="en">Fraction.</span></li>
+      <li>Desimal (penyebut 100 → 2 angka di belakang koma): \(0{,}35\)<span class="en">Decimal (denominator 100 → 2 digits after the comma).</span></li>
+      <li>Persen (per seratus → pembilangnya diberi \(\%\)): \(35\%\)<span class="en">Percent (per hundred → put % after the numerator).</span></li>
+    </ol>
+    <div class="rule"><div class="rule-k">Rumus kunci <span class="eni">/ Key formula</span></div>
+      \[\frac{35}{100} = 0{,}35 = 35\%\]
+      \[\text{desimal} \times 100 = \text{persen} \qquad \text{persen} \div 100 = \text{desimal}\]
+      <p class="en" style="margin:0">decimal × 100 = percent; percent ÷ 100 = decimal</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>Tiga arah perubahan<span class="en">Three directions of change</span></h3>
+    <div class="ex"><div class="ex-k">Contoh 1 <span class="eni">/ Example 1</span> · persen → pecahan → desimal</div>
+      <p>Ubah \(8\%\).<span class="en">Change 8%.</span></p>
+      <ol class="steps">
+        <li>\(8\% = \frac{8}{100}\) (persen artinya per seratus).<span class="en">Percent means per hundred.</span></li>
+        <li>Penyebut 100 → 2 angka di belakang koma, tambah 0 penjaga tempat: \(\frac{8}{100} = 0{,}08\).<span class="en">Denominator 100 → 2 digits, add a placeholder 0.</span></li>
+      </ol>
+    </div>
+    <div class="ex"><div class="ex-k">Contoh 2 <span class="eni">/ Example 2</span> · desimal → persen</div>
+      <p>Ubah \(0{,}7\) ke persen.<span class="en">Change 0,7 to a percent.</span></p>
+      <ol class="steps">
+        <li>Jadikan 2 angka di belakang koma: \(0{,}7 = 0{,}70\).<span class="en">Make it 2 digits after the comma.</span></li>
+        <li>\(0{,}70 = \frac{70}{100} = 70\%\). Atau: \(0{,}7 \times 100 = 70\), jadi \(70\%\).<span class="en">Or multiply by 100: 0,7 × 100 = 70.</span></li>
+      </ol>
+      <div class="warn"><div class="tip-k">Hati-hati <span class="eni">/ Careful</span></div><p>\(0{,}7\) <b>bukan</b> \(7\%\). \(7\% = 0{,}07\).<span class="en">0,7 is not 7%. 7% = 0,07.</span></p></div>
+    </div>
+    <div class="ex"><div class="ex-k">Contoh 3 <span class="eni">/ Example 3</span> · membandingkan bentuk campuran</div>
+      <p>Urutkan dari terkecil: \(0{,}4;\ 15\%;\ \frac{3}{100};\ 0{,}72\)<span class="en">Order from smallest.</span></p>
+      <ol class="steps">
+        <li>Ubah semua ke persen: \(0{,}4 = 0{,}40 = 40\%\), \(15\%\), \(\frac{3}{100} = 3\%\), \(0{,}72 = 72\%\).<span class="en">Change everything to percent.</span></li>
+        <li>Urutkan angkanya: \(3 \lt 15 \lt 40 \lt 72\).<span class="en">Order the numbers.</span></li>
+        <li>Hasil: \(\frac{3}{100};\ 15\%;\ 0{,}4;\ 0{,}72\)</li>
+      </ol>
+    </div>
+    <div class="ex"><div class="ex-k">Contoh 4 <span class="eni">/ Example 4</span> · mencari bentuk yang senilai</div>
+      <p>Mana yang sama dengan \(30\%\)?<span class="en">Which ones equal 30%?</span></p>
+      <ol class="steps">
+        <li>\(30\% = \frac{30}{100} = 0{,}30 = 0{,}3\), dan \(\frac{30}{100} = \frac{3}{10}\).<span class="en">These are all the same value.</span></li>
+        <li>\(0{,}03\) bukan, karena \(0{,}03 = 3\%\).<span class="en">0,03 is not, because 0,03 = 3%.</span></li>
+      </ol>
+    </div>
+  </div>
+  <div class="qset" data-set="s4"></div>
+</section>
+
+<!-- ============ S5 ============ -->
+<section class="panel" id="p-s5" data-id="s5" hidden>
+  <div class="phead">
+    <span class="eyebrow">00:25 – 00:40 · Bagian 5 / Part 5</span>
+    <h2>Latihan Terbimbing</h2>
+    <span class="h2en">Guided Practice</span>
+  </div>
+  <div class="goal"><b>Tujuan:</b> mengubah pecahan dengan penyebut 2, 4, 5, 10, 20, 25, atau 50 menjadi perseratus, desimal, dan persen.<span class="en">Goal: change fractions with denominators 2, 4, 5, 10, 20, 25 or 50 into hundredths, decimals and percents.</span></div>
+
+  <div class="block">
+    <h3>Jadikan penyebutnya 100<span class="en">Make the denominator 100</span></h3>
+    <p>Persen selalu "per seratus". Jadi jika penyebut belum 100, kita ubah dulu menjadi 100 memakai pecahan senilai.<span class="en">Percent is always "per hundred". If the denominator is not 100 yet, change it to 100 using equivalent fractions.</span></p>
+    <div class="rule"><div class="rule-k">Rumus <span class="eni">/ Formula</span></div>
+      \[n = 100 \div b \qquad \frac{a}{b} = \frac{a \times n}{b \times n} = \frac{\square}{100} = \square\%\]
+    </div>
+    <div class="tbl"><table>
+      <tr><th>Penyebut \(b\)<span class="en">Denominator</span></th><th>2</th><th>4</th><th>5</th><th>10</th><th>20</th><th>25</th><th>50</th></tr>
+      <tr><th>Pengali \(n = 100 \div b\)<span class="en">Multiplier</span></th><td>\(\times 50\)</td><td>\(\times 25\)</td><td>\(\times 20\)</td><td>\(\times 10\)</td><td>\(\times 5\)</td><td>\(\times 4\)</td><td>\(\times 2\)</td></tr>
+    </table></div>
+  </div>
+
+  <div class="block">
+    <h3>Contoh langkah demi langkah<span class="en">Step-by-step examples</span></h3>
+    <div class="ex"><div class="ex-k">Contoh A <span class="eni">/ Example A</span></div>
+      <p>Ubah \(\frac{3}{4}\) ke perseratus, desimal, dan persen.<span class="en">Change 3/4 to hundredths, a decimal and a percent.</span></p>
+      <div class="figrow"><div class="fig"><span data-grid="75" data-size="130"></span><span>\(\frac{3}{4}\) = 75 kotak<span class="en">75 squares</span></span></div></div>
+      <ol class="steps">
+        <li>Cari pengali: \(100 \div 4 = 25\).<span class="en">Find the multiplier.</span></li>
+        <li>Kalikan atas dan bawah: \(\frac{3 \times 25}{4 \times 25} = \frac{75}{100}\).<span class="en">Multiply top and bottom.</span></li>
+        <li>Desimal: \(\frac{75}{100} = 0{,}75\). Persen: \(75\%\).<span class="en">Decimal and percent.</span></li>
+      </ol>
+    </div>
+    <div class="ex"><div class="ex-k">Contoh B <span class="eni">/ Example B</span></div>
+      <p>Ubah \(\frac{2}{5}\).<span class="en">Change 2/5.</span></p>
+      <ol class="steps">
+        <li>\(100 \div 5 = 20\)</li>
+        <li>\(\frac{2 \times 20}{5 \times 20} = \frac{40}{100} = 0{,}40 = 40\%\)</li>
+      </ol>
+    </div>
+    <div class="ex"><div class="ex-k">Contoh C <span class="eni">/ Example C</span></div>
+      <p>Ubah \(\frac{7}{20}\).<span class="en">Change 7/20.</span></p>
+      <ol class="steps">
+        <li>\(100 \div 20 = 5\)</li>
+        <li>\(\frac{7 \times 5}{20 \times 5} = \frac{35}{100} = 0{,}35 = 35\%\)</li>
+      </ol>
+    </div>
+    <div class="ex"><div class="ex-k">Contoh D <span class="eni">/ Example D</span></div>
+      <p>Benarkah \(\frac{9}{25} = 36\%\)?<span class="en">Is 9/25 = 36%?</span></p>
+      <ol class="steps">
+        <li>\(100 \div 25 = 4\), lalu \(\frac{9 \times 4}{25 \times 4} = \frac{36}{100} = 36\%\). Jadi <b>benar</b>.<span class="en">So it is true.</span></li>
+      </ol>
+    </div>
+    <div class="rule"><div class="rule-k">Pecahan patokan untuk dihafal <span class="eni">/ Benchmarks to remember</span></div>
+      \[\frac{1}{2} = 0{,}5 = 50\% \quad \frac{1}{4} = 0{,}25 = 25\% \quad \frac{3}{4} = 0{,}75 = 75\% \quad \frac{1}{5} = 0{,}2 = 20\% \quad \frac{1}{10} = 0{,}1 = 10\%\]
+    </div>
+  </div>
+  <div class="qset" data-set="s5"></div>
+</section>
+
+<!-- ============ S6 ============ -->
+<section class="panel" id="p-s6" data-id="s6" hidden>
+  <div class="phead">
+    <span class="eyebrow">00:40 – 00:55 · Bagian 6 / Part 6</span>
+    <h2>Latihan Mandiri</h2>
+    <span class="h2en">Independent Practice</span>
+  </div>
+  <div class="goal"><b>Tujuan:</b> menyelesaikan soal cerita dan membandingkan nilai dalam bentuk pecahan, desimal, dan persen.<span class="en">Goal: solve word problems and compare values given as fractions, decimals and percents.</span></div>
+
+  <div class="block">
+    <h3>Langkah menyelesaikan soal cerita<span class="en">Steps for word problems</span></h3>
+    <ol class="steps">
+      <li>Baca soal. Temukan <b>bagian</b> dan <b>keseluruhan</b>.<span class="en">Read the problem. Find the part and the whole.</span></li>
+      <li>Tulis pecahannya: \(\dfrac{\text{bagian}}{\text{keseluruhan}}\)<span class="en">Write the fraction: part over whole.</span></li>
+      <li>Ubah penyebut menjadi 100 (kalikan dengan \(n = 100 \div \text{penyebut}\)).<span class="en">Change the denominator to 100.</span></li>
+      <li>Tulis dalam desimal atau persen sesuai pertanyaan.<span class="en">Write it as a decimal or percent as asked.</span></li>
+      <li>Jawab dengan kalimat lengkap.<span class="en">Answer in a full sentence.</span></li>
+    </ol>
+  </div>
+
+  <div class="block">
+    <div class="ex"><div class="ex-k">Contoh 1 <span class="eni">/ Example 1</span></div>
+      <p>Di kelas ada 20 siswa. 7 siswa suka sepak bola. Berapa persen siswa yang suka sepak bola?<span class="en">A class has 20 students. 7 like football. What percent like football?</span></p>
+      <ol class="steps">
+        <li>Bagian = 7, keseluruhan = 20 → \(\frac{7}{20}\).<span class="en">Part = 7, whole = 20.</span></li>
+        <li>\(100 \div 20 = 5\) → \(\frac{7 \times 5}{20 \times 5} = \frac{35}{100}\)</li>
+        <li>\(\frac{35}{100} = 35\%\). Jadi \(35\%\) siswa suka sepak bola.<span class="en">So 35% of the students like football.</span></li>
+      </ol>
+    </div>
+    <div class="ex"><div class="ex-k">Contoh 2 <span class="eni">/ Example 2</span> · membandingkan</div>
+      <p>Diskon Toko A \(\frac{1}{4}\), diskon Toko B \(30\%\). Diskon mana yang lebih besar?<span class="en">Shop A gives 1/4 off, shop B gives 30% off. Which discount is bigger?</span></p>
+      <ol class="steps">
+        <li>Ubah ke persen: \(\frac{1}{4} = \frac{25}{100} = 25\%\).<span class="en">Change to percent.</span></li>
+        <li>Bandingkan: \(25\% \lt 30\%\). Jadi diskon Toko B lebih besar.<span class="en">So shop B's discount is bigger.</span></li>
+      </ol>
+    </div>
+    <div class="ex"><div class="ex-k">Contoh 3 <span class="eni">/ Example 3</span> · mengurutkan nilai</div>
+      <p>Nilai: Lina \(0{,}7\), Bayu \(\frac{3}{5}\), Sari \(65\%\). Urutkan dari terkecil.<span class="en">Scores: Lina 0,7, Bayu 3/5, Sari 65%. Order from smallest.</span></p>
+      <ol class="steps">
+        <li>Lina: \(0{,}7 = 0{,}70 = 70\%\). Bayu: \(\frac{3 \times 20}{5 \times 20} = \frac{60}{100} = 60\%\). Sari: \(65\%\).</li>
+        <li>\(60 \lt 65 \lt 70\) → Bayu, Sari, Lina.</li>
+      </ol>
+    </div>
+    <div class="ex"><div class="ex-k">Contoh 4 <span class="eni">/ Example 4</span> · keseluruhan 25</div>
+      <p>Dari 25 buah jeruk, 8 buah busuk. Nyatakan dalam desimal dan persen.<span class="en">8 of 25 oranges are rotten. Write it as a decimal and a percent.</span></p>
+      <ol class="steps">
+        <li>\(\frac{8}{25}\), pengali \(100 \div 25 = 4\) → \(\frac{8 \times 4}{25 \times 4} = \frac{32}{100}\)</li>
+        <li>\(\frac{32}{100} = 0{,}32 = 32\%\)</li>
+      </ol>
+    </div>
+  </div>
+  <div class="qset" data-set="s6"></div>
+</section>
+
+<!-- ============ S7 ============ -->
+<section class="panel" id="p-s7" data-id="s7" hidden>
+  <div class="phead">
+    <span class="eyebrow">00:55 – 01:00 · Bagian 7 / Part 7</span>
+    <h2>Konsolidasi &amp; Refleksi</h2>
+    <span class="h2en">Consolidation &amp; Reflection</span>
+  </div>
+
+  <div class="block">
+    <h3>Poin penting<span class="en">Key points</span></h3>
+    <ul class="clean">
+      <li>Persen artinya per seratus: \(a\% = \frac{a}{100}\).<span class="en">Percent means per hundred.</span></li>
+      <li>Pecahan perseratus ditulis desimal dengan 2 angka di belakang koma: \(\frac{6}{100} = 0{,}06\), \(\frac{45}{100} = 0{,}45\).<span class="en">A hundredths fraction becomes a decimal with 2 digits after the comma.</span></li>
+      <li>Desimal → persen: kalikan 100. \(0{,}3 = 0{,}30 = 30\%\).<span class="en">Decimal → percent: multiply by 100.</span></li>
+      <li>Persen → desimal: bagi 100. \(8\% = 0{,}08\).<span class="en">Percent → decimal: divide by 100.</span></li>
+      <li>Pecahan lain: jadikan penyebut 100 dengan \(n = 100 \div b\), lalu \(\frac{a}{b} = \frac{a \times n}{b \times n}\).<span class="en">Other fractions: make the denominator 100 first.</span></li>
+      <li>Untuk membandingkan, ubah semua ke bentuk yang sama (misalnya persen).<span class="en">To compare, change everything into the same form (for example percent).</span></li>
+    </ul>
+    <div class="figrow"><div class="fig" style="max-width:none"><span data-grid="45" data-size="150"></span><span>\(\frac{45}{100} = 0{,}45 = 45\%\)<span class="en">one picture, three names</span></span></div></div>
+  </div>
+
+  <div class="block">
+    <h3>Pertanyaan refleksi<span class="en">Reflection questions</span></h3>
+    <ol class="steps">
+      <li>Mengapa \(0{,}5\) dan \(50\%\) bernilai sama? Jelaskan dengan gambar kotak 100.<span class="en">Why are 0,5 and 50% the same value? Explain with a hundred grid.</span></li>
+      <li>Bagaimana kamu menjelaskan arti \(30\%\) kepada adikmu?<span class="en">How would you explain 30% to a younger sibling?</span></li>
+      <li>Mengapa \(\frac{7}{100}\) ditulis \(0{,}07\), bukan \(0{,}7\)?<span class="en">Why is 7/100 written 0,07 and not 0,7?</span></li>
+      <li>Bagian mana dari pelajaran hari ini yang paling mudah? Bagian mana yang masih membingungkan?<span class="en">Which part of today's lesson was easiest? Which part is still confusing?</span></li>
+      <li>Di mana kamu pernah melihat persen di rumah atau di toko?<span class="en">Where have you seen percents at home or in a shop?</span></li>
+    </ol>
+  </div>
+
+  <div class="block">
+    <h3>Exit Ticket<span class="en">Tiket keluar — jawab 3 soal sebelum kelas selesai / answer 3 questions before class ends</span></h3>
+    <div class="qset" data-set="exit" data-nohead="1"></div>
+  </div>
+
+  <div class="block">
+    <h3>Latihan Lanjutan<span class="en">Follow-up Practice (untuk di rumah / for home)</span></h3>
+    <div class="qlist" id="followup"></div>
+  </div>
+</section>
+
+<!-- ============ TASKS ============ -->
+<section class="panel" id="p-t1" data-id="t1" hidden>
+  <div class="phead"><span class="eyebrow">Tugas 1 / Task 1 · 10 soal / questions</span><h2>Pecahan Perseratus &amp; Desimal</h2><span class="h2en">Hundredths Fractions &amp; Decimals</span></div>
+  <details class="col"><summary>Ringkasan rumus <span class="eni">/ Formula recap</span></summary><div class="solb">
+    <p>\(\frac{a}{10}\) → 1 angka di belakang koma; \(\frac{a}{100}\) → 2 angka di belakang koma.<span class="en">Tenths → 1 digit; hundredths → 2 digits after the comma.</span></p>
+    \[\frac{9}{100} = 0{,}09 \qquad 0{,}74 = \frac{74}{100} \qquad 0{,}6 = 0{,}60\]
+  </div></details>
+  <div class="qset" data-set="t1" data-sol="exp"></div>
+</section>
+<section class="panel" id="p-t2" data-id="t2" hidden>
+  <div class="phead"><span class="eyebrow">Tugas 2 / Task 2 · 10 soal / questions</span><h2>Desimal &amp; Persen</h2><span class="h2en">Decimals &amp; Percents</span></div>
+  <details class="col"><summary>Ringkasan rumus <span class="eni">/ Formula recap</span></summary><div class="solb">
+    \[\text{desimal} \times 100 = \text{persen} \qquad \text{persen} \div 100 = \text{desimal}\]
+    \[0{,}56 = 56\% \qquad 0{,}3 = 0{,}30 = 30\% \qquad 8\% = 0{,}08\]
+  </div></details>
+  <div class="qset" data-set="t2" data-sol="exp"></div>
+</section>
+<section class="panel" id="p-t3" data-id="t3" hidden>
+  <div class="phead"><span class="eyebrow">Tugas 3 / Task 3 · 10 soal / questions</span><h2>Pecahan Biasa ke Persen</h2><span class="h2en">Common Fractions to Percent</span></div>
+  <details class="col"><summary>Ringkasan rumus <span class="eni">/ Formula recap</span></summary><div class="solb">
+    \[n = 100 \div b \qquad \frac{a}{b} = \frac{a \times n}{b \times n} = \frac{\square}{100}\]
+    <p>2 → ×50, 4 → ×25, 5 → ×20, 10 → ×10, 20 → ×5, 25 → ×4, 50 → ×2<span class="en">denominator → multiplier</span></p>
+  </div></details>
+  <div class="qset" data-set="t3" data-sol="exp"></div>
+</section>
+<section class="panel" id="p-t4" data-id="t4" hidden>
+  <div class="phead"><span class="eyebrow">Tugas 4 / Task 4 · 10 soal / questions</span><h2>Membandingkan &amp; Membaca Gambar</h2><span class="h2en">Comparing &amp; Reading Pictures</span></div>
+  <details class="col"><summary>Ringkasan rumus <span class="eni">/ Formula recap</span></summary><div class="solb">
+    <p>Ubah semua bilangan ke persen, lalu bandingkan angkanya.<span class="en">Change every number to a percent, then compare.</span></p>
+    \[\text{tidak diwarnai} = 100\% - \text{diwarnai}\]
+  </div></details>
+  <div class="qset" data-set="t4" data-sol="exp"></div>
+</section>
+<section class="panel" id="p-t5" data-id="t5" hidden>
+  <div class="phead"><span class="eyebrow">Tugas 5 / Task 5 · 10 soal / questions</span><h2>Soal Cerita</h2><span class="h2en">Word Problems</span></div>
+  <details class="col"><summary>Ringkasan rumus <span class="eni">/ Formula recap</span></summary><div class="solb">
+    \[\text{persen} = \frac{\text{bagian}}{\text{keseluruhan}} \to \frac{\square}{100} \to \square\%\]
+    <p class="en" style="margin:0">percent: part over whole, make it per hundred</p>
+  </div></details>
+  <div class="qset" data-set="t5" data-sol="exp"></div>
+</section>
+
+  <div class="navfoot" id="navfoot">
+    <button class="btn" id="prevBtn" type="button">← Sebelumnya <span class="eni">/ Previous</span></button>
+    <button class="btn primary" id="nextBtn" type="button">Berikutnya <span class="eni">/ Next</span> →</button>
+  </div>
+  </main>
+</div>
+</div>
+
+<div class="modal" id="rulesModal" hidden role="dialog" aria-modal="true" aria-labelledby="rulesTitle">
+  <div class="mbox">
+    <div><h2 id="rulesTitle">Class Rules</h2><span class="en">Aturan Kelas</span></div>
+    <ul class="rules-l">
+      <li><svg viewBox="0 0 36 36" class="ill" aria-hidden="true"><rect class="f0" x="2" y="2" width="32" height="32" rx="9"/><path class="s" d="M8 12h12a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3h-6l-4 4v-4H8a3 3 0 0 1-3-3v-3a3 3 0 0 1 3-3z"/><circle class="f" cx="26" cy="11" r="4"/></svg>
+        <div>Berbicara secara bergantian.<span class="en">Take turns speaking.</span></div></li>
+      <li><svg viewBox="0 0 36 36" class="ill" aria-hidden="true"><rect class="f0" x="2" y="2" width="32" height="32" rx="9"/><path class="s" d="M12 8v16M12 8h12v20H12M19 18h-9m3-3-3 3 3 3"/></svg>
+        <div>Meminta izin jika ingin meninggalkan kelas.<span class="en">Ask permission if you want to leave the class.</span></div></li>
+      <li><svg viewBox="0 0 36 36" class="ill" aria-hidden="true"><rect class="f0" x="2" y="2" width="32" height="32" rx="9"/><rect class="s" x="7" y="12" width="15" height="12" rx="2"/><path class="s" d="M22 16l6-3v10l-6-3"/><circle class="f" cx="14.5" cy="18" r="2.5"/></svg>
+        <div>Menyalakan microphone dan camera jika diperlukan.<span class="en">Turn on your microphone and camera when needed.</span></div></li>
+    </ul>
+    <button class="btn primary" id="closeRules" type="button">Tutup <span class="eni">/ Close</span></button>
+  </div>
+</div>
+
+<script>
+/* ---------- helpers ---------- */
+const R = String.raw;
+function B(s){ s=String(s); const i=s.indexOf('||'); if(i<0) return s; return `<span class="tid">${s.slice(0,i)}</span><span class="en">${s.slice(i+2)}</span>`; }
+function Bi(s){ const i=s.indexOf('||'); if(i<0) return s; return `${s.slice(0,i)} <span class="eni">/ ${s.slice(i+2)}</span>`; }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; }
+function shuffleDiff(a){ if(a.length<2) return a.slice(); let s; do{ s=shuffle(a);}while(s.every((v,i)=>v===a[i])); return s; }
+function grid(n,size=150,n2=0){
+  let s=`<svg class="hgrid" viewBox="0 0 102 102" width="${size}" height="${size}" role="img" aria-label="${n} dari 100 kotak diwarnai / ${n} of 100 squares shaded" style="max-width:100%">`;
+  for(let i=0;i<100;i++){ const x=1+(i%10)*10, y=1+Math.floor(i/10)*10; s+=`<rect x="${x}" y="${y}" width="10" height="10" class="${i<n?'on':(i<n+n2?'on2':'off')}"/>`; }
+  return s+`<rect class="fr" x="1" y="1" width="100" height="100"/></svg>`;
+}
+function bar(n,total=10,w=200){
+  const cw=200/total; let s=`<svg class="hgrid" viewBox="0 0 202 32" width="${w}" style="max-width:100%" role="img" aria-label="${n} dari ${total} bagian diwarnai / ${n} of ${total} parts shaded">`;
+  for(let i=0;i<total;i++) s+=`<rect x="${1+i*cw}" y="1" width="${cw}" height="30" class="${i<n?'on':'off'}"/>`;
+  return s+`<rect class="fr" x="1" y="1" width="200" height="30"/></svg>`;
+}
+function battery(p,w=120){
+  return `<svg class="ill" viewBox="0 0 120 56" width="${w}" role="img" aria-label="baterai / battery"><rect class="f0" x="4" y="6" width="100" height="44" rx="8"/><rect class="f" x="9" y="11" width="${0.9*p}" height="34" rx="4"/><rect class="s" x="4" y="6" width="100" height="44" rx="8"/><rect class="s" x="106" y="20" width="8" height="16" rx="2"/></svg>`;
+}
+const TAG=`<svg class="ill" viewBox="0 0 120 56" width="120" aria-hidden="true"><path class="f2" d="M40 6h60a6 6 0 0 1 6 6v32a6 6 0 0 1-6 6H40L18 28z"/><path class="s" d="M40 6h60a6 6 0 0 1 6 6v32a6 6 0 0 1-6 6H40L18 28z"/><circle class="s" cx="36" cy="28" r="4"/><path class="s" d="M62 38l22-20"/><circle class="s" cx="64" cy="20" r="4"/><circle class="s" cx="82" cy="36" r="4"/></svg>`;
+const RAIN=`<svg class="ill" viewBox="0 0 120 56" width="120" aria-hidden="true"><path class="f0" d="M30 34a12 12 0 0 1 2-24 18 18 0 0 1 34 4 10 10 0 0 1 4 20z"/><path class="s" d="M30 34a12 12 0 0 1 2-24 18 18 0 0 1 34 4 10 10 0 0 1 4 20z"/><path class="s" d="M38 42l-3 8M52 42l-3 8M66 42l-3 8"/><rect class="f" x="84" y="30" width="8" height="20"/><rect class="f0" x="96" y="12" width="8" height="38"/><rect class="s" x="84" y="12" width="20" height="38"/></svg>`;
+const TEST=`<svg class="ill" viewBox="0 0 120 56" width="120" aria-hidden="true"><rect class="f0" x="34" y="2" width="52" height="52" rx="4"/><rect class="s" x="34" y="2" width="52" height="52" rx="4"/><path class="s" d="M42 16l4 4 8-8M42 32l4 4 8-8"/><path class="s" d="M60 16h18M60 32h18M44 46h34"/></svg>`;
+
+function sol(steps, ans){
+  return `<ol class="steps">${steps.map(s=>Array.isArray(s)?`<li>${B(s[0])}<div class="mline">${s[1]}</div></li>`:`<li>${B(s)}</li>`).join('')}</ol>${ans?`<div class="ans">${B(ans)}</div>`:''}`;
+}
+const TYPES={
+  mc:['Pilihan Ganda||Multiple Choice','Pilih satu jawaban.||Choose one answer.'],
+  cb:['Pilih Semua yang Benar||Select All That Apply','Pilih semua jawaban yang benar (bisa lebih dari satu).||Select every correct answer (there may be more than one).'],
+  fill:['Isian||Fill in the Blank','Ketik jawabanmu. Pakai koma untuk desimal, misalnya 0,25.||Type your answer. Use a comma for decimals, e.g. 0,25.'],
+  tf:['Benar atau Salah||True or False','Tentukan apakah pernyataan ini benar atau salah.||Decide whether the statement is true or false.'],
+  sort:['Urutkan||Sorting','Pakai tombol panah atau seret kartu untuk mengurutkan.||Use the arrow buttons or drag the cards into order.'],
+  pair:['Pasangkan||Matching','Ketuk kartu, lalu ketuk kotak pasangannya (atau seret).||Tap a card, then tap its matching box (or drag it).'],
+  dd:['Seret dan Lepas||Drag and Drop','Ketuk kartu, lalu ketuk kelompok yang tepat (atau seret).||Tap a card, then tap the right group (or drag it).']
+};
+
+/* ---------- question data ---------- */
+const SETS = {
+/* ===== S1 Spiral Review ===== */
+s1:[
+ {t:'mc', q:R`Pecahan berapa yang menunjukkan bagian yang <b>diwarnai</b>?||Which fraction shows the <b>shaded</b> part?`, fig:bar(7),
+  o:[R`\(\frac{7}{10}\)`,R`\(\frac{3}{10}\)`,R`\(\frac{10}{7}\)`,R`\(\frac{3}{7}\)`], a:0,
+  s:sol([R`Hitung bagian yang diwarnai: ada 7 bagian.||Count the shaded parts: there are 7.`,
+         R`Hitung semua bagian sama besar: ada 10 bagian. Ini penyebutnya.||Count all equal parts: there are 10. This is the denominator.`,
+         [R`Tulis \(\frac{\text{pembilang}}{\text{penyebut}}\):||Write numerator over denominator:`, R`\[\frac{7}{10}\]`],
+         R`\(\frac{3}{10}\) adalah bagian yang <b>tidak</b> diwarnai, jadi bukan jawabannya.||\(\frac{3}{10}\) is the part that is not shaded, so it is not the answer.`],
+        R`Jawaban: \(\frac{7}{10}\)||Answer: \(\frac{7}{10}\)`)},
+ {t:'fill', q:R`Lengkapi pecahan senilai berikut.||Complete the equivalent fraction.`,
+  f:[R`\(\frac{4}{5} = \frac{\square}{10}\) \(\quad \square =\)`,0], ans:[['8']],
+  s:sol([R`Cari pengali penyebut: \(10 \div 5 = 2\).||Find the denominator multiplier: \(10 \div 5 = 2\).`,
+         R`Kalikan pembilang dengan pengali yang sama: \(4 \times 2 = 8\).||Multiply the numerator by the same number: \(4 \times 2 = 8\).`,
+         ['Tulis hasilnya:||Write the result:', R`\[\frac{4}{5} = \frac{4 \times 2}{5 \times 2} = \frac{8}{10}\]`]],
+        R`Jawaban: \(8\)||Answer: \(8\)`)},
+ {t:'tf', q:R`\(\frac{1}{4} = \frac{25}{100}\)`, a:true,
+  s:sol([R`Pengali penyebut: \(100 \div 4 = 25\).||Denominator multiplier: \(100 \div 4 = 25\).`,
+         R`Pembilang: \(1 \times 25 = 25\). Sama dengan pembilang di kanan.||Numerator: \(1 \times 25 = 25\). It matches the right side.`,
+         ['', R`\[\frac{1}{4} = \frac{1 \times 25}{4 \times 25} = \frac{25}{100}\]`]],
+        'Jawaban: Benar||Answer: True')},
+ {t:'cb', q:R`Pecahan mana saja yang senilai dengan \(\frac{1}{2}\)?||Which fractions are equal to \(\frac{1}{2}\)?`,
+  o:[R`\(\frac{2}{4}\)`,R`\(\frac{5}{10}\)`,R`\(\frac{50}{100}\)`,R`\(\frac{1}{4}\)`,R`\(\frac{3}{5}\)`], a:[0,1,2],
+  s:sol([R`Pakai cara cepat: senilai \(\frac{1}{2}\) jika penyebut \(= 2 \times\) pembilang.||Use the shortcut: equal to one half when denominator = 2 × numerator.`,
+         R`\(\frac{2}{4}\): \(2 \times 2 = 4\) ✔ · \(\frac{5}{10}\): \(5 \times 2 = 10\) ✔ · \(\frac{50}{100}\): \(50 \times 2 = 100\) ✔||Each of these passes the check.`,
+         R`\(\frac{1}{4}\): \(1 \times 2 = 2 \neq 4\) ✘ · \(\frac{3}{5}\): \(3 \times 2 = 6 \neq 5\) ✘||These two fail the check.`],
+        R`Jawaban: \(\frac{2}{4}, \frac{5}{10}, \frac{50}{100}\)||Answer: \(\frac{2}{4}, \frac{5}{10}, \frac{50}{100}\)`)},
+ {t:'sort', q:R`Urutkan dari yang <b>terkecil</b> ke <b>terbesar</b>.||Order from <b>smallest</b> to <b>largest</b>.`, dir:['terkecil / smallest','terbesar / largest'],
+  items:[R`\(\frac{1}{10}\)`,R`\(\frac{3}{10}\)`,R`\(\frac{7}{10}\)`,R`\(\frac{9}{10}\)`],
+  s:sol([R`Semua penyebut sama, yaitu 10.||All denominators are the same: 10.`,
+         R`Bandingkan pembilang: 1, 3, 7, 9. Urutannya \(1 \lt 3 \lt 7 \lt 9\).||Compare the numerators: \(1 \lt 3 \lt 7 \lt 9\).`],
+        R`Jawaban: \(\frac{1}{10}, \frac{3}{10}, \frac{7}{10}, \frac{9}{10}\)||Answer: \(\frac{1}{10}, \frac{3}{10}, \frac{7}{10}, \frac{9}{10}\)`)}
+],
+/* ===== S2 Introduction ===== */
+s2:[
+ {t:'mc', q:R`Baterai ini terisi 75 dari 100 bagian. Berapa persen isinya?||This battery is charged 75 parts out of 100. What percent is charged?`, fig:battery(75,150),
+  o:[R`\(75\%\)`,R`\(25\%\)`,R`\(7{,}5\%\)`,R`\(750\%\)`], a:0,
+  s:sol([R`Persen artinya per seratus: \(a\% = \frac{a}{100}\).||Percent means per hundred.`,
+         R`Terisi 75 dari 100 → \(\frac{75}{100}\).||75 out of 100.`,
+         R`\(\frac{75}{100} = 75\%\). (\(25\%\) adalah bagian yang kosong.)||(25% is the empty part.)`],
+        R`Jawaban: \(75\%\)||Answer: \(75\%\)`)},
+ {t:'fill', q:R`Di bioskop ada 100 kursi. 85 kursi terisi penonton. Berapa persen kursi yang terisi dan berapa persen yang kosong?||A cinema has 100 seats. 85 are taken. What percent of seats are taken and what percent are empty?`, fig:grid(85,130),
+  f:[R`Terisi / Taken: `,0,R`\(\%\)`,'<span style="width:16px"></span>',R`Kosong / Empty: `,1,R`\(\%\)`], ans:[['85'],['15']],
+  s:sol([R`Keseluruhan = 100 kursi, bagian terisi = 85 → \(\frac{85}{100} = 85\%\).||Whole = 100 seats, taken = 85.`,
+         [R`Keseluruhan selalu \(100\%\). Kosong = sisa:||The whole is always 100%. Empty = what is left:`, R`\[100\% - 85\% = 15\%\]`],
+         R`Cek: \(85 + 15 = 100\) ✔||Check: 85 + 15 = 100.`],
+        R`Jawaban: terisi \(85\%\), kosong \(15\%\)||Answer: taken 85%, empty 15%`)},
+ {t:'tf', q:R`Diskon \(100\%\) berarti barang itu menjadi gratis.||A 100% discount means the item becomes free.`, fig:TAG, a:true,
+  s:sol([R`\(100\% = \frac{100}{100}\) = seluruhnya.||100% means all of it.`,
+         R`Diskon \(100\%\) berarti <b>seluruh</b> harga dipotong, sehingga sisa harga = 0.||The whole price is removed, so the price left is 0.`],
+        'Jawaban: Benar||Answer: True')},
+ {t:'pair', q:R`Pasangkan setiap persen dengan artinya.||Match each percent with its meaning.`,
+  L:[R`\(10\%\)`,R`\(50\%\)`,R`\(100\%\)`,R`\(25\%\)`],
+  R:['10 dari 100||10 out of 100','setengah||one half','seluruhnya||all of it','seperempat||one quarter'],
+  s:sol([R`\(10\% = \frac{10}{100}\) → 10 dari 100.||10 out of 100.`,
+         R`\(50\% = \frac{50}{100} = \frac{1}{2}\) → setengah.||one half.`,
+         R`\(100\% = \frac{100}{100} = 1\) → seluruhnya.||all of it.`,
+         R`\(25\% = \frac{25}{100} = \frac{1}{4}\) → seperempat.||one quarter.`])},
+ {t:'dd', q:R`Kelompokkan persen berikut: kurang dari setengah atau lebih dari setengah?||Sort these percents: less than half or more than half?`,
+  cats:[R`Kurang dari \(50\%\)||Less than 50%`,R`Lebih dari \(50\%\)||More than 50%`],
+  items:[[R`\(30\%\)`,0],[R`\(12\%\)`,0],[R`\(45\%\)`,0],[R`\(75\%\)`,1],[R`\(90\%\)`,1],[R`\(51\%\)`,1]],
+  s:sol([R`Setengah \(= 50\%\). Karena semua per seratus, cukup bandingkan angkanya dengan 50.||Half = 50%. All are per hundred, so compare each number with 50.`,
+         R`\(30, 12, 45\) lebih kecil dari 50 → kurang dari setengah.||Smaller than 50.`,
+         R`\(75, 90, 51\) lebih besar dari 50 → lebih dari setengah. (\(51\%\) lebih dari setengah walau hanya sedikit.)||Bigger than 50 (51% is just over half).`])}
+],
+/* ===== S3 Prior knowledge ===== */
+s3:[
+ {t:'mc', q:R`Bentuk desimal dari \(\frac{7}{100}\) adalah …||The decimal form of \(\frac{7}{100}\) is …`,
+  o:[R`\(0{,}07\)`,R`\(0{,}7\)`,R`\(7{,}0\)`,R`\(0{,}007\)`], a:0,
+  s:sol([R`Penyebut 100 → harus ada 2 angka di belakang koma.||Denominator 100 → 2 digits after the comma.`,
+         R`Pembilang 7 hanya 1 angka, tambahkan 0 penjaga tempat: 07.||7 has 1 digit, add a placeholder 0: 07.`,
+         R`\(\frac{7}{100} = 0{,}07\). (\(0{,}7 = \frac{7}{10}\), itu berbeda.)||(0,7 = 7/10, which is different.)`],
+        R`Jawaban: \(0{,}07\)||Answer: \(0{,}07\)`)},
+ {t:'fill', q:R`Ubah desimal ke pecahan perseratus.||Change the decimal to a hundredths fraction.`,
+  f:[R`\(0{,}63 = \frac{\square}{100}\) \(\quad \square =\)`,0], ans:[['63']],
+  s:sol([R`Ada 2 angka di belakang koma → penyebut 100.||2 digits after the comma → denominator 100.`,
+         R`Angka di belakang koma (63) menjadi pembilang.||The digits after the comma become the numerator.`,
+         ['', R`\[0{,}63 = \frac{63}{100}\]`]],
+        R`Jawaban: \(63\)||Answer: \(63\)`)},
+ {t:'tf', q:R`\(0{,}2 = 0{,}20\)`, a:true,
+  s:sol([R`\(0{,}2 = \frac{2}{10}\). Kalikan atas dan bawah dengan 10: \(\frac{20}{100}\).||Multiply top and bottom by 10.`,
+         R`\(\frac{20}{100} = 0{,}20\). Menambah 0 di ujung kanan desimal tidak mengubah nilai.||Adding a zero at the right end does not change the value.`],
+        'Jawaban: Benar||Answer: True')},
+ {t:'pair', q:R`Pasangkan desimal dengan pecahan yang sama nilainya.||Match each decimal with the fraction of the same value.`,
+  L:[R`\(0{,}3\)`,R`\(0{,}03\)`,R`\(0{,}33\)`,R`\(0{,}13\)`],
+  R:[R`\(\frac{3}{10}\)`,R`\(\frac{3}{100}\)`,R`\(\frac{33}{100}\)`,R`\(\frac{13}{100}\)`],
+  s:sol([R`\(0{,}3\): 1 angka di belakang koma → per sepuluh → \(\frac{3}{10}\).||1 digit → tenths.`,
+         R`\(0{,}03\): 2 angka (03) → per seratus → \(\frac{3}{100}\).||2 digits → hundredths.`,
+         R`\(0{,}33 = \frac{33}{100}\) dan \(0{,}13 = \frac{13}{100}\).||Both have 2 digits → hundredths.`])},
+ {t:'mc', q:R`Pada bilangan \(0{,}94\), angka 4 menempati nilai tempat …||In \(0{,}94\), the digit 4 is in which place?`,
+  o:[R`perseratusan, bernilai \(0{,}04\)||hundredths, worth \(0{,}04\)`,R`persepuluhan, bernilai \(0{,}4\)||tenths, worth \(0{,}4\)`,R`satuan, bernilai \(4\)||ones, worth \(4\)`,R`puluhan, bernilai \(40\)||tens, worth \(40\)`], a:0,
+  s:sol([R`Angka pertama di belakang koma (9) = persepuluhan.||The first digit after the comma (9) is tenths.`,
+         R`Angka kedua di belakang koma (4) = perseratusan.||The second digit after the comma (4) is hundredths.`,
+         R`\(0{,}94 = 0{,}9 + 0{,}04\), jadi angka 4 bernilai \(0{,}04 = \frac{4}{100}\).||So the 4 is worth 4 hundredths.`],
+        R`Jawaban: perseratusan (\(0{,}04\))||Answer: hundredths (\(0{,}04\))`)}
+],
+/* ===== S4 Problem introduction ===== */
+s4:[
+ {t:'fill', q:R`Nyatakan bagian yang diwarnai dalam tiga bentuk.||Write the shaded part in three forms.`, fig:grid(42,150),
+  f:[R`\(\frac{\square}{100}\) → \(\square=\)`,0,R`\(\;=\;\) desimal / decimal`,1,R`\(\;=\;\)`,2,R`\(\%\)`], ans:[['42'],['0,42'],['42']],
+  s:sol([R`Hitung kotak hijau: 4 baris penuh (40) + 2 kotak = 42.||Count the green squares: 4 full rows (40) + 2 = 42.`,
+         R`Pecahan: \(\frac{42}{100}\).||Fraction.`,
+         R`Desimal: penyebut 100 → 2 angka di belakang koma → \(0{,}42\).||Decimal.`,
+         R`Persen: \(\frac{42}{100} = 42\%\).||Percent.`],
+        R`Jawaban: \(\frac{42}{100} = 0{,}42 = 42\%\)||Answer: \(\frac{42}{100} = 0{,}42 = 42\%\)`)},
+ {t:'mc', q:R`\(0{,}09 = \;\ldots\)`,
+  o:[R`\(9\%\)`,R`\(90\%\)`,R`\(0{,}9\%\)`,R`\(0{,}09\%\)`], a:0,
+  s:sol([R`\(0{,}09\) punya 2 angka di belakang koma → \(\frac{9}{100}\).||2 digits after the comma → 9/100.`,
+         R`\(\frac{9}{100} = 9\%\). Atau: \(0{,}09 \times 100 = 9\).||Or multiply by 100.`,
+         R`\(90\%\) salah karena \(90\% = 0{,}90 = 0{,}9\).||90% is wrong because 90% = 0,9.`],
+        R`Jawaban: \(9\%\)||Answer: \(9\%\)`)},
+ {t:'cb', q:R`Mana saja yang nilainya sama dengan \(60\%\)?||Which ones have the same value as \(60\%\)?`,
+  o:[R`\(\frac{60}{100}\)`,R`\(0{,}6\)`,R`\(0{,}60\)`,R`\(\frac{6}{10}\)`,R`\(0{,}06\)`,R`\(6\%\)`], a:[0,1,2,3],
+  s:sol([R`\(60\% = \frac{60}{100} = 0{,}60\).||Percent means per hundred.`,
+         R`\(0{,}60 = 0{,}6\) (nol di ujung kanan boleh dihapus), dan \(\frac{60}{100} = \frac{6}{10}\) (bagi atas dan bawah dengan 10).||Trailing zero can be dropped; divide top and bottom by 10.`,
+         R`\(0{,}06 = \frac{6}{100} = 6\%\), jadi \(0{,}06\) dan \(6\%\) <b>tidak</b> sama dengan \(60\%\).||0,06 and 6% are not equal to 60%.`],
+        R`Jawaban: \(\frac{60}{100},\ 0{,}6,\ 0{,}60,\ \frac{6}{10}\)||Answer: \(\frac{60}{100},\ 0{,}6,\ 0{,}60,\ \frac{6}{10}\)`)},
+ {t:'tf', q:R`\(0{,}4 = 4\%\)`, a:false,
+  s:sol([R`Jadikan 2 angka di belakang koma: \(0{,}4 = 0{,}40\).||Make 2 digits: 0,4 = 0,40.`,
+         R`\(0{,}40 = \frac{40}{100} = 40\%\). Atau \(0{,}4 \times 100 = 40\).||Or multiply by 100.`,
+         R`Jadi \(0{,}4 = 40\%\), bukan \(4\%\). (\(4\% = 0{,}04\).)||So 0,4 is 40%, not 4%.`],
+        'Jawaban: Salah||Answer: False')},
+ {t:'sort', q:R`Urutkan dari yang <b>terkecil</b> ke <b>terbesar</b>.||Order from <b>smallest</b> to <b>largest</b>.`, dir:['terkecil / smallest','terbesar / largest'],
+  items:[R`\(9\%\)`,R`\(0{,}18\)`,R`\(\frac{45}{100}\)`,R`\(0{,}6\)`],
+  s:sol([R`Ubah semua ke persen: \(9\%\); \(0{,}18 = 18\%\); \(\frac{45}{100} = 45\%\); \(0{,}6 = 0{,}60 = 60\%\).||Change all to percent.`,
+         R`Urutkan angkanya: \(9 \lt 18 \lt 45 \lt 60\).||Order the numbers.`],
+        R`Jawaban: \(9\%,\ 0{,}18,\ \frac{45}{100},\ 0{,}6\)||Answer: \(9\%,\ 0{,}18,\ \frac{45}{100},\ 0{,}6\)`)}
+],
+/* ===== S5 Guided ===== */
+s5:[
+ {t:'fill', q:R`Ubah \(\frac{3}{5}\) menjadi perseratus dan persen.||Change \(\frac{3}{5}\) into hundredths and a percent.`,
+  f:[R`\(\frac{3}{5} = \frac{\square}{100}\) → \(\square=\)`,0,R`\(\;=\;\)`,1,R`\(\%\)`], ans:[['60'],['60']],
+  s:sol([R`Cari pengali: \(100 \div 5 = 20\).||Find the multiplier.`,
+         ['Kalikan atas dan bawah dengan 20:||Multiply top and bottom by 20:', R`\[\frac{3 \times 20}{5 \times 20} = \frac{60}{100}\]`],
+         R`\(\frac{60}{100} = 60\%\)`],
+        R`Jawaban: \(60\) dan \(60\%\)||Answer: \(60\) and \(60\%\)`)},
+ {t:'mc', q:R`\(\frac{11}{20}\) sama dengan …||\(\frac{11}{20}\) is equal to …`,
+  o:[R`\(55\%\)`,R`\(11\%\)`,R`\(20\%\)`,R`\(45\%\)`], a:0,
+  s:sol([R`Pengali: \(100 \div 20 = 5\).||Multiplier.`,
+         ['', R`\[\frac{11 \times 5}{20 \times 5} = \frac{55}{100} = 55\%\]`],
+         R`\(11\%\) salah: itu hanya menyalin pembilang tanpa mengubah penyebut ke 100.||11% just copies the numerator without making the denominator 100.`],
+        R`Jawaban: \(55\%\)||Answer: \(55\%\)`)},
+ {t:'pair', q:R`Pasangkan pecahan patokan dengan persennya.||Match each benchmark fraction with its percent.`,
+  L:[R`\(\frac{1}{2}\)`,R`\(\frac{1}{4}\)`,R`\(\frac{1}{5}\)`,R`\(\frac{3}{4}\)`],
+  R:[R`\(50\%\)`,R`\(25\%\)`,R`\(20\%\)`,R`\(75\%\)`],
+  s:sol([R`\(\frac{1}{2} = \frac{1 \times 50}{2 \times 50} = \frac{50}{100} = 50\%\)`,
+         R`\(\frac{1}{4} = \frac{1 \times 25}{4 \times 25} = \frac{25}{100} = 25\%\)`,
+         R`\(\frac{1}{5} = \frac{1 \times 20}{5 \times 20} = \frac{20}{100} = 20\%\)`,
+         R`\(\frac{3}{4} = \frac{3 \times 25}{4 \times 25} = \frac{75}{100} = 75\%\)`])},
+ {t:'dd', q:R`Kelompokkan setiap kartu ke nilai yang sama.||Put each card in the group with the same value.`,
+  cats:[R`Sama dengan \(50\%\)||Equal to 50%`,R`Sama dengan \(25\%\)||Equal to 25%`],
+  items:[[R`\(\frac{1}{2}\)`,0],[R`\(0{,}5\)`,0],[R`\(\frac{50}{100}\)`,0],[R`\(\frac{1}{4}\)`,1],[R`\(0{,}25\)`,1],[R`\(\frac{25}{100}\)`,1]],
+  s:sol([R`\(\frac{1}{2} = \frac{50}{100} = 50\%\); \(0{,}5 = 0{,}50 = 50\%\); \(\frac{50}{100} = 50\%\).||All equal 50%.`,
+         R`\(\frac{1}{4} = \frac{25}{100} = 25\%\); \(0{,}25 = 25\%\); \(\frac{25}{100} = 25\%\).||All equal 25%.`])},
+ {t:'tf', q:R`\(\frac{3}{50} = 3\%\)`, a:false,
+  s:sol([R`Penyebut 50 belum 100. Pengali: \(100 \div 50 = 2\).||The denominator is 50, not 100. Multiplier: 2.`,
+         ['', R`\[\frac{3 \times 2}{50 \times 2} = \frac{6}{100} = 6\%\]`],
+         R`Jadi \(\frac{3}{50} = 6\%\), bukan \(3\%\).||So 3/50 = 6%, not 3%.`],
+        'Jawaban: Salah||Answer: False')}
+],
+/* ===== S6 Independent ===== */
+s6:[
+ {t:'fill', q:R`Doni punya 25 kelereng. 9 kelereng berwarna merah. Nyatakan kelereng merah dalam desimal dan persen.||Doni has 25 marbles. 9 are red. Write the red marbles as a decimal and a percent.`,
+  f:[R`Desimal / Decimal: `,0,'<span style="width:16px"></span>',R`Persen / Percent: `,1,R`\(\%\)`], ans:[['0,36'],['36']],
+  s:sol([R`Bagian = 9, keseluruhan = 25 → \(\frac{9}{25}\).||Part = 9, whole = 25.`,
+         [R`Pengali \(100 \div 25 = 4\):||Multiplier 100 ÷ 25 = 4:`, R`\[\frac{9 \times 4}{25 \times 4} = \frac{36}{100}\]`],
+         R`\(\frac{36}{100} = 0{,}36 = 36\%\)`],
+        R`Jawaban: \(0{,}36\) dan \(36\%\)||Answer: \(0{,}36\) and \(36\%\)`)},
+ {t:'mc', q:R`Rina menjawab benar \(0{,}85\) bagian dari soal ulangan. Berapa persen soal yang dijawab benar?||Rina answered \(0{,}85\) of the test correctly. What percent did she answer correctly?`,
+  o:[R`\(85\%\)`,R`\(8{,}5\%\)`,R`\(0{,}85\%\)`,R`\(15\%\)`], a:0,
+  s:sol([R`Desimal → persen: kalikan 100.||Decimal → percent: multiply by 100.`,
+         ['', R`\[0{,}85 = \frac{85}{100} = 85\%\]`],
+         R`\(15\%\) adalah bagian yang salah (\(100\% - 85\%\)), bukan yang ditanya.||15% is the part answered wrongly.`],
+        R`Jawaban: \(85\%\)||Answer: \(85\%\)`)},
+ {t:'cb', q:R`Pak Budi punya 50 ayam. 20 ayam berwarna hitam. Pernyataan mana yang <b>benar</b> tentang ayam hitam?||Mr Budi has 50 chickens. 20 are black. Which statements about the black chickens are <b>true</b>?`,
+  o:[R`Bagiannya \(\frac{20}{50}\)||The part is \(\frac{20}{50}\)`,R`Sama dengan \(\frac{40}{100}\)||Equal to \(\frac{40}{100}\)`,R`Dalam desimal \(0{,}4\)||As a decimal \(0{,}4\)`,R`Sama dengan \(40\%\)||Equal to \(40\%\)`,R`Sama dengan \(20\%\)||Equal to \(20\%\)`], a:[0,1,2,3],
+  s:sol([R`Bagian = 20, keseluruhan = 50 → \(\frac{20}{50}\) ✔||Part 20, whole 50.`,
+         [R`Pengali \(100 \div 50 = 2\):||Multiplier 2:`, R`\[\frac{20 \times 2}{50 \times 2} = \frac{40}{100} = 0{,}40 = 0{,}4 = 40\%\]`],
+         R`\(20\%\) salah: 20 adalah banyak ayam, tetapi keseluruhannya 50, bukan 100.||20% is wrong: 20 is the count, but the whole is 50, not 100.`],
+        R`Jawaban: \(\frac{20}{50},\ \frac{40}{100},\ 0{,}4,\ 40\%\)||Answer: \(\frac{20}{50},\ \frac{40}{100},\ 0{,}4,\ 40\%\)`)},
+ {t:'sort', q:R`Nilai empat siswa ditulis berbeda. Urutkan dari nilai <b>terkecil</b> ke <b>terbesar</b>.||Four students' scores are written differently. Order from <b>lowest</b> to <b>highest</b>.`, dir:['terkecil / lowest','terbesar / highest'],
+  items:[R`Beni: \(\frac{3}{4}\)`,R`Dodi: \(\frac{79}{100}\)`,R`Ani: \(0{,}8\)`,R`Cici: \(82\%\)`],
+  s:sol([R`Ubah semua ke persen.||Change all to percent.`,
+         R`Beni \(\frac{3}{4} = \frac{75}{100} = 75\%\); Dodi \(\frac{79}{100} = 79\%\); Ani \(0{,}8 = 0{,}80 = 80\%\); Cici \(82\%\).`,
+         R`\(75 \lt 79 \lt 80 \lt 82\)`],
+        'Jawaban: Beni, Dodi, Ani, Cici||Answer: Beni, Dodi, Ani, Cici')},
+ {t:'tf', q:R`Toko A memberi diskon \(\frac{1}{5}\). Toko B memberi diskon \(25\%\). Diskon Toko A lebih besar.||Shop A gives \(\frac{1}{5}\) off. Shop B gives \(25\%\) off. Shop A's discount is bigger.`, a:false,
+  s:sol([R`Ubah \(\frac{1}{5}\) ke persen: \(\frac{1 \times 20}{5 \times 20} = \frac{20}{100} = 20\%\).||Change 1/5 to percent.`,
+         R`Bandingkan: \(20\% \lt 25\%\). Jadi diskon Toko <b>B</b> yang lebih besar.||Shop B's discount is bigger.`],
+        'Jawaban: Salah||Answer: False')}
+],
+/* ===== Exit ticket ===== */
+exit:[
+ {t:'mc', q:R`\(\frac{9}{10} = \;\ldots\)`, o:[R`\(90\%\)`,R`\(9\%\)`,R`\(0{,}09\)`,R`\(19\%\)`], a:0,
+  s:sol([R`\(100 \div 10 = 10\) → \(\frac{9 \times 10}{10 \times 10} = \frac{90}{100}\)`, R`\(\frac{90}{100} = 90\%\)`], R`Jawaban: \(90\%\)||Answer: \(90\%\)`)},
+ {t:'fill', q:R`Ubah ke persen.||Change to a percent.`, f:[R`\(0{,}04 = \)`,0,R`\(\%\)`], ans:[['4']],
+  s:sol([R`\(0{,}04 = \frac{4}{100}\) (2 angka di belakang koma).||2 digits after the comma.`, R`\(\frac{4}{100} = 4\%\)`], R`Jawaban: \(4\%\)||Answer: \(4\%\)`)},
+ {t:'tf', q:R`\(\frac{1}{4} = 0{,}25 = 25\%\)`, a:true,
+  s:sol([R`\(\frac{1}{4} = \frac{1 \times 25}{4 \times 25} = \frac{25}{100}\)`, R`\(\frac{25}{100} = 0{,}25 = 25\%\)`], 'Jawaban: Benar||Answer: True')}
+],
+/* ===== TASK 1 ===== */
+t1:[
+ {t:'mc', q:R`Bentuk desimal bagian yang diwarnai adalah …||The shaded part as a decimal is …`, fig:grid(23,140),
+  o:[R`\(0{,}23\)`,R`\(2{,}3\)`,R`\(0{,}023\)`,R`\(0{,}77\)`], a:0,
+  s:sol([R`Hitung kotak hijau: 2 baris (20) + 3 = 23 dari 100.||Count: 2 rows (20) + 3 = 23 of 100.`,
+         R`\(\frac{23}{100}\) → 2 angka di belakang koma → \(0{,}23\).||Hundredths → 2 digits.`,
+         R`\(0{,}77\) adalah bagian yang tidak diwarnai.||0,77 is the unshaded part.`], R`Jawaban: \(0{,}23\)||Answer: \(0{,}23\)`)},
+ {t:'fill', q:R`Tulis dalam bentuk desimal.||Write as a decimal.`, f:[R`\(\frac{9}{100} = \)`,0], ans:[['0,09']],
+  s:sol([R`Penyebut 100 → 2 angka di belakang koma.||Denominator 100 → 2 digits.`, R`9 hanya 1 angka → tambahkan 0 di depan: 09.||Add a placeholder 0.`, R`\(\frac{9}{100} = 0{,}09\)`], R`Jawaban: \(0{,}09\)||Answer: \(0{,}09\)`)},
+ {t:'tf', q:R`\(\frac{60}{100} = 0{,}6\)`, a:true,
+  s:sol([R`\(\frac{60}{100} = 0{,}60\).||Hundredths → 2 digits.`, R`\(0{,}60 = 0{,}6\) karena nol di ujung kanan desimal tidak mengubah nilai.||The trailing zero does not change the value.`], 'Jawaban: Benar||Answer: True')},
+ {t:'cb', q:R`Mana saja yang sama dengan \(0{,}5\)?||Which are equal to \(0{,}5\)?`,
+  o:[R`\(\frac{5}{10}\)`,R`\(\frac{50}{100}\)`,R`\(0{,}50\)`,R`\(\frac{5}{100}\)`,R`\(0{,}05\)`], a:[0,1,2],
+  s:sol([R`\(0{,}5\) punya 1 angka di belakang koma → \(\frac{5}{10}\) ✔.||1 digit → tenths.`,
+         R`\(\frac{5}{10} = \frac{5 \times 10}{10 \times 10} = \frac{50}{100} = 0{,}50\) ✔.||Equivalent hundredths.`,
+         R`\(\frac{5}{100} = 0{,}05\) ✘ — ini 5 perseratus, jauh lebih kecil.||5 hundredths is much smaller.`], R`Jawaban: \(\frac{5}{10},\ \frac{50}{100},\ 0{,}50\)||Answer: \(\frac{5}{10},\ \frac{50}{100},\ 0{,}50\)`)},
+ {t:'pair', q:R`Pasangkan desimal dengan pecahan perseratusnya.||Match each decimal with its hundredths fraction.`,
+  L:[R`\(0{,}11\)`,R`\(0{,}01\)`,R`\(0{,}1\)`,R`\(0{,}99\)`], R:[R`\(\frac{11}{100}\)`,R`\(\frac{1}{100}\)`,R`\(\frac{10}{100}\)`,R`\(\frac{99}{100}\)`],
+  s:sol([R`\(0{,}11 = \frac{11}{100}\) dan \(0{,}99 = \frac{99}{100}\) (2 angka di belakang koma).||2 digits → hundredths.`,
+         R`\(0{,}01 = \frac{1}{100}\) (angka 1 di tempat perseratusan).||The 1 is in the hundredths place.`,
+         R`\(0{,}1 = 0{,}10 = \frac{10}{100}\).||Add a zero to make hundredths.`])},
+ {t:'sort', q:R`Urutkan dari <b>terkecil</b> ke <b>terbesar</b>.||Order from <b>smallest</b> to <b>largest</b>.`, dir:['terkecil / smallest','terbesar / largest'],
+  items:[R`\(0{,}09\)`,R`\(0{,}2\)`,R`\(0{,}35\)`,R`\(0{,}5\)`],
+  s:sol([R`Samakan jadi 2 angka di belakang koma: \(0{,}09;\ 0{,}20;\ 0{,}35;\ 0{,}50\).||Make all 2 digits.`, R`Bandingkan sebagai perseratus: \(9 \lt 20 \lt 35 \lt 50\).||Compare as hundredths.`],
+        R`Jawaban: \(0{,}09;\ 0{,}2;\ 0{,}35;\ 0{,}5\)||Answer: \(0{,}09;\ 0{,}2;\ 0{,}35;\ 0{,}5\)`)},
+ {t:'dd', q:R`Kelompokkan: kurang dari \(0{,}5\) atau lebih dari \(0{,}5\)?||Sort: less than \(0{,}5\) or more than \(0{,}5\)?`,
+  cats:[R`Kurang dari \(0{,}5\)||Less than 0,5`,R`Lebih dari \(0{,}5\)||More than 0,5`],
+  items:[[R`\(0{,}25\)`,0],[R`\(0{,}49\)`,0],[R`\(0{,}08\)`,0],[R`\(0{,}51\)`,1],[R`\(0{,}7\)`,1],[R`\(0{,}93\)`,1]],
+  s:sol([R`\(0{,}5 = 0{,}50 = \frac{50}{100}\). Bandingkan perseratusnya dengan 50.||Compare hundredths with 50.`,
+         R`\(0{,}25 \to 25\), \(0{,}49 \to 49\), \(0{,}08 \to 8\): semuanya < 50.||All less than 50.`,
+         R`\(0{,}51 \to 51\), \(0{,}7 = 0{,}70 \to 70\), \(0{,}93 \to 93\): semuanya > 50.||All more than 50.`])},
+ {t:'fill', q:R`Ubah ke pecahan perseratus.||Change to a hundredths fraction.`, f:[R`\(0{,}74 = \frac{\square}{100}\) \(\quad \square =\)`,0], ans:[['74']],
+  s:sol([R`2 angka di belakang koma → penyebut 100.||2 digits → denominator 100.`, R`\(0{,}74 = \frac{74}{100}\)`], R`Jawaban: \(74\)||Answer: \(74\)`)},
+ {t:'mc', q:R`Angka 3 pada \(0{,}13\) bernilai …||The digit 3 in \(0{,}13\) is worth …`,
+  o:[R`\(\frac{3}{100}\)`,R`\(\frac{3}{10}\)`,R`\(3\)`,R`\(\frac{30}{100}\)`], a:0,
+  s:sol([R`Angka 1 di tempat persepuluhan, angka 3 di tempat perseratusan.||1 is in the tenths place, 3 is in the hundredths place.`, R`\(0{,}13 = 0{,}1 + 0{,}03\), jadi 3 bernilai \(0{,}03 = \frac{3}{100}\).||So the 3 is worth 3/100.`],
+        R`Jawaban: \(\frac{3}{100}\)||Answer: \(\frac{3}{100}\)`)},
+ {t:'tf', q:R`\(0{,}4 \lt 0{,}38\)`, a:false,
+  s:sol([R`Samakan banyak angka: \(0{,}4 = 0{,}40\).||Make the same number of digits.`, R`Bandingkan 40 dan 38: \(40 \gt 38\), jadi \(0{,}4 \gt 0{,}38\).||40 > 38, so 0,4 > 0,38.`, R`Kesalahan umum: mengira 38 lebih besar dari 4. Selalu samakan dulu jumlah angka di belakang koma.||Common mistake: thinking 38 > 4. Always line up the digits first.`], 'Jawaban: Salah||Answer: False')}
+],
+/* ===== TASK 2 ===== */
+t2:[
+ {t:'mc', q:R`\(0{,}56 = \;\ldots\)`, o:[R`\(56\%\)`,R`\(5{,}6\%\)`,R`\(560\%\)`,R`\(0{,}56\%\)`], a:0,
+  s:sol([R`\(0{,}56 = \frac{56}{100}\)`, R`\(\frac{56}{100} = 56\%\). Atau \(0{,}56 \times 100 = 56\).||Or multiply by 100.`], R`Jawaban: \(56\%\)||Answer: \(56\%\)`)},
+ {t:'fill', q:R`Ubah ke persen.||Change to a percent.`, f:[R`\(0{,}08 = \)`,0,R`\(\%\)`], ans:[['8']],
+  s:sol([R`\(0{,}08 = \frac{8}{100}\)`, R`\(\frac{8}{100} = 8\%\)`], R`Jawaban: \(8\%\)||Answer: \(8\%\)`)},
+ {t:'tf', q:R`\(0{,}3 = 3\%\)`, a:false,
+  s:sol([R`\(0{,}3 = 0{,}30 = \frac{30}{100}\)`, R`\(\frac{30}{100} = 30\%\), bukan \(3\%\). (\(3\% = 0{,}03\).)||30%, not 3%.`], 'Jawaban: Salah||Answer: False')},
+ {t:'fill', q:R`Ubah persen ke desimal.||Change the percent to a decimal.`, f:[R`\(47\% = \)`,0], ans:[['0,47']],
+  s:sol([R`\(47\% = \frac{47}{100}\)`, R`Per seratus → 2 angka di belakang koma: \(0{,}47\). Atau \(47 \div 100 = 0{,}47\).||Or divide by 100.`], R`Jawaban: \(0{,}47\)||Answer: \(0{,}47\)`)},
+ {t:'pair', q:R`Pasangkan desimal dengan persennya.||Match each decimal with its percent.`,
+  L:[R`\(0{,}9\)`,R`\(0{,}09\)`,R`\(0{,}19\)`,R`\(0{,}99\)`], R:[R`\(90\%\)`,R`\(9\%\)`,R`\(19\%\)`,R`\(99\%\)`],
+  s:sol([R`\(0{,}9 = 0{,}90 = 90\%\)`, R`\(0{,}09 = \frac{9}{100} = 9\%\)`, R`\(0{,}19 = 19\%\) dan \(0{,}99 = 99\%\)||and`])},
+ {t:'cb', q:R`Mana saja yang sama dengan \(20\%\)?||Which are equal to \(20\%\)?`,
+  o:[R`\(0{,}2\)`,R`\(0{,}20\)`,R`\(\frac{20}{100}\)`,R`\(0{,}02\)`,R`\(2\%\)`], a:[0,1,2],
+  s:sol([R`\(20\% = \frac{20}{100} = 0{,}20 = 0{,}2\) ✔`, R`\(0{,}02 = \frac{2}{100} = 2\%\) ✘||not 20%`], R`Jawaban: \(0{,}2;\ 0{,}20;\ \frac{20}{100}\)||Answer: \(0{,}2;\ 0{,}20;\ \frac{20}{100}\)`)},
+ {t:'sort', q:R`Urutkan dari <b>terkecil</b> ke <b>terbesar</b>.||Order from <b>smallest</b> to <b>largest</b>.`, dir:['terkecil / smallest','terbesar / largest'],
+  items:[R`\(7\%\)`,R`\(0{,}15\)`,R`\(0{,}5\)`,R`\(62\%\)`],
+  s:sol([R`Ubah ke persen: \(7\%\); \(0{,}15 = 15\%\); \(0{,}5 = 50\%\); \(62\%\).||Change to percent.`, R`\(7 \lt 15 \lt 50 \lt 62\)`], R`Jawaban: \(7\%;\ 0{,}15;\ 0{,}5;\ 62\%\)||Answer: \(7\%;\ 0{,}15;\ 0{,}5;\ 62\%\)`)},
+ {t:'dd', q:R`Kelompokkan setiap kartu ke nilai yang sama.||Put each card in the group with the same value.`,
+  cats:[R`Sama dengan \(40\%\)||Equal to 40%`,R`Sama dengan \(4\%\)||Equal to 4%`],
+  items:[[R`\(0{,}4\)`,0],[R`\(\frac{40}{100}\)`,0],[R`\(0{,}40\)`,0],[R`\(0{,}04\)`,1],[R`\(\frac{4}{100}\)`,1],['empat perseratus||four hundredths',1]],
+  s:sol([R`\(40\% = \frac{40}{100} = 0{,}40 = 0{,}4\)`, R`\(4\% = \frac{4}{100} = 0{,}04\) = empat perseratus||= four hundredths`])},
+ {t:'mc', q:R`\(100\%\) dalam bentuk desimal adalah …||\(100\%\) as a decimal is …`, o:[R`\(1\)`,R`\(0{,}1\)`,R`\(0{,}01\)`,R`\(100\)`], a:0,
+  s:sol([R`\(100\% = \frac{100}{100}\)`, R`\(\frac{100}{100} = 1\) (satu keseluruhan). Atau \(100 \div 100 = 1\).||One whole. Or 100 ÷ 100 = 1.`], R`Jawaban: \(1\)||Answer: \(1\)`)},
+ {t:'tf', q:R`\(0{,}65 = 65\%\) karena \(0{,}65 \times 100 = 65\).||\(0{,}65 = 65\%\) because \(0{,}65 \times 100 = 65\).`, a:true,
+  s:sol([R`Desimal → persen: kalikan 100. \(0{,}65 \times 100 = 65\).||Decimal → percent: multiply by 100.`, R`Cek: \(0{,}65 = \frac{65}{100} = 65\%\) ✔`], 'Jawaban: Benar||Answer: True')}
+],
+/* ===== TASK 3 ===== */
+t3:[
+ {t:'mc', q:R`\(\frac{1}{4} = \;\ldots\)`, o:[R`\(25\%\)`,R`\(4\%\)`,R`\(14\%\)`,R`\(40\%\)`], a:0,
+  s:sol([R`Pengali: \(100 \div 4 = 25\).||Multiplier.`, R`\(\frac{1 \times 25}{4 \times 25} = \frac{25}{100} = 25\%\)`], R`Jawaban: \(25\%\)||Answer: \(25\%\)`)},
+ {t:'fill', q:R`Ubah ke persen.||Change to a percent.`, f:[R`\(\frac{3}{10} = \)`,0,R`\(\%\)`], ans:[['30']],
+  s:sol([R`Pengali: \(100 \div 10 = 10\).||Multiplier.`, R`\(\frac{3 \times 10}{10 \times 10} = \frac{30}{100} = 30\%\)`], R`Jawaban: \(30\%\)||Answer: \(30\%\)`)},
+ {t:'fill', q:R`Lengkapi.||Complete.`, f:[R`\(\frac{4}{5} = \frac{\square}{100}\) → \(\square=\)`,0,R`\(\;=\;\)`,1,R`\(\%\)`], ans:[['80'],['80']],
+  s:sol([R`Pengali: \(100 \div 5 = 20\).||Multiplier.`, R`\(\frac{4 \times 20}{5 \times 20} = \frac{80}{100} = 80\%\)`], R`Jawaban: \(80\) dan \(80\%\)||Answer: \(80\) and \(80\%\)`)},
+ {t:'tf', q:R`\(\frac{1}{20} = 5\%\)`, a:true,
+  s:sol([R`Pengali: \(100 \div 20 = 5\).||Multiplier.`, R`\(\frac{1 \times 5}{20 \times 5} = \frac{5}{100} = 5\%\) ✔`], 'Jawaban: Benar||Answer: True')},
+ {t:'pair', q:R`Pasangkan pecahan dengan persennya.||Match each fraction with its percent.`,
+  L:[R`\(\frac{1}{2}\)`,R`\(\frac{1}{25}\)`,R`\(\frac{3}{50}\)`,R`\(\frac{17}{20}\)`], R:[R`\(50\%\)`,R`\(4\%\)`,R`\(6\%\)`,R`\(85\%\)`],
+  s:sol([R`\(\frac{1}{2} = \frac{1 \times 50}{2 \times 50} = \frac{50}{100} = 50\%\)`, R`\(\frac{1}{25} = \frac{1 \times 4}{25 \times 4} = \frac{4}{100} = 4\%\)`,
+         R`\(\frac{3}{50} = \frac{3 \times 2}{50 \times 2} = \frac{6}{100} = 6\%\)`, R`\(\frac{17}{20} = \frac{17 \times 5}{20 \times 5} = \frac{85}{100} = 85\%\)`])},
+ {t:'cb', q:R`Mana saja yang sama dengan \(75\%\)?||Which are equal to \(75\%\)?`,
+  o:[R`\(\frac{3}{4}\)`,R`\(\frac{75}{100}\)`,R`\(0{,}75\)`,R`\(\frac{15}{20}\)`,R`\(\frac{7}{5}\)`,R`\(\frac{3}{5}\)`], a:[0,1,2,3],
+  s:sol([R`\(\frac{3}{4} = \frac{75}{100}\) (×25) ✔; \(\frac{75}{100} = 0{,}75 = 75\%\) ✔`, R`\(\frac{15}{20} = \frac{15 \times 5}{20 \times 5} = \frac{75}{100}\) ✔`,
+         R`\(\frac{7}{5} = \frac{140}{100} = 140\%\) ✘; \(\frac{3}{5} = \frac{60}{100} = 60\%\) ✘`], R`Jawaban: \(\frac{3}{4},\ \frac{75}{100},\ 0{,}75,\ \frac{15}{20}\)||Answer: \(\frac{3}{4},\ \frac{75}{100},\ 0{,}75,\ \frac{15}{20}\)`)},
+ {t:'sort', q:R`Urutkan dari <b>terkecil</b> ke <b>terbesar</b>.||Order from <b>smallest</b> to <b>largest</b>.`, dir:['terkecil / smallest','terbesar / largest'],
+  items:[R`\(\frac{1}{5}\)`,R`\(\frac{3}{10}\)`,R`\(\frac{9}{25}\)`,R`\(\frac{1}{2}\)`],
+  s:sol([R`\(\frac{1}{5} = \frac{20}{100} = 20\%\); \(\frac{3}{10} = \frac{30}{100} = 30\%\); \(\frac{9}{25} = \frac{36}{100} = 36\%\); \(\frac{1}{2} = \frac{50}{100} = 50\%\)`, R`\(20 \lt 30 \lt 36 \lt 50\)`],
+        R`Jawaban: \(\frac{1}{5},\ \frac{3}{10},\ \frac{9}{25},\ \frac{1}{2}\)||Answer: \(\frac{1}{5},\ \frac{3}{10},\ \frac{9}{25},\ \frac{1}{2}\)`)},
+ {t:'dd', q:R`Kelompokkan: lebih dari \(50\%\) atau kurang dari \(50\%\)?||Sort: more than \(50\%\) or less than \(50\%\)?`,
+  cats:[R`Lebih dari \(50\%\)||More than 50%`,R`Kurang dari \(50\%\)||Less than 50%`],
+  items:[[R`\(\frac{3}{5}\)`,0],[R`\(\frac{7}{10}\)`,0],[R`\(\frac{13}{20}\)`,0],[R`\(\frac{2}{5}\)`,1],[R`\(\frac{6}{25}\)`,1],[R`\(\frac{1}{4}\)`,1]],
+  s:sol([R`\(\frac{3}{5} = 60\%\), \(\frac{7}{10} = 70\%\), \(\frac{13}{20} = \frac{65}{100} = 65\%\) → lebih dari 50%.||more than 50%.`,
+         R`\(\frac{2}{5} = 40\%\), \(\frac{6}{25} = \frac{24}{100} = 24\%\), \(\frac{1}{4} = 25\%\) → kurang dari 50%.||less than 50%.`])},
+ {t:'mc', q:R`\(\frac{19}{50} = \;\ldots\)`, o:[R`\(38\%\)`,R`\(19\%\)`,R`\(50\%\)`,R`\(69\%\)`], a:0,
+  s:sol([R`Pengali: \(100 \div 50 = 2\).||Multiplier.`, R`\(\frac{19 \times 2}{50 \times 2} = \frac{38}{100} = 38\%\)`], R`Jawaban: \(38\%\)||Answer: \(38\%\)`)},
+ {t:'tf', q:R`\(\frac{3}{4} = 34\%\)`, a:false,
+  s:sol([R`Jangan menulis pembilang dan penyebut berdampingan! \(\frac{3}{4}\) bukan "34".||Do not just write the digits side by side!`, R`\(\frac{3 \times 25}{4 \times 25} = \frac{75}{100} = 75\%\)`], 'Jawaban: Salah||Answer: False')}
+],
+/* ===== TASK 4 ===== */
+t4:[
+ {t:'mc', q:R`Berapa persen kotak yang diwarnai?||What percent of the squares are shaded?`, fig:grid(64,140),
+  o:[R`\(64\%\)`,R`\(36\%\)`,R`\(6{,}4\%\)`,R`\(46\%\)`], a:0,
+  s:sol([R`Hitung: 6 baris penuh (60) + 4 kotak = 64.||6 full rows + 4 = 64.`, R`\(\frac{64}{100} = 64\%\)`], R`Jawaban: \(64\%\)||Answer: \(64\%\)`)},
+ {t:'mc', q:R`Berapa persen kotak yang <b>tidak</b> diwarnai?||What percent of the squares are <b>not</b> shaded?`, fig:grid(30,140),
+  o:[R`\(70\%\)`,R`\(30\%\)`,R`\(7\%\)`,R`\(100\%\)`], a:0,
+  s:sol([R`Diwarnai: 3 baris = 30 kotak → \(30\%\).||Shaded: 3 rows = 30%.`, R`Tidak diwarnai: \(100\% - 30\% = 70\%\).||Not shaded.`], R`Jawaban: \(70\%\)||Answer: \(70\%\)`)},
+ {t:'fill', q:R`Isi kotak dengan tanda \(\lt\), \(\gt\), atau \(=\).||Fill the box with \(\lt\), \(\gt\), or \(=\).`, f:[R`\(0{,}6\)`,0,R`\(58\%\)`], ans:[['>']], text:true,
+  s:sol([R`Ubah \(0{,}6\) ke persen: \(0{,}6 = 0{,}60 = 60\%\).||Change to percent.`, R`\(60\% \gt 58\%\), jadi \(0{,}6 \gt 58\%\).||So 0,6 > 58%.`], R`Jawaban: \(\gt\)||Answer: \(\gt\)`)},
+ {t:'tf', q:R`\(\frac{1}{4} \gt 0{,}3\)`, a:false,
+  s:sol([R`\(\frac{1}{4} = \frac{25}{100} = 0{,}25\)`, R`\(0{,}3 = 0{,}30\). Karena \(25 \lt 30\), maka \(\frac{1}{4} \lt 0{,}3\).||Since 25 < 30, 1/4 < 0,3.`], 'Jawaban: Salah||Answer: False')},
+ {t:'sort', q:R`Urutkan dari <b>terbesar</b> ke <b>terkecil</b>.||Order from <b>largest</b> to <b>smallest</b>.`, dir:['terbesar / largest','terkecil / smallest'],
+  items:[R`\(0{,}9\)`,R`\(\frac{4}{5}\)`,R`\(72\%\)`,R`\(0{,}7\)`],
+  s:sol([R`Ubah ke persen: \(0{,}9 = 90\%\); \(\frac{4}{5} = \frac{80}{100} = 80\%\); \(72\%\); \(0{,}7 = 70\%\).||Change to percent.`, R`Dari terbesar: \(90 \gt 80 \gt 72 \gt 70\).||From largest.`],
+        R`Jawaban: \(0{,}9;\ \frac{4}{5};\ 72\%;\ 0{,}7\)||Answer: \(0{,}9;\ \frac{4}{5};\ 72\%;\ 0{,}7\)`)},
+ {t:'cb', q:R`Mana saja yang <b>lebih besar</b> dari \(\frac{1}{2}\)?||Which are <b>greater</b> than \(\frac{1}{2}\)?`,
+  o:[R`\(0{,}55\)`,R`\(\frac{3}{5}\)`,R`\(\frac{51}{100}\)`,R`\(49\%\)`,R`\(0{,}5\)`,R`\(0{,}09\)`], a:[0,1,2],
+  s:sol([R`\(\frac{1}{2} = 50\%\). Ubah semua ke persen lalu bandingkan dengan 50.||Compare everything with 50%.`,
+         R`\(0{,}55 = 55\%\) ✔; \(\frac{3}{5} = 60\%\) ✔; \(\frac{51}{100} = 51\%\) ✔`,
+         R`\(49\%\) ✘ (lebih kecil); \(0{,}5 = 50\%\) ✘ (sama, tidak lebih besar); \(0{,}09 = 9\%\) ✘||smaller; equal, not greater; smaller`],
+        R`Jawaban: \(0{,}55,\ \frac{3}{5},\ \frac{51}{100}\)||Answer: \(0{,}55,\ \frac{3}{5},\ \frac{51}{100}\)`)},
+ {t:'pair', q:R`Pasangkan setiap gambar dengan nilai yang tepat.||Match each picture with the right value.`,
+  L:[grid(10,64),grid(25,64),grid(50,64),grid(90,64)], R:[R`\(0{,}1\)`,R`\(\frac{1}{4}\)`,R`\(50\%\)`,R`\(0{,}9\)`],
+  s:sol([R`10 kotak → \(\frac{10}{100} = 0{,}1\)`, R`25 kotak → \(\frac{25}{100} = \frac{1}{4}\)`, R`50 kotak → \(50\%\)`, R`90 kotak → \(\frac{90}{100} = 0{,}9\)`])},
+ {t:'dd', q:R`Kelompokkan kartu ke nilai desimal yang sama.||Put each card in the group with the same decimal.`,
+  cats:[R`\(= 0{,}25\)||equal to 0,25`,R`\(= 0{,}5\)||equal to 0,5`,R`\(= 0{,}75\)||equal to 0,75`],
+  items:[[R`\(\frac{1}{4}\)`,0],[R`\(25\%\)`,0],[R`\(\frac{1}{2}\)`,1],[R`\(50\%\)`,1],[R`\(\frac{3}{4}\)`,2],[R`\(75\%\)`,2]],
+  s:sol([R`\(\frac{1}{4} = \frac{25}{100} = 0{,}25\) dan \(25\% = 0{,}25\)||and`, R`\(\frac{1}{2} = \frac{50}{100} = 0{,}5\) dan \(50\% = 0{,}5\)||and`, R`\(\frac{3}{4} = \frac{75}{100} = 0{,}75\) dan \(75\% = 0{,}75\)||and`])},
+ {t:'mc', q:R`Bilangan mana yang <b>paling besar</b>?||Which number is the <b>largest</b>?`,
+  o:[R`\(\frac{9}{100}\)`,R`\(0{,}08\)`,R`\(7\%\)`,R`\(\frac{1}{20}\)`], a:0,
+  s:sol([R`Ubah ke persen: \(\frac{9}{100} = 9\%\); \(0{,}08 = 8\%\); \(7\%\); \(\frac{1}{20} = \frac{5}{100} = 5\%\).||Change to percent.`, R`Terbesar: \(9\%\).||Largest: 9%.`], R`Jawaban: \(\frac{9}{100}\)||Answer: \(\frac{9}{100}\)`)},
+ {t:'fill', q:R`Bagian yang <b>tidak</b> diwarnai sama dengan …||The part that is <b>not</b> shaded equals …`, fig:grid(47,140),
+  f:[R`Persen / Percent: `,0,R`\(\%\)`,'<span style="width:16px"></span>',R`Desimal / Decimal: `,1], ans:[['53'],['0,53']],
+  s:sol([R`Diwarnai: 4 baris (40) + 7 = 47 kotak.||Shaded: 47.`, R`Tidak diwarnai: \(100 - 47 = 53\) kotak → \(\frac{53}{100}\).||Not shaded: 53.`, R`\(\frac{53}{100} = 53\% = 0{,}53\)`], R`Jawaban: \(53\%\) dan \(0{,}53\)||Answer: \(53\%\) and \(0{,}53\)`)}
+],
+/* ===== TASK 5 ===== */
+t5:[
+ {t:'fill', q:R`Di pojok baca kelas ada 100 buku. 38 buku adalah buku cerita. Berapa persen buku cerita?||The class reading corner has 100 books. 38 are storybooks. What percent are storybooks?`, f:[0,R`\(\%\)`], ans:[['38']],
+  s:sol([R`Keseluruhan sudah 100 → \(\frac{38}{100}\).||The whole is already 100.`, R`\(\frac{38}{100} = 38\%\)`], R`Jawaban: \(38\%\)||Answer: \(38\%\)`)},
+ {t:'mc', q:R`Dari 25 siswa, 15 siswa naik sepeda ke sekolah. Berapa persen siswa yang naik sepeda?||Of 25 students, 15 cycle to school. What percent cycle?`,
+  o:[R`\(60\%\)`,R`\(15\%\)`,R`\(25\%\)`,R`\(40\%\)`], a:0,
+  s:sol([R`Bagian = 15, keseluruhan = 25 → \(\frac{15}{25}\).||Part 15, whole 25.`, R`Pengali \(100 \div 25 = 4\): \(\frac{15 \times 4}{25 \times 4} = \frac{60}{100} = 60\%\)`, R`\(40\%\) adalah siswa yang <b>tidak</b> naik sepeda.||40% do not cycle.`], R`Jawaban: \(60\%\)||Answer: \(60\%\)`)},
+ {t:'tf', q:R`Toko Maju memberi diskon \(\frac{1}{2}\). Toko Jaya memberi diskon \(45\%\). Diskon Toko Maju lebih besar.||Toko Maju gives \(\frac{1}{2}\) off. Toko Jaya gives \(45\%\) off. Toko Maju's discount is bigger.`, a:true,
+  s:sol([R`\(\frac{1}{2} = \frac{50}{100} = 50\%\)`, R`\(50\% \gt 45\%\), jadi diskon Toko Maju lebih besar.||So Toko Maju's discount is bigger.`], 'Jawaban: Benar||Answer: True')},
+ {t:'cb', q:R`Dodi menanam 20 pohon. 13 di antaranya pohon mangga. Pernyataan mana yang <b>benar</b> tentang pohon mangga?||Dodi plants 20 trees. 13 are mango trees. Which statements about the mango trees are <b>true</b>?`,
+  o:[R`Bagiannya \(\frac{13}{20}\)||The part is \(\frac{13}{20}\)`,R`Sama dengan \(\frac{65}{100}\)||Equal to \(\frac{65}{100}\)`,R`Dalam desimal \(0{,}65\)||As a decimal \(0{,}65\)`,R`Sama dengan \(65\%\)||Equal to \(65\%\)`,R`Sama dengan \(13\%\)||Equal to \(13\%\)`,R`Dalam desimal \(0{,}13\)||As a decimal \(0{,}13\)`], a:[0,1,2,3],
+  s:sol([R`Bagian 13, keseluruhan 20 → \(\frac{13}{20}\) ✔||Part 13, whole 20.`, R`Pengali \(100 \div 20 = 5\): \(\frac{13 \times 5}{20 \times 5} = \frac{65}{100} = 0{,}65 = 65\%\) ✔`, R`\(13\%\) dan \(0{,}13\) salah karena keseluruhannya 20, bukan 100.||Wrong because the whole is 20, not 100.`],
+        R`Jawaban: \(\frac{13}{20},\ \frac{65}{100},\ 0{,}65,\ 65\%\)||Answer: \(\frac{13}{20},\ \frac{65}{100},\ 0{,}65,\ 65\%\)`)},
+ {t:'sort', q:R`Peluang hujan selama 4 hari ditulis berbeda. Urutkan dari peluang <b>terkecil</b> ke <b>terbesar</b>.||The chance of rain for 4 days is written differently. Order from <b>lowest</b> to <b>highest</b>.`, dir:['terkecil / lowest','terbesar / highest'],
+  items:[R`Kamis / Thursday: \(\frac{1}{4}\)`,R`Selasa / Tuesday: \(\frac{3}{10}\)`,R`Senin / Monday: \(0{,}35\)`,R`Rabu / Wednesday: \(42\%\)`],
+  s:sol([R`Kamis \(\frac{1}{4} = 25\%\); Selasa \(\frac{3}{10} = 30\%\); Senin \(0{,}35 = 35\%\); Rabu \(42\%\).||Change to percent.`, R`\(25 \lt 30 \lt 35 \lt 42\)`], 'Jawaban: Kamis, Selasa, Senin, Rabu||Answer: Thursday, Tuesday, Monday, Wednesday')},
+ {t:'fill', q:R`Sebuah botol terisi air \(0{,}8\) bagian. Berapa persen bagian botol yang <b>kosong</b>?||A bottle is \(0{,}8\) full of water. What percent of the bottle is <b>empty</b>?`, fig:`<svg class="ill" viewBox="0 0 60 110" width="56" aria-hidden="true"><rect class="f0" x="10" y="14" width="40" height="92" rx="8"/><rect class="f" x="10" y="32" width="40" height="74" rx="6"/><rect class="s" x="10" y="14" width="40" height="92" rx="8"/><rect class="s" x="20" y="4" width="20" height="10" rx="2"/></svg>`,
+  f:[0,R`\(\%\)`], ans:[['20']],
+  s:sol([R`Isi air: \(0{,}8 = 0{,}80 = 80\%\).||Water: 80%.`, R`Seluruh botol \(= 100\%\). Kosong \(= 100\% - 80\% = 20\%\).||Empty = 100% − 80% = 20%.`], R`Jawaban: \(20\%\)||Answer: \(20\%\)`)},
+ {t:'pair', q:R`Pasangkan setiap situasi dengan persennya.||Match each situation with its percent.`,
+  L:['18 dari 20 soal benar||18 of 20 questions correct','3 dari 4 kue dimakan||3 of 4 cakes eaten','1 dari 5 lampu mati||1 of 5 lamps off','12 dari 50 kelereng biru||12 of 50 marbles blue'],
+  R:[R`\(90\%\)`,R`\(75\%\)`,R`\(20\%\)`,R`\(24\%\)`],
+  s:sol([R`\(\frac{18}{20} = \frac{18 \times 5}{20 \times 5} = \frac{90}{100} = 90\%\)`, R`\(\frac{3}{4} = \frac{75}{100} = 75\%\)`, R`\(\frac{1}{5} = \frac{20}{100} = 20\%\)`, R`\(\frac{12}{50} = \frac{12 \times 2}{50 \times 2} = \frac{24}{100} = 24\%\)`])},
+ {t:'mc', q:R`Nilai Sinta \(0{,}9\), nilai Rudi \(\frac{22}{25}\), nilai Tono \(86\%\). Siapa yang nilainya paling tinggi?||Sinta scored \(0{,}9\), Rudi \(\frac{22}{25}\), Tono \(86\%\). Who scored highest?`,
+  o:['Sinta','Rudi','Tono','Ketiganya sama||All three are equal'], a:0,
+  s:sol([R`Sinta: \(0{,}9 = 0{,}90 = 90\%\)`, R`Rudi: \(\frac{22 \times 4}{25 \times 4} = \frac{88}{100} = 88\%\)`, R`Tono: \(86\%\). Bandingkan: \(90 \gt 88 \gt 86\).||Compare.`], 'Jawaban: Sinta||Answer: Sinta')},
+ {t:'dd', q:R`Kelompokkan setiap situasi: lebih dari setengah atau kurang dari setengah?||Sort each situation: more than half or less than half?`,
+  cats:['Lebih dari setengah||More than half','Kurang dari setengah||Less than half'],
+  items:[['7 dari 10 siswa||7 of 10 students',0],[R`\(\frac{13}{25}\) kelas||\(\frac{13}{25}\) of the class`,0],[R`\(0{,}6\) bagian kue||\(0{,}6\) of a cake`,0],['2 dari 5 buah||2 of 5 fruits',1],[R`\(0{,}48\) bagian kebun||\(0{,}48\) of the garden`,1],[R`\(30\%\) hari||\(30\%\) of the days`,1]],
+  s:sol([R`Setengah \(= 50\%\).||Half = 50%.`, R`\(\frac{7}{10} = 70\%\); \(\frac{13}{25} = \frac{52}{100} = 52\%\); \(0{,}6 = 60\%\) → lebih dari setengah.||more than half.`, R`\(\frac{2}{5} = 40\%\); \(0{,}48 = 48\%\); \(30\%\) → kurang dari setengah.||less than half.`])},
+ {t:'tf', q:R`Baterai HP awalnya \(100\%\). Setelah dipakai, isinya tinggal \(0{,}35\). Berarti baterai sudah terpakai \(65\%\).||A phone battery starts at \(100\%\). After use, \(0{,}35\) is left. So \(65\%\) of the battery has been used.`, fig:battery(35,120), a:true,
+  s:sol([R`Sisa: \(0{,}35 = 35\%\).||Left: 35%.`, R`Terpakai \(= 100\% - 35\% = 65\%\) ✔||Used = 65%.`], 'Jawaban: Benar||Answer: True')}
+]
+};
+
+const FOLLOW=[
+ [R`Tulis \(\frac{27}{100}\) dalam bentuk desimal dan persen.||Write \(\frac{27}{100}\) as a decimal and a percent.`, sol([R`Penyebut 100 → 2 angka di belakang koma: \(0{,}27\).||2 digits.`, R`Per seratus → \(27\%\).||Per hundred.`], R`\(\frac{27}{100} = 0{,}27 = 27\%\)`)],
+ [R`Ubah \(0{,}6\) menjadi persen.||Change \(0{,}6\) to a percent.`, sol([R`\(0{,}6 = 0{,}60 = \frac{60}{100}\)`, R`\(\frac{60}{100} = 60\%\)`], R`\(60\%\)`)],
+ [R`Ubah \(\frac{7}{25}\) menjadi persen.||Change \(\frac{7}{25}\) to a percent.`, sol([R`\(100 \div 25 = 4\)`, R`\(\frac{7 \times 4}{25 \times 4} = \frac{28}{100} = 28\%\)`], R`\(28\%\)`)],
+ [R`Urutkan dari terkecil: \(0{,}45;\ \frac{2}{5};\ 44\%\)||Order from smallest: \(0{,}45;\ \frac{2}{5};\ 44\%\)`, sol([R`\(0{,}45 = 45\%\); \(\frac{2}{5} = \frac{40}{100} = 40\%\); \(44\%\)`, R`\(40 \lt 44 \lt 45\)`], R`\(\frac{2}{5};\ 44\%;\ 0{,}45\)`)],
+ [R`Tantangan: Dari 40 siswa, 10 siswa memakai kacamata. Berapa persen?||Challenge: Of 40 students, 10 wear glasses. What percent?`, sol([R`\(\frac{10}{40}\). 40 bukan pembagi 100, jadi sederhanakan dulu: bagi atas dan bawah dengan 10 → \(\frac{1}{4}\).||40 does not divide 100, so simplify first: divide by 10.`, R`\(\frac{1}{4} = \frac{1 \times 25}{4 \times 25} = \frac{25}{100} = 25\%\)`], R`\(25\%\)`)]
+];
+
+/* ---------- rendering ---------- */
+const STATE={};
+let uid=0;
+function feedback(el, kind, msg){ el.hidden=false; el.className='fb '+kind; el.innerHTML=B(msg); }
+
+function buildBody(q, body){
+  const name='q'+(uid++);
+  if(q.t==='mc'||q.t==='cb'||q.t==='tf'){
+    let opts, type = q.t==='cb'?'checkbox':'radio';
+    if(q.t==='tf') opts=[{v:1,h:'Benar||True'},{v:0,h:'Salah||False'}];
+    else opts=q.o.map((h,k)=>({v:k,h}));
+    body.innerHTML=`<div class="opts">${shuffle(opts).map(o=>`<label class="opt"><input type="${type}" name="${name}" value="${o.v}"><span class="ob">${B(o.h)}</span></label>`).join('')}</div>`;
+    return ()=>{
+      const ins=[...body.querySelectorAll('input')]; ins.forEach(i=>i.closest('.opt').classList.remove('right','wrong'));
+      const chosen=ins.filter(i=>i.checked);
+      if(!chosen.length) return null;
+      if(q.t==='cb'){
+        const want=new Set(q.a); let ok=chosen.length===want.size && chosen.every(i=>want.has(+i.value));
+        chosen.forEach(i=>i.closest('.opt').classList.add(want.has(+i.value)?'right':'wrong'));
+        return ok;
+      }
+      const v=+chosen[0].value, ok = q.t==='tf' ? (v===1)===q.a : v===q.a;
+      chosen[0].closest('.opt').classList.add(ok?'right':'wrong'); return ok;
+    };
+  }
+  if(q.t==='fill'){
+    body.innerHTML=`<div class="fillrow">${q.f.map(p=>typeof p==='number'?`<input type="text" id="${name}-${p}" data-k="${p}" autocomplete="off" ${q.text?'':'inputmode="decimal"'} aria-label="jawaban ${p+1} / answer ${p+1}">`:`<span>${B(p)}</span>`).join('')}</div>`;
+    body.querySelectorAll('input').forEach(i=>i.addEventListener('keydown',e=>{ if(e.key==='Enter') body.closest('.q').querySelector('.chk').click(); }));
+    return ()=>{
+      const ins=[...body.querySelectorAll('input')];
+      if(ins.some(i=>!i.value.trim())) return null;
+      let all=true;
+      ins.forEach(i=>{ const ok=same(i.value,q.ans[+i.dataset.k]); i.classList.toggle('right',ok); i.classList.toggle('wrong',!ok); if(!ok) all=false; });
+      return all;
+    };
+  }
+  if(q.t==='sort'){
+    const order=shuffleDiff(q.items.map((_,k)=>k));
+    body.innerHTML=`<div class="dirlab"><span>↑ ${q.dir[0]}</span></div><ul class="sortl">${order.map(k=>`<li draggable="true" data-k="${k}"><span class="sx">${B(q.items[k])}</span><span class="arw"><button type="button" class="up" aria-label="naik / move up">↑</button><button type="button" class="dn" aria-label="turun / move down">↓</button></span></li>`).join('')}</ul><div class="dirlab"><span>↓ ${q.dir[1]}</span></div>`;
+    const ul=body.querySelector('ul'); let drag=null;
+    ul.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return; const li=b.closest('li'); ul.classList.remove('right','wrong');
+      if(b.classList.contains('up') && li.previousElementSibling) ul.insertBefore(li, li.previousElementSibling);
+      if(b.classList.contains('dn') && li.nextElementSibling) ul.insertBefore(li.nextElementSibling, li); b.focus(); });
+    ul.querySelectorAll('li').forEach(li=>{
+      li.addEventListener('dragstart',e=>{drag=li; li.classList.add('dragging'); e.dataTransfer.setData('text/plain','s'); e.dataTransfer.effectAllowed='move';});
+      li.addEventListener('dragend',()=>{ li.classList.remove('dragging'); drag=null; });
+      li.addEventListener('dragover',e=>{ e.preventDefault(); if(!drag||drag===li) return; const r=li.getBoundingClientRect(); ul.insertBefore(drag, e.clientY>r.top+r.height/2? li.nextSibling : li); ul.classList.remove('right','wrong'); });
+    });
+    return ()=>{ const ks=[...ul.children].map(li=>+li.dataset.k); const ok=ks.every((k,i)=>k===i); ul.classList.toggle('right',ok); ul.classList.toggle('wrong',!ok); return ok; };
+  }
+  if(q.t==='pair'||q.t==='dd'){
+    let chips, zonesHtml;
+    if(q.t==='pair'){
+      chips=shuffle(q.R.map((h,k)=>({h,k})));
+      zonesHtml=`<div class="pairs">${q.L.map((h,j)=>`<div class="prow"><div class="pl">${B(h)}</div><div class="zone" tabindex="0" data-cap="1" data-i="${j}" aria-label="kotak pasangan / match box ${j+1}"><div class="zb"></div><span class="ph">${Bi('Taruh di sini||Drop here')}</span></div></div>`).join('')}</div>`;
+    } else {
+      chips=shuffle(q.items.map(([h,c],k)=>({h,k,c})));
+      zonesHtml=`<div class="buckets">${q.cats.map((h,j)=>`<div class="bucket"><div class="bucket-t">${B(h)}</div><div class="zone" tabindex="0" data-cap="n" data-i="${j}" aria-label="kelompok / group ${j+1}"><div class="zb"></div><span class="ph">${Bi('Taruh di sini||Drop here')}</span></div></div>`).join('')}</div>`;
+    }
+    body.innerHTML=`<div class="board" style="display:flex;flex-direction:column;gap:12px"><div><div class="bank-k">${Bi('Kartu||Cards')}</div><div class="bank">${chips.map(c=>`<span class="chip" role="button" tabindex="0" draggable="true" data-k="${c.k}" ${c.c!=null?`data-c="${c.c}"`:''}>${B(c.h)}</span>`).join('')}</div></div>${zonesHtml}</div>`;
+    const board=body.querySelector('.board'); setupBoard(board);
+    return ()=>{
+      const bank=board.querySelector('.bank'); const zones=[...board.querySelectorAll('.zone')];
+      zones.forEach(z=>z.classList.remove('right','wrong')); board.querySelectorAll('.chip').forEach(c=>c.classList.remove('right','wrong'));
+      if(bank.children.length) return null;
+      let all=true;
+      if(q.t==='pair'){
+        zones.forEach(z=>{ const c=z.querySelector('.chip'); const ok=c && +c.dataset.k===+z.dataset.i; z.classList.add(ok?'right':'wrong'); if(!ok) all=false; });
+      } else {
+        zones.forEach(z=>z.querySelectorAll('.chip').forEach(c=>{ const ok=+c.dataset.c===+z.dataset.i; c.classList.add(ok?'right':'wrong'); if(!ok) all=false; }));
+      }
+      return all;
+    };
+  }
+}
+
+function setupBoard(root){
+  const bank=root.querySelector('.bank'); let sel=null, drag=null;
+  const unsel=()=>{ if(sel) sel.classList.remove('sel'); sel=null; root.classList.remove('picking'); };
+  const put=(c,z)=>{ root.querySelectorAll('.zone').forEach(x=>x.classList.remove('right','wrong')); root.querySelectorAll('.chip').forEach(x=>x.classList.remove('right','wrong'));
+    if(z===bank){ bank.appendChild(c); return; }
+    const zb=z.querySelector('.zb'); if(z.dataset.cap==='1' && zb.firstElementChild && zb.firstElementChild!==c) bank.appendChild(zb.firstElementChild); zb.appendChild(c); };
+  root.querySelectorAll('.chip').forEach(c=>{
+    c.addEventListener('click',e=>{ e.stopPropagation();
+      if(sel && sel!==c && c.closest('.zone')){ put(sel,c.closest('.zone')); unsel(); return; }
+      if(sel===c){ unsel(); return; } unsel(); sel=c; c.classList.add('sel'); root.classList.add('picking'); });
+    c.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); c.click(); } });
+    c.addEventListener('dragstart',e=>{ drag=c; e.dataTransfer.setData('text/plain','c'); e.dataTransfer.effectAllowed='move'; });
+    c.addEventListener('dragend',()=>{ drag=null; });
+  });
+  [bank,...root.querySelectorAll('.zone')].forEach(z=>{
+    z.addEventListener('click',()=>{ if(sel){ put(sel,z); unsel(); } });
+    z.addEventListener('keydown',e=>{ if((e.key==='Enter'||e.key===' ')&&e.target===z){ e.preventDefault(); z.click(); } });
+    z.addEventListener('dragover',e=>{ e.preventDefault(); z.classList.add('over'); });
+    z.addEventListener('dragleave',()=>z.classList.remove('over'));
+    z.addEventListener('drop',e=>{ e.preventDefault(); z.classList.remove('over'); if(drag){ put(drag,z); unsel(); } });
+  });
+}
+
+function norm(s){ return String(s).trim().replace(/\s+/g,'').replace(/%/g,'').replace(/&gt;/g,'>').replace(/&lt;/g,'<'); }
+function num(s){ const t=norm(s).replace(',', '.'); return /^-?\d*\.?\d+$/.test(t)?parseFloat(t):null; }
+function same(user,acc){ const u=norm(user); if(!u) return false; return acc.some(a=>{ const nu=num(u), na=num(a); if(nu!==null&&na!==null) return Math.abs(nu-na)<1e-9; return u.toLowerCase()===norm(a).toLowerCase(); }); }
+
+function makeCard(setId,i,q,solLabel){
+  const el=document.createElement('article'); el.className='q'; el.dataset.i=i;
+  el.innerHTML=`<header class="qh"><span class="qn">${i+1}</span><span class="qt">${Bi(TYPES[q.t][0])}</span></header>
+   <div class="qq">${B(q.q)}</div>${q.fig?`<div class="qfig">${q.fig}</div>`:''}
+   <p class="hint">${B(TYPES[q.t][1])}</p><div class="qbody"></div>
+   <div class="qact"><button type="button" class="btn primary chk">${Bi('Periksa||Check')}</button><button type="button" class="btn rst">${Bi('Ulangi & acak||Reset & shuffle')}</button></div>
+   <div class="fb" hidden></div>
+   <details class="sol"><summary>${Bi(solLabel)}</summary><div class="solb">${q.s}</div></details>`;
+  const check=buildBody(q, el.querySelector('.qbody'));
+  const fb=el.querySelector('.fb');
+  el.querySelector('.chk').addEventListener('click',()=>{
+    const r=check();
+    if(r===null){ feedback(fb,'info', q.t==='fill'?'Isi semua kotak dulu.||Fill in every box first.':(q.t==='pair'||q.t==='dd')?'Taruh semua kartu dulu.||Place every card first.':'Pilih jawaban dulu.||Choose an answer first.'); return; }
+    STATE[setId][i]=r; el.classList.toggle('is-ok',r); updScore(setId);
+    feedback(fb, r?'ok':'no', r?'Benar! Kerja bagus.||Correct! Well done.':'Belum tepat. Periksa yang berwarna merah, coba lagi, atau buka pembahasan.||Not quite. Look at the parts marked red, try again, or open the solution.');
+  });
+  el.querySelector('.rst').addEventListener('click',()=>{
+    const fresh=makeCard(setId,i,q,solLabel); el.replaceWith(fresh); tex(fresh); STATE[setId][i]=undefined; updScore(setId);
+  });
+  return el;
+}
+function updScore(setId){
+  const s=STATE[setId], n=SETS[setId].length, ok=Object.values(s).filter(v=>v===true).length;
+  document.querySelectorAll(`.score[data-for="${setId}"]`).forEach(e=>e.innerHTML=`${Bi('Benar||Correct')}: ${ok} / ${n}`);
+  const nb=document.querySelector(`.navbtn[data-id="${setId}"] .nt`); if(nb){ const d=nb.querySelector('.done'); if(ok===n&&!d) nb.insertAdjacentHTML('beforeend','<span class="done" title="selesai / done"></span>'); if(ok<n&&d) d.remove(); }
+}
+
+document.querySelectorAll('.qset').forEach(box=>{
+  const id=box.dataset.set, qs=SETS[id], label=box.dataset.sol==='exp'?'Penjelasan||Explanation':'Pembahasan||Solution';
+  STATE[id]={};
+  const head = box.dataset.nohead ? `<div class="sethead"><span></span><span class="score" data-for="${id}"></span></div>` :
+    `<div class="sethead"><h3>${id.startsWith('t')?Bi('Soal||Questions'):Bi('Latihan||Exercises')}</h3><span class="score" data-for="${id}"></span></div>`;
+  box.innerHTML=head+'<div class="qlist"></div>';
+  const list=box.querySelector('.qlist');
+  qs.forEach((q,i)=>list.appendChild(makeCard(id,i,q,label)));
+  updScore(id);
+});
+document.getElementById('followup').innerHTML=FOLLOW.map((f,i)=>`<article class="q"><header class="qh"><span class="qn">${i+1}</span><span class="qt">${Bi('Latihan Lanjutan||Follow-up')}</span></header><div class="qq">${B(f[0])}</div><details class="sol"><summary>${Bi('Lihat jawaban & langkah||See answer & steps')}</summary><div class="solb">${f[1]}</div></details></article>`).join('');
+
+/* static figures */
+document.querySelectorAll('[data-grid]').forEach(e=>e.innerHTML=grid(+e.dataset.grid,+(e.dataset.size||140)));
+document.querySelectorAll('[data-bar]').forEach(e=>e.innerHTML=bar(+e.dataset.bar));
+document.getElementById('ill-bat').innerHTML=battery(75);
+document.getElementById('ill-tag').innerHTML=TAG;
+document.getElementById('ill-rain').innerHTML=RAIN;
+document.getElementById('ill-test').innerHTML=TEST;
+(function(){ let s=''; for(let i=0;i<100;i++){const x=1+(i%10)*10,y=1+Math.floor(i/10)*10; s+=`<rect x="${x}" y="${y}" width="10" height="10" class="${i<35?'on':'off'}"/>`;} document.getElementById('logo').innerHTML=s+'<rect class="fr" x="1" y="1" width="100" height="100"/>'; })();
+
+/* ---------- navigation ---------- */
+const NAV=[
+ ['s1','00:00–00:10','Pemanasan Spiral Review','Spiral Review Warm-up'],
+ ['s2','00:10–00:15','Pendahuluan & Koneksi Dunia Nyata','Introduction & Real-World Connection'],
+ ['s3','00:15–00:20','Mengulas Pengetahuan Sebelumnya','Review of Prior Knowledge'],
+ ['s4','00:20–00:25','Pengenalan Masalah','Problem Introduction'],
+ ['s5','00:25–00:40','Latihan Terbimbing','Guided Practice'],
+ ['s6','00:40–00:55','Latihan Mandiri','Independent Practice'],
+ ['s7','00:55–01:00','Konsolidasi & Refleksi','Consolidation & Reflection'],
+ ['t1','10 soal','Tugas 1: Perseratus & Desimal','Task 1: Hundredths & Decimals'],
+ ['t2','10 soal','Tugas 2: Desimal & Persen','Task 2: Decimals & Percents'],
+ ['t3','10 soal','Tugas 3: Pecahan ke Persen','Task 3: Fractions to Percent'],
+ ['t4','10 soal','Tugas 4: Membandingkan','Task 4: Comparing'],
+ ['t5','10 soal','Tugas 5: Soal Cerita','Task 5: Word Problems']
+];
+const nav=document.getElementById('nav');
+nav.innerHTML=`<div class="nav-k">Alur pelajaran / Lesson flow</div>`+NAV.slice(0,7).map(navBtn).join('')+`<div class="nav-k">Tugas / Tasks</div>`+NAV.slice(7).map(navBtn).join('');
+function navBtn([id,tm,a,b]){ return `<button type="button" class="navbtn" data-id="${id}"><span class="tm">${tm.replace('10 soal','10 soal<br>10 Qs')}</span><span class="nt">${a}</span><span class="ne">${b}</span></button>`; }
+NAV.forEach(([id])=>{ if(id in STATE) updScore(id); });
+let current='s1'; const typeset=new Set(); let mjReady=false;
+function tex(el){ if(mjReady && window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([el]).catch(err=>console.warn(err)); }
+function show(id, scroll){
+  if(!document.getElementById('p-'+id)) id='s1';
+  current=id;
+  document.querySelectorAll('.panel').forEach(p=>p.hidden = p.dataset.id!==id);
+  document.querySelectorAll('.navbtn').forEach(b=>b.setAttribute('aria-current', b.dataset.id===id?'true':'false'));
+  const idx=NAV.findIndex(n=>n[0]===id);
+  document.getElementById('prevBtn').disabled = idx===0; document.getElementById('nextBtn').disabled = idx===NAV.length-1;
+  const panel=document.getElementById('p-'+id);
+  if(mjReady && !typeset.has(id)){ typeset.add(id); tex(panel); }
+  try{ history.replaceState(null,'','#'+id); }catch(e){}
+  try{ localStorage.setItem('persen-tab',id); }catch(e){}
+  const ab=nav.querySelector(`[data-id="${id}"]`); if(ab && ab.scrollIntoView && window.innerWidth<=880) ab.scrollIntoView({block:'nearest',inline:'center'});
+  if(scroll) document.getElementById('main').scrollIntoView({block:'start'});
+}
+nav.addEventListener('click',e=>{ const b=e.target.closest('.navbtn'); if(b) show(b.dataset.id,true); });
+document.getElementById('prevBtn').addEventListener('click',()=>{ const i=NAV.findIndex(n=>n[0]===current); if(i>0) show(NAV[i-1][0],true); });
+document.getElementById('nextBtn').addEventListener('click',()=>{ const i=NAV.findIndex(n=>n[0]===current); if(i<NAV.length-1) show(NAV[i+1][0],true); });
+let start=(location.hash||'').slice(1); if(!start){ try{ start=localStorage.getItem('persen-tab')||''; }catch(e){} }
+show(start||'s1',false);
+
+/* modal */
+const modal=document.getElementById('rulesModal');
+document.getElementById('openRules').addEventListener('click',()=>{ modal.hidden=false; document.getElementById('closeRules').focus(); });
+document.getElementById('closeRules').addEventListener('click',()=>{ modal.hidden=true; document.getElementById('openRules').focus(); });
+modal.addEventListener('click',e=>{ if(e.target===modal) modal.hidden=true; });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape' && !modal.hidden) modal.hidden=true; });
+
+/* MathJax (SVG output: no font files needed) */
+window.MathJax={
+  tex:{inlineMath:[['\\(','\\)']], displayMath:[['\\[','\\]']]},
+  svg:{fontCache:'local'},
+  startup:{typeset:false, ready(){ MathJax.startup.defaultReady(); MathJax.startup.promise.then(()=>{ mjReady=true; typeset.add(current); tex(document.getElementById('p-'+current)); }); }}
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js"></script>
+
+</body></html>
